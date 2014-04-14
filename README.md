@@ -5,7 +5,7 @@ CTEC 227 Project - IT Help Desk
 
 Specifications to go here.
 
-The team is Mark, Patrick & Earle
+The team is Marc, Patrick, & Earle
 
 Bruce our professor has assigned us the task of creating an "IT Help Desk" application for a mythical �Greenwell Bank Corporation�.
 
