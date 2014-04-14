@@ -7,20 +7,21 @@ Specifications to go here.
 
 The team is Mark, Patrick & Earle
 
-Bruce our professor has assigned us the task of creating an "IT Help Desk" application for a mythical “Greenwell Bank Corporation”.
+Bruce our professor has assigned us the task of creating an "IT Help Desk" application for a mythical ï¿½Greenwell Bank Corporationï¿½.
 
 Roles
 
 Bruce will be "Mr Greenwell". One of his roles is "Stakeholder".
-We will make up some personas or fake people some of them could be stakeholders. 
+We will make up some personas or fake people.
+Some of the fake people could be stakeholders. 
 
 Rolls for the team members listed in the following matrix
 
       Mark                Patrick	          Earle
       ____________        _________         ______
       Master Programmer   Project Manager   Programmer		
-      DBA	                Programmer	       Tester
-      Programmer	        UX	               QA
+      DBA	              Programmer	  Tester
+      Programmer	        UX	              QA
 
 Rules of engagement
 
