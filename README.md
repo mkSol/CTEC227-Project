@@ -31,7 +31,7 @@ We all have accounts now and are colaborators on CTEC227-Project
 We agreed to exchange contact info and a google calendar. 
 4-14-2014 Not done yet
 
-We did not come up with a lot a rules other than that except some vauge stuff about us respect and communications.
+We did not come up with a lot a rules other than that except some vague stuff about respect and communications.
 
 I came up with my own rule. Don't ask too many questions with Greenwell.
 He comes up with a new requirement on his answer.
