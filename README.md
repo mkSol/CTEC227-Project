@@ -17,7 +17,7 @@ Some of the fake people could be stakeholders.
 
 Rolls for the team members listed in the following matrix
 
-      Mark                Patrick	          Earle
+      Marc                Patrick	          Earle
       ____________        _________         ______
       Master Programmer   Project Manager   Programmer		
       DBA	              Programmer	  Tester
