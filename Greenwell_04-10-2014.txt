@@ -1,0 +1,5 @@
+After a huddle when we ( Mark Patrick & Earle ) talked about the IT Help Desk project we met with Mr Greenwell. He wanted his own screen that shows all the help tickets out. He wanted a filter for open and closed and sorting on key fields. 
+
+We had anticipated this and the screen would be similar to the Admin view only screen.
+
+Then he said (Mr Greenwell) that he wanted to track every computer AND the software on it AND the version of the software on it. 
