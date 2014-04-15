@@ -1,5 +1,9 @@
 # Specifications 
 
+General
+
+This project seeks to create a functional IT Help Desk and Asset Management system for Greenwell Bank. It will be a web-based system where users will log in and, depending on their role in the bank, will be able to submit, view, take, release, and close tickets for IT help desk. Additionally, it will keep track of the computer hardware and software assets of employees and departments within the company.
+
 Personas
   General User
   Help Desk
