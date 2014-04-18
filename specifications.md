@@ -24,25 +24,41 @@ All are assumed to be an employee or contractor
 
 ## Function  - High Level
 
-  Login Screen
-    view based on access level OR role
-    
-##   List Tickets
-    view based on access level OR role
-    ability to sort tickets
-    
-##   Accept/Take Tickets
-  
-##   Update Tickets
-  
-## Administration
 
-  New system user
-  CRUD Users
-  CRUD Tickets 
+### Login Screen
+    
+View based on access level OR role
+All users will be required to login 
+    
+### List Tickets
+
+View based on access level OR role
+
+For the General User this will list tickets they opened & are still active.
+Will include ability to sort tickets.
+
+For the helpdesk Admin and Manager all tickets are listed.
+Filters can be applied and data can be sorted.
+
+### Accept/Take Tickets (Create Ticket)
+
+All users will be able to create a trouble ticket.
+Screen will enable user to select an asset and describe the problem.
   
-  I have a note about ticket removal. Probably an admin function for a mistaken ticket entry. 
-  NOTE: CRUD is short for Create Read Update Delete not what w think of users or tickets
+### Update Tickets
+
+Helpdesk and Manager can assign tickets and update status.
+  
+### Administration
+
+Helpdesk and Manager can add assets software and software versions.
+
+~~New system user~~
+~~CRUD Users~~
+~~CRUD Tickets~~
+  
+~~I have a note about ticket removal. Probably an admin function for a mistaken ticket entry.~~
+~~NOTE: CRUD is short for Create Read Update Delete not what w think of users or tickets~~
   
   Notes On Listing Screen
     Listings to filter by status/date/user/tag/type assigned/unassigned open/closed
@@ -65,26 +81,30 @@ All are assumed to be an employee or contractor
     What we are saying is a Greenwell employee uses a computer and we are listing that relationship in data tables.
     
     
-    Existing System
+### Existing System
     
-    There is no existing computer based system. 
-    What occurs as I have observed is that Mary down in accounting calls her best frind Sally on the help desk and she gets more memory for her computer while IT has 286's.  
+There is no existing computer based system. 
+
+    ~~What occurs as I have observed is that Mary down in accounting calls
+    her best frind Sally on the help desk and she gets more memory for her 
+    computer while IT has 286's.~~
     
-    User Cases
+### User Cases
     
-    Frankly this needs some work
+    Frankly this still needs some work
     
-    Error Handling
+### Error Handling
     
-      Log non critical errors
-      minimum information to user on failure
+Log non critical errors
+Minimum information to user on failure
+   
     
+### Security
     
-    Security
+Not in the scope of this project
+Users will use the Greenwell LAN ( local Area Network )
+No access allowed outside the lan (Per Mr Greenwell)
     
-    Not in the scope of this project
-    Users will use the Greenwell LAN ( local Area Network )
-    No access allowed outside the lan (Per Mr Greenwell)
+## Help
     
-    Help
-    
+The GRIPE team will stage training sessions.
