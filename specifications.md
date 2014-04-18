@@ -24,7 +24,6 @@ All are assumed to be an employee or contractor
 
 ## Function  - High Level
 
-
 ### Login Screen
     
 View based on access level OR role
