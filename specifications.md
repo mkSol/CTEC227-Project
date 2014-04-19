@@ -102,15 +102,16 @@ Persona defined:
 
 ## Persona's
 
-For the *General User* we will have Tom and Gery.
+#### For the *General User* we will have Tom and Gery.
 
 Tom is a technical writer and provides office staff support at Greenwood.
-Tom is a new employee. He attends college and is studying IT.
+Tom is a new employee. 
+He attends college and is studying IT.
 
 Gery is a senior teller and has worked with Tom.
 She feels that her computer problems should receive top priority
 
-For the *Help Desk* we will have Harvey and Hurley.
+#### For the *Help Desk* we will have Harvey and Hurley.
 
 Harvey has worked the help desk for two years.
 Harvey looks forward to GRIPE going into production.
@@ -118,8 +119,9 @@ He wants to help with the testing.
 
 Hurley is Harvey's boss and leads the helpdesk team.
 Hurley is not sure we can come through with a system that will help. 
+Hurley want a system that is faster than what he uses
 
-For the *Executive* we will have Bubba and Gertrude.
+#### For the *Executive* we will have Bubba and Gertrude.
 
 Bubba owned Greenwood Bank. 
 Bubba looks forward to GRIPE going into production.
@@ -127,6 +129,10 @@ He wants to save money and get better use from his help staff.
 
 Gertrude is the COO at Greenwood.
 Mostly her secretaries use her computers.
+
+#### Sys Admin will be Slim 
+
+Slim will have access to more screens and will require less time to train.
 
 ~~Frankly this still needs a little more work~~ 
 
