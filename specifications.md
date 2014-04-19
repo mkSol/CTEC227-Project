@@ -96,8 +96,8 @@ For the GRIPE system we will use "persona's" to tease out the requirements.
 
 Persona defined: 
 **Wikipedia**
-    In marketing and user-centered design, personas are fictional characters created to represent the different user types within a targeted demographic, attitude and/or behavior set that might use a site, brand or product in a similar way.
 
+    In marketing and user-centered design, personas are fictional characters created to represent the different user types within a targeted demographic, attitude and/or behavior set that might use a site, brand or product in a similar way.
     A user persona is a representation of the goals and behavior of a hypothesized group of users.
 
 ## Persona's
