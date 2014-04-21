@@ -119,22 +119,50 @@ He wants to help with the testing.
 
 Hurley is Harvey's boss and leads the helpdesk team.
 Hurley is not sure we can come through with a system that will help. 
-Hurley want a system that is faster than what he uses
+Hurley wants a system that is faster than what he uses today.
 
-#### For the *Executive* we will have Bubba and Gertrude.
+#### For the *Executive* we will have Günther and Gertrude.
 
-Bubba owned Greenwood Bank. 
-Bubba looks forward to GRIPE going into production.
+Günther owned Greenwood Bank up until when he sold a controlling interest. 
+Günther looks forward to GRIPE going into production.
 He wants to save money and get better use from his help staff.
+There has been increasing pressure from the stock holders to streamline operations.
+Günther has started 4 projects at Greenwood in the las couple of weeks.
 
-Gertrude is the COO at Greenwood.
-Mostly her secretaries use her computers.
+
+Gertrude is the COO at Greenwood. Mostly her secretaries use her computers.
+Those that can recall the old days remember the time Gertrude stuffed two floppies into one slot on her computer.
 
 #### Sys Admin will be Slim 
 
 Slim will have access to more screens and will require less time to train.
 
-~~Frankly this still needs a little more work~~ 
+
+
+##### A typical day with GRIPE in production.
+
+Tom had a problem with his computer. He cannot read a document from Gery written on Wordy V5.
+Tom has Wordy V4 and it will not open Gery's document.
+
+Tom logs in to GRIPE with his employee number and password.
+Slim has set up employees & passwords prior to this.
+Tom selects his computer from a list and selects Wordy v4.
+Again Slim has done the foot work and entered hardware, software and assigned it to employees.
+Tom enters a description of the problem.
+
+Gery has a problem with the printer used in her office. She signs in to GRIPE and
+is presented with list of her computers and the printer. She slects the printer (no version required) and describes the problem.
+
+Meanwhile on the helpdesk Harvey and Hurley are monitoring activity on GRIPE.
+Hurley see the request from Gery. He calls the service company to get the paper clip out of the copier. Harvey notices the request from Tom and immediately updates the GRIPE ticket with an assigned status. Harvey puts in a request to upgrade Tom version of Wordy.
+
+An hour later Hurley get a call from Gery about her printer. Hurley updates the status of the GRIPE ticket and tells Gery the service has been called.
+
+Günther logs in to GRIPE and is presented with a list of all the tickets.
+After sorting and filtering he notices the time between opening a request and when it is assigned on Gery's ticket with the printer. He makes a not to ask Hurley about that.
+
+Gertrude spoke with Slim and he created a special data extract for her. She is mining the data to see how long computers last and anticipate when a new ones will be required.
+
 
 ### Error Handling
 
