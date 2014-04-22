@@ -24,67 +24,158 @@ All are assumed to be an employee or contractor
 
 ## Function  - High Level
 
-  Login Screen
-    view based on access level OR role
+### Login Screen
     
-##   List Tickets
-    view based on access level OR role
-    ability to sort tickets
+View based on access level OR role
+All users will be required to login 
     
-##   Accept/Take Tickets
-  
-##   Update Tickets
-  
-## Administration
+### List Tickets
 
-  New system user
-  CRUD Users
-  CRUD Tickets 
+View based on access level OR role
+
+For the General User this will list tickets they opened & are still active.
+Will include ability to sort tickets.
+
+For the helpdesk Admin and Manager all tickets are listed.
+Filters can be applied and data can be sorted.
+
+### Accept/Take Tickets (Create Ticket)
+
+All users will be able to create a trouble ticket.
+Screen will enable user to select an asset and describe the problem.
   
-  I have a note about ticket removal. Probably an admin function for a mistaken ticket entry. 
-  NOTE: CRUD is short for Create Read Update Delete not what w think of users or tickets
+### Update Tickets
+
+Helpdesk and Manager can assign tickets and update status.
   
-  Notes On Listing Screen
-    Listings to filter by status/date/user/tag/type assigned/unassigned open/closed
+### Administration
+
+Helpdesk and Manager can add assets software and software versions.
+
+~~New system user~~
+~~CRUD Users~~
+~~CRUD Tickets~~
+  
+~~I have a note about ticket removal. Probably an admin function for a mistaken ticket entry.~~
+~~NOTE: CRUD is short for Create Read Update Delete not what w think of users or tickets~~
+
+### Notes On Listing Screen
+
+Listings to filter by status/date/user/tag/type assigned/unassigned open/closed
+
+#### Other Notes
+
+###### * Marc has complete notes on schema development    
+Some of the data fields we will need are 
+priorty
+status
+notes
+type 
+Ticket tag
+dept
+
+Tables
+ticket table
+user table
+equipment
+Installed Software table ( this was added after our meeting with Mr Greenwell)
+
+We will need a separate table for hardware linked to users
+What we are saying is a Greenwell employee uses a computer and we are listing that relationship in data tables.
     
-    Some of the data fields we will need are 
-    priorty
-    status
-    notes
-    type (cannot read my own notes on this)
-    Ticket tag
-    dept
     
-    Tables
-    ticket table
-    user table
-    equipment
-    Installed Software table ( this was added after our meeting with Mr Greenwell)
+### Existing System
     
-    We will need a separate table for hardware linked to users
-    What we are saying is a Greenwell employee uses a computer and we are listing that relationship in data tables.
+There is no existing computer based system.
+
+~~What occurs as I have observed is that Mary down in accounting calls her best frind Sally on the help desk and she gets more memory for her computer while IT has 286's.~~
     
+### User Cases
+
+For the GRIPE system we will use "persona's" to tease out the requirements.
+
+Persona defined: 
+**Wikipedia**
+
+    In marketing and user-centered design, personas are fictional characters created to represent the different user types within a targeted demographic, attitude and/or behavior set that might use a site, brand or product in a similar way.
+    A user persona is a representation of the goals and behavior of a hypothesized group of users.
+
+## Persona's
+
+#### For the *General User* we will have Tom and Gery.
+
+Tom is a technical writer and provides office staff support at Greenwood.
+Tom is a new employee. 
+He attends college and is studying IT.
+
+Gery is a senior teller and has worked with Tom.
+She feels that her computer problems should receive top priority
+
+#### For the *Help Desk* we will have Harvey and Hurley.
+
+Harvey has worked the help desk for two years.
+Harvey looks forward to GRIPE going into production.
+He wants to help with the testing.
+
+Hurley is Harvey's boss and leads the helpdesk team.
+Hurley is not sure we can come through with a system that will help. 
+Hurley wants a system that is faster than what he uses today.
+
+#### For the *Executive* we will have Günther and Gertrude.
+
+Günther owned Greenwood Bank up until when he sold a controlling interest. 
+Günther looks forward to GRIPE going into production.
+He wants to save money and get better use from his help staff.
+There has been increasing pressure from the stock holders to streamline operations.
+Günther has started 4 projects at Greenwood in the las couple of weeks.
+
+
+Gertrude is the COO at Greenwood. Mostly her secretaries use her computers.
+Those that can recall the old days remember the time Gertrude stuffed two floppies into one slot on her computer.
+
+#### Sys Admin will be Slim 
+
+Slim will have access to more screens and will require less time to train.
+
+
+
+##### A typical day with GRIPE in production.
+
+Tom had a problem with his computer. He cannot read a document from Gery written on Wordy V5.
+Tom has Wordy V4 and it will not open Gery's document.
+
+Tom logs in to GRIPE with his employee number and password.
+Slim has set up employees & passwords prior to this.
+Tom selects his computer from a list and selects Wordy v4.
+Again Slim has done the foot work and entered hardware, software and assigned it to employees.
+Tom enters a description of the problem.
+
+Gery has a problem with the printer used in her office. She signs in to GRIPE and
+is presented with list of her computers and the printer. She slects the printer (no version required) and describes the problem.
+
+Meanwhile on the helpdesk Harvey and Hurley are monitoring activity on GRIPE.
+Hurley see the request from Gery. He calls the service company to get the paper clip out of the copier. Harvey notices the request from Tom and immediately updates the GRIPE ticket with an assigned status. Harvey puts in a request to upgrade Tom version of Wordy.
+
+An hour later Hurley get a call from Gery about her printer. Hurley updates the status of the GRIPE ticket and tells Gery the service has been called.
+
+Günther logs in to GRIPE and is presented with a list of all the tickets.
+After sorting and filtering he notices the time between opening a request and when it is assigned on Gery's ticket with the printer. He makes a not to ask Hurley about that.
+
+Gertrude spoke with Slim and he created a special data extract for her. She is mining the data to see how long computers last and anticipate when a new ones will be required.
+
+
+### Error Handling
+
+Log non critical errors
+Minimum information to user on failure
+   
     
-    Existing System
+### Security
     
-    There is no existing computer based system. 
-    What occurs as I have observed is that Mary down in accounting calls her best frind Sally on the help desk and she gets more memory for her computer while IT has 286's.  
+Not in the scope of this project
+Users will use the Greenwell LAN ( local Area Network )
+No access allowed outside the lan (Per Mr Greenwell)
     
-    User Cases
+## Help
     
-    Frankly this needs some work
-    
-    Error Handling
-    
-      Log non critical errors
-      minimum information to user on failure
-    
-    
-    Security
-    
-    Not in the scope of this project
-    Users will use the Greenwell LAN ( local Area Network )
-    No access allowed outside the lan (Per Mr Greenwell)
-    
-    Help
-    
+The GRIPE team will stage training sessions.
