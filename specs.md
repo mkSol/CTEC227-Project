@@ -49,19 +49,19 @@ System impact expected to be minimal. No additional harware resources required.
 
 ###### General User
 
--Able to create tickets
--Able to view his/her own submitted tickets and view the status of them
+- Able to create tickets
+- Able to view his/her own submitted tickets and view the status of them
 ###### Help Desk
--Able to view all tickets
--Can take tickets and assign them to themselves
--Able to add comments and updates to tickets they are assigned to
--Can change status of tickets (open/closed-solved/closed-nofix/taken)
--View assets assigned to ticket creator or department
+- Able to view all tickets
+- Can take tickets and assign them to themselves
+- Able to add comments and updates to tickets they are assigned to
+- Can change status of tickets (open/closed-solved/closed-nofix/taken)
+- View assets assigned to ticket creator or department
 ###### Manager
--Able to view all tickets
--Able to view all assets
+- Able to view all tickets
+- Able to view all assets
 ###### Sys Admin
--Create, read, write, and modify all tickets and assets
+- Create, read, write, and modify all tickets and assets
   
 All are assumed to be an employee or contractor
 
