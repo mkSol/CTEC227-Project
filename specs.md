@@ -1,11 +1,12 @@
-# Specifications for Greenwell Incident Report Service (IRS)
+# Specifications
+## Greenwell Incident Response Service (IRS)
 
 ### The Team
 1. Patrick Barnes
 2. Marc Kleefstra
 3. Earle Cottingham
 
-#### *Roles for team members as follows
+#### Roles for team members as follows
 
 |Patrick          | Marc            | Earle           |
 |:---------------|:---------------|:---------------|
@@ -35,23 +36,32 @@ This project seeks to create a functional IT Help Desk and Asset Management syst
 
 IRS will be designed to handle 2000 users. 
 Users of the IRS system should expect screen response time less than 700 milliseconds.
+System impact expected to be minimal. No additional harware resources required.
+
+#### Personas 
+##### In order of priviledge level. Higher levels inherit abilities of lower tiers.
+
+1. General User
+2. Help Desk
+3. Manager
+4. Sys Admin
 
 
-Personas (In order of priviledge level. Higher levels inherit abilities of lower tiers.)
-  General User
-    -Able to create tickets
-    -Able to view his/her own submitted tickets and view the status of them
-  Help Desk
-    -Able to view all tickets
-    -Can take tickets and assign them to themselves
-    -Able to add comments and updates to tickets they are assigned to
-    -Can change status of tickets (open/closed-solved/closed-nofix/taken)
-    -View assets assigned to ticket creator or department
-  Manager
-    -Able to view all tickets
-    -Able to view all assets
-  Sys Admin
-    -Create, read, write, and modify all tickets and assets
+###### General User
+
+-Able to create tickets
+-Able to view his/her own submitted tickets and view the status of them
+###### Help Desk
+-Able to view all tickets
+-Can take tickets and assign them to themselves
+-Able to add comments and updates to tickets they are assigned to
+-Can change status of tickets (open/closed-solved/closed-nofix/taken)
+-View assets assigned to ticket creator or department
+###### Manager
+-Able to view all tickets
+-Able to view all assets
+###### Sys Admin
+-Create, read, write, and modify all tickets and assets
   
 All are assumed to be an employee or contractor
 
