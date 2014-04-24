@@ -84,12 +84,12 @@ Four screens will be developped:
 * Delete Tickets
   * System Adminstrator access  
 
-### Login Screen
+#### Login Screen
     
 View based on access level OR role
 All users will be required to login 
     
-### List Tickets
+#### List Tickets
 
 View based on access level OR role
 
@@ -99,12 +99,12 @@ Will include ability to sort tickets.
 For the helpdesk Admin and Manager all tickets are listed.
 Filters can be applied and data can be sorted.
 
-### Accept/Take Tickets (Create Ticket)
+#### Accept/Take Tickets (Create Ticket)
 
 All users will be able to create a trouble ticket.
 Screen will enable user to select an asset and describe the problem.
   
-### Update Tickets
+#### Update Tickets
 
 Helpdesk and Manager can assign tickets and update status.
   
@@ -159,38 +159,26 @@ Persona defined:
 
 #### For the *General User* we will have Tom and Gery.
 
-Tom is a technical writer and provides office staff support at Greenwell.
-Tom is a new employee. 
-He attends college and is studying IT.
+* Tom is a technical writer and provides office staff support at Greenwell. Tom is a new employee. He attends college and is studying IT.
 
-Gery is a senior teller and has worked with Tom.
-She feels that her computer problems should receive top priority
+* Gery is a senior teller and has worked with Tom. She feels that her computer problems should receive top priority
 
 #### For the *Help Desk* we will have Harvey and Hurley.
 
-Harvey has worked the help desk for two years.
-Harvey looks forward to IRS going into production.
-He wants to help with the testing.
+* Harvey has worked the help desk for two years. Harvey looks forward to IRS going into production. He wants to help with the testing.
 
-Hurley is Harvey's boss and leads the helpdesk team.
-Hurley is not sure we can come through with a system that will help. 
-Hurley wants a system that is faster than what he uses today.
+* Hurley is Harvey's boss and leads the helpdesk team. Hurley is not sure we can come through with a system that will help. Hurley wants a system that is faster than what he uses today.
 
 #### For the *Executive* we will have Günther and Gertrude.
 
-Günther owned Greenwell Bank up until when he sold a controlling interest. 
-Günther looks forward to IRS going into production.
-He wants to save money and get better use from his help staff.
-There has been increasing pressure from the stock holders to streamline operations.
-Günther has started 4 projects at Greenwell in the las couple of weeks.
+* Günther owned Greenwell Bank up until when he sold a controlling interest. Günther looks forward to IRS going into production. 
+    * He wants to save money and get better use from his help staff. There has been increasing pressure from the stock holders to streamline operations. Günther has started 4 projects at Greenwell in the last couple of weeks.
 
-
-Gertrude is the COO at Greenwell. Mostly her secretaries use her computers.
-Those that can recall the old days remember the time Gertrude stuffed two floppies into one slot on her computer.
+* Gertrude is the COO at Greenwell. Mostly her secretaries use her computers. Those that can recall the old days remember the time Gertrude stuffed two floppies into one slot on her computer.
 
 #### Sys Admin will be Slim 
 
-Slim will have access to more screens and will require less time to train.
+* Slim will have access to more screens and will require less time to train.
 
 
 
