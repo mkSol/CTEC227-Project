@@ -32,7 +32,11 @@ Source:
 
 ### General
 
-This project seeks to create a functional IT Help Desk and Asset Management system for Greenwell Bank. It will be a web-based system where users will log in and, depending on their role in the bank, will be able to submit, view, take, release, and close tickets for IT help desk. Additionally, it will keep track of the computer hardware and software assets of employees and departments within the company.
+This project seeks to create a functional IT Help Desk and Asset Management system for Greenwell Bank. 
+
+It will be a web-based system where users will log in and, depending on their role in the bank, will be able to submit, view, take, release, and close tickets for IT help desk.
+
+Additionally, it will keep track of the computer hardware and software assets of employees and departments within the company.
 
 IRS will be designed to handle 2000 users. 
 Users of the IRS system should expect screen response time less than 700 milliseconds.
@@ -51,15 +55,18 @@ System impact expected to be minimal. No additional harware resources required.
 
 - Able to create tickets
 - Able to view his/her own submitted tickets and view the status of them
+
 ###### Help Desk
 - Able to view all tickets
 - Can take tickets and assign them to themselves
 - Able to add comments and updates to tickets they are assigned to
 - Can change status of tickets (open/closed-solved/closed-nofix/taken)
 - View assets assigned to ticket creator or department
+
 ###### Manager
 - Able to view all tickets
 - Able to view all assets
+
 ###### Sys Admin
 - Create, read, write, and modify all tickets and assets
   
