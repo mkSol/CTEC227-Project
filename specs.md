@@ -1,12 +1,12 @@
 # Specifications
-## Greenwell Incident Response Service (IRS)
+### Greenwell Incident Response Service (IRS)
 
-### The Team
+#### The Team
 1. Patrick Barnes
 2. Marc Kleefstra
 3. Earle Cottingham
 
-#### Roles for team members as follows
+##### Roles for team members as follows
 
 |Patrick          | Marc            | Earle           |
 |:---------------|:---------------|:---------------|
@@ -16,7 +16,7 @@
 |Documentation    |Test Design      |Interface Review |
 |Production Checklist|Migration Plan|System Testing |
 
-###### Rules of Engagement/Conduct 
+####### Rules of Engagement/Conduct 
 
 * Vision
 * Values
@@ -25,12 +25,12 @@
 * Communication
 * Excellence
 
-Source:
+####### Source:
 
     Enron Code of Ethics: Page 4
 
 
-### General
+#### General
 
 This project seeks to create a functional IT Help Desk and Asset Management system for Greenwell Bank. 
 
@@ -72,7 +72,7 @@ System impact expected to be minimal. No additional harware resources required.
   
 All are assumed to be an employee or contractor
 
-## Screen Functions
+### Screen Functions
 
 Four screens will be developped:
 * Login
@@ -84,12 +84,12 @@ Four screens will be developped:
 * Delete Tickets
   * System Adminstrator access  
 
-#### Login Screen
+##### Login Screen
     
 View based on access level OR role
 All users will be required to login 
     
-#### List Tickets
+##### List Tickets
 
 View based on access level OR role
 
@@ -99,16 +99,16 @@ Will include ability to sort tickets.
 For the helpdesk Admin and Manager all tickets are listed.
 Filters can be applied and data can be sorted.
 
-#### Accept/Take Tickets (Create Ticket)
+##### Accept/Take Tickets (Create Ticket)
 
 All users will be able to create a trouble ticket.
 Screen will enable user to select an asset and describe the problem.
   
-#### Update Tickets
+##### Update Tickets
 
 Helpdesk and Manager can assign tickets and update status.
   
-### Administration
+#### Administration
 
 Helpdesk and Manager can add assets software and software versions.
 
@@ -121,6 +121,8 @@ Listings to filter by status/date/user/tag/type assigned/unassigned open/closed
 Because of the timeline for this project IT will populate asset and software values.
 Scripts can be provided to System Administrator for system maintenance.
 
+The team will provide screen mockups for additional functions.
+
 Error Listing for system administration can be performed with scripts.
 
 We propose to defer developing CRUD screens for asset and software.
@@ -130,14 +132,14 @@ This will allow rigorous testing and smoother production implementation.
 
 Note: CRUD is an acronym for Create, Read, Update and Delete.
    
-### Existing System
+#### Existing System
     
 There is no existing computer based system.
 No systematic method to track harware and sofware life cycles.
 
 Employees with computer problems cannot find the status of there problem with out an interupting phone call or vist to person trying to correct the problem.
 
-### Disaster Preparedness
+#### Disaster Preparedness
 
 Paper forms will be developed to log problems.
 
@@ -145,7 +147,7 @@ Should the IRS system not be accessable forms will be deployed for problems reso
 
 The data can be entered after the system is restored.
 
-### User Cases
+#### User Cases
 
 For the IRS system we will use "Persona's" to tease out the requirements.
 
@@ -155,34 +157,34 @@ Persona defined:
     In marketing and user-centered design, personas are fictional characters created to represent the different user types within a targeted demographic, attitude and/or behavior set that might use a site, brand or product in a similar way.
     A user persona is a representation of the goals and behavior of a hypothesized group of users.
 
-## Persona's
+### Persona's
 
-#### For the *General User* we will have Tom and Gery.
+##### For the *General User* we will have Tom and Gery.
 
 * Tom is a technical writer and provides office staff support at Greenwell. Tom is a new employee. He attends college and is studying IT.
 
 * Gery is a senior teller and has worked with Tom. She feels that her computer problems should receive top priority
 
-#### For the *Help Desk* we will have Harvey and Hurley.
+##### For the *Help Desk* we will have Harvey and Hurley.
 
 * Harvey has worked the help desk for two years. Harvey looks forward to IRS going into production. He wants to help with the testing.
 
 * Hurley is Harvey's boss and leads the helpdesk team. Hurley is not sure we can come through with a system that will help. Hurley wants a system that is faster than what he uses today.
 
-#### For the *Executive* we will have Günther and Gertrude.
+##### For the *Executive* we will have Günther and Gertrude.
 
 * Günther owned Greenwell Bank up until when he sold a controlling interest. Günther looks forward to IRS going into production. 
     * He wants to save money and get better use from his help staff. There has been increasing pressure from the stock holders to streamline operations. Günther has started 4 projects at Greenwell in the last couple of weeks.
 
 * Gertrude is the COO at Greenwell. Mostly her secretaries use her computers. Those that can recall the old days remember the time Gertrude stuffed two floppies into one slot on her computer.
 
-#### Sys Admin will be Slim 
+##### Sys Admin will be Slim 
 
 * Slim will have access to more screens and will require less time to train.
 
 
 
-##### A typical day with IRS in production.
+###### A typical day with IRS in production.
 
 Tom had a problem with his computer. He cannot read a document from Gery written on Wordy V5.
 Tom has Wordy V4 and it will not open Gery's document.
@@ -207,13 +209,13 @@ After sorting and filtering he notices the time between opening a request and wh
 Gertrude spoke with Slim and he created a special data extract for her. She is mining the data to see how long computers last and anticipate when a new ones will be required.
 
 
-### Error Handling
+#### Error Handling
 
 Log non critical errors.
 Minimum information to user on failure.
 System Administrator will be able to list errors and follow up with corrections.
     
-### Security
+#### Security
  
 A air tight secure system is not required for this project.
 Users will use the Greenwell LAN ( local Area Network )
@@ -226,36 +228,11 @@ Password requirement will follow guidelines set forth in the _Enron Code of Ethi
     Page 35 first two paragraphs
 
     
-## Help
+### Help
     
 The IRS team will stage training sessions.
 We will also work with technical writing to develop IRS use guides.
 
-#### Initial thoughts on application design approach
+#### Application design approach
 
-###### Marc has complete notes on schema development    
-Some of the data fields we will need are:
-
-* status
-* notes
-* type 
-* ticket tag
-* dept
-
-Tables
-* ticket table
-* user table
-* equipment
-* installed software table 
-
-## Request for Specification Sign off
-
-- [x] Project Functional Specification
-- [x] Rules of Engagement
-- [x] Team member roles and responsibilities
-- [x] Initial thoughts on application design approach
-
-- [ ] Sign off from Mr Greenwell
-
-- [ ] Approve 
-- [ ] Approve with changes
+Please see the ERD, Screen Mockups and Flow Diagrams
