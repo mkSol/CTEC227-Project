@@ -11,4 +11,4 @@ Add tables to database
 	-Priority and priviledge tables to normalize  
 	-Error Log table  
 	-Messages Table  
-Lost login system  
+Lost login password system  
