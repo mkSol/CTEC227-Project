@@ -1,0 +1,50 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1135" measuredH="768" mockupW="1024" mockupH="768">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="111" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <text>A%20Web%20Page%0Ahttp%3A//irs.geenwellbank.com</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Title" x="491" y="99" w="-1" h="-1" measuredW="294" measuredH="43" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Greenwell%20Bank%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="__group__" x="359" y="187" w="529" h="306" measuredW="529" measuredH="306" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="529" h="306" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>User%20login</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TextInput" x="184" y="78" w="268" h="-1" measuredW="79" measuredH="26" zOrder="1" locked="false" isInGroup="9">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="99" y="81" w="64" h="-1" measuredW="64" measuredH="21" zOrder="2" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Username%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::TextInput" x="184" y="149" w="268" h="-1" measuredW="79" measuredH="26" zOrder="3" locked="false" isInGroup="9">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="99" y="152" w="59" h="-1" measuredW="59" measuredH="21" zOrder="4" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Password%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="398" y="210" w="54" h="27" measuredW="54" measuredH="27" zOrder="5" locked="false" isInGroup="9">
+          <controlProperties>
+            <text>Login</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

@@ -1,0 +1,78 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1188" measuredH="768" mockupW="1020" mockupH="768">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="168" y="0" w="1020" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tech%20User%20View%0Ahttp%3A//greenwellbank.com</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="__group__" x="168" y="72" w="1020" h="146" measuredW="1020" measuredH="146" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="1020" h="146" measuredW="1020" measuredH="146" zOrder="0" locked="false" isInGroup="1">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="1020" h="146" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="0"/>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="102" y="48" w="358" h="-1" measuredW="359" measuredH="43" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>Welcome%2C%20John%20Doe.</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::LinkBar" x="386" y="118" w="-1" h="-1" measuredW="222" measuredH="19" zOrder="1" locked="false" isInGroup="1">
+          <controlProperties>
+            <text>Home%2C%20Profile%2C%20Settings%2C%20Log%20out</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="4" controlTypeID="__group__" x="483" y="320" w="690" h="316" measuredW="690" measuredH="316" zOrder="2" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::DataGrid" x="0" y="0" w="690" h="266" measuredW="692" measuredH="266" zOrder="0" locked="false" isInGroup="4">
+          <controlProperties>
+            <align>left</align>
+            <hasHeader>true</hasHeader>
+            <hLines>false</hLines>
+            <rowHeight>49</rowHeight>
+            <text>Username%20%5E%2C%20Ticket%20Title%20%5Ev%2C%20Date%2C%20Accept%20Ticket%3F%20v%0AJane%20Doe%2C%20Help%20my%20Browser%20is%20having%20issues..%2C%2004/24/14%2C%20%5Bx%5D%0ABruce%20Elgort%2C%20Help%20my%20wife%20has%20locked%20me%20out%20of%20my%20corporate%20account%2C%2004/23/14%2C%20%5B%5D%0AJino%20Conklin%2C%20For%20some%20reason%20I%20can%27t%20get%20IE%206%20to%20render%20graphics%20correctly....%2C%204/23/14%2C%20%5B%5D%0ANate%20Shoemaker%2C%20%3AOh%20no%21%20Github%20game%20me%20a%20virus%21%2C%2004/22/14%2C%20%5Bx%5D%0ATyroy%20Uyan%2C%20My%20printer%20is%20acting%20fluffy%2C%2004/22/14%2C%20%5Bx%5D%0A%7B65L%2C%200L%2C%2035%2C%200C%7D</text>
+            <verticalScrollbar>true</verticalScrollbar>
+            <vLines>true</vLines>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="584" y="289" w="91" h="27" measuredW="91" measuredH="27" zOrder="1" locked="false" isInGroup="4">
+          <controlProperties>
+            <text>Add%20Tickets</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Title" x="714" y="245" w="-1" h="-1" measuredW="243" measuredH="43" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Open%20Tickets</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="__group__" x="168" y="218" w="315" h="520" measuredW="315" measuredH="520" zOrder="4" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="315" h="520" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="12"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="100" y="24" w="114" h="-1" measuredW="97" measuredH="43" zOrder="1" locked="false" isInGroup="12">
+          <controlProperties>
+            <text>Menu</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="85" y="123" w="145" h="39" measuredW="135" measuredH="27" zOrder="2" locked="false" isInGroup="12">
+          <controlProperties>
+            <text>View%20my%20ticket%20pool</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Button" x="85" y="207" w="145" h="39" measuredW="109" measuredH="27" zOrder="3" locked="false" isInGroup="12">
+          <controlProperties>
+            <text>Message%20User</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="85" y="299" w="145" h="39" measuredW="142" measuredH="27" zOrder="4" locked="false" isInGroup="12">
+          <controlProperties>
+            <text>Update%20ticket%20status</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>
