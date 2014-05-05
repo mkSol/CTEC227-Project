@@ -7,8 +7,5 @@ To Do List
 ==========
 
 Additional mockups?  
-Add tables to database  
-	-Priority and priviledge tables to normalize  
-	-Error Log table  
-	-Messages Table  
 Lost login password system  
+Blank template of entire site  
