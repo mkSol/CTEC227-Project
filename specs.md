@@ -235,8 +235,8 @@ We will also work with technical writing to develop IRS use guides.
 
 #### Application design approach
 
-[Database Diagram](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/helpdesk/database/db_diagram.png).
+![Database Diagram](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/helpdesk/database/db_diagram.png).
 
-[Password Logic Diagram](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/specifications_diagram.jpg)
+![Password Logic Diagram](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/specifications_diagram.jpg)
 
-[User View Logic Diagram](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/specs_userview_diagram.jpg)
+![User View Logic Diagram](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/specs_userview_diagram.jpg)
