@@ -16,7 +16,7 @@
 					<input type="text" id="username" name="username">
 
 					<label for="passwd">Password</label>
-					<input type="text" id="passwd" name="passwd">
+					<input type="password" id="passwd" name="passwd">
 					
 					<input type="submit" value="Login">
 				</fieldset>
