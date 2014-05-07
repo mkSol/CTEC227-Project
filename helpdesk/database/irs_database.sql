@@ -307,7 +307,23 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`userID`, `username`, `passwd`, `dateRegistered`, `datePassword`, `firstName`, `lastName`, `email`, `department`, `privilege`) VALUES
 (1, 'root', 'admin', '2014-05-03', '2014-05-03', 'Admin', 'Administrator', 'admin@greenwellbank.com', 4, 4),
-(2, 'jdoe', 'password', '2014-05-03', '2014-05-03', 'John', 'Doe', 'jdoe@greenwellbank.com', 5, 1);
+(2, 'jdoe', 'password', '2014-05-03', '2014-05-03', 'John', 'Doe', 'jdoe@greenwellbank.com', 5, 1),
+(3, 'Rebekah', 'GoIRS', '2014-05-07', '2014-05-08', 'Roth', 'Ayers', 'lectus.quis.massa@ipsumdolorsit.edu', 2, 3),
+(4, 'Arden', 'GoIRS', '2014-05-07', '2014-05-08', 'Louis', 'Jordan', 'inceptos.hymenaeos@nec.org', 2, 4),
+(5, 'Aquila', 'GoIRS', '2014-05-07', '2014-05-08', 'Veda', 'Powell', 'tellus@vellectusCum.net', 5, 1),
+(6, 'Brendan', 'GoIRS', '2014-05-07', '2014-05-08', 'Zenaida', 'Ortiz', 'quam.quis@sem.co.uk', 3, 3),
+(7, 'Virginia', 'GoIRS', '2014-05-07', '2014-05-08', 'Rachel', 'Bullock', 'nec.tempus.mauris@senectusetnetus.net', 1, 3),
+(8, 'Felicia', 'GoIRS', '2014-05-07', '2014-05-08', 'Nevada', 'Silva', 'volutpat.Nulla@velconvallisin.ca', 2, 3),
+(9, 'Minerva', 'GoIRS', '2014-05-07', '2014-05-08', 'Mannix', 'Beasley', 'in.cursus.et@Nunc.org', 4, 3),
+(10, 'Gannon', 'GoIRS', '2014-05-07', '2014-05-08', 'Diana', 'Dotson', 'a@tincidunt.edu', 5, 4),
+(11, 'Rudyard', 'GoIRS', '2014-05-07', '2014-05-08', 'Axel', 'Carney', 'vitae.semper.egestas@semvitaealiquam.com', 1, 4),
+(12, 'Gloria', 'GoIRS', '2014-05-07', '2014-05-08', 'Warren', 'Stevenson', 'fermentum.convallis@SednequeSed.ca', 5, 2),
+(13, 'Porter', 'GoIRS', '2014-05-07', '2014-05-08', 'William', 'Case', 'consectetuer.adipiscing@ProinvelitSed.edu', 5, 1),
+(14, 'Luke', 'GoIRS', '2014-05-07', '2014-05-08', 'Karyn', 'Simmons', 'tristique.pharetra@cursusluctus.org', 2, 1),
+(15, 'Eric', 'GoIRS', '2014-05-07', '2014-05-08', 'Illana', 'Stout', 'id.ante@a.com', 5, 4),
+(16, 'Omar', 'GoIRS', '2014-05-07', '2014-05-08', 'Hadassah', 'Bradshaw', 'mauris@lectussit.net', 4, 2),
+(17, 'Malik', 'GoIRS', '2014-05-07', '2014-05-08', 'Althea', 'Barton', 'est.vitae@mollisPhasellus.net', 4, 1);
+
 
 -- --------------------------------------------------------
 
