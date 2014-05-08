@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 08, 2014 at 01:54 AM
+-- Generation Time: May 08, 2014 at 01:58 AM
 -- Server version: 5.5.37-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `irs`
 --
+CREATE DATABASE IF NOT EXISTS `irs` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `irs`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `categoryID` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(30) NOT NULL,
@@ -49,6 +52,7 @@ INSERT INTO `category` (`categoryID`, `category`) VALUES
 -- Table structure for table `department`
 --
 
+DROP TABLE IF EXISTS `department`;
 CREATE TABLE IF NOT EXISTS `department` (
   `deptID` int(11) NOT NULL AUTO_INCREMENT,
   `department` varchar(255) NOT NULL,
@@ -72,6 +76,7 @@ INSERT INTO `department` (`deptID`, `department`) VALUES
 -- Table structure for table `equipment`
 --
 
+DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE IF NOT EXISTS `equipment` (
   `equipID` int(11) NOT NULL AUTO_INCREMENT,
   `equipType` int(11) NOT NULL,
@@ -95,6 +100,7 @@ INSERT INTO `equipment` (`equipID`, `equipType`, `equipSerial`, `equipDesc`) VAL
 -- Table structure for table `equipType`
 --
 
+DROP TABLE IF EXISTS `equipType`;
 CREATE TABLE IF NOT EXISTS `equipType` (
   `equipTypeID` int(11) NOT NULL AUTO_INCREMENT,
   `equipType` varchar(40) NOT NULL,
@@ -116,6 +122,7 @@ INSERT INTO `equipType` (`equipTypeID`, `equipType`) VALUES
 -- Table structure for table `message`
 --
 
+DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `msgID` int(11) NOT NULL AUTO_INCREMENT,
   `msgSubject` varchar(255) NOT NULL,
@@ -140,6 +147,7 @@ INSERT INTO `message` (`msgID`, `msgSubject`, `msgTo`, `msgFrom`, `msgBody`, `ti
 -- Table structure for table `priority`
 --
 
+DROP TABLE IF EXISTS `priority`;
 CREATE TABLE IF NOT EXISTS `priority` (
   `priorityID` int(11) NOT NULL AUTO_INCREMENT,
   `priority` varchar(10) NOT NULL,
@@ -161,6 +169,7 @@ INSERT INTO `priority` (`priorityID`, `priority`) VALUES
 -- Table structure for table `privilege`
 --
 
+DROP TABLE IF EXISTS `privilege`;
 CREATE TABLE IF NOT EXISTS `privilege` (
   `privID` int(11) NOT NULL AUTO_INCREMENT,
   `privRole` varchar(20) NOT NULL,
@@ -183,6 +192,7 @@ INSERT INTO `privilege` (`privID`, `privRole`) VALUES
 -- Table structure for table `software`
 --
 
+DROP TABLE IF EXISTS `software`;
 CREATE TABLE IF NOT EXISTS `software` (
   `softwareID` int(11) NOT NULL AUTO_INCREMENT,
   `softwareName` varchar(255) NOT NULL,
@@ -204,6 +214,7 @@ INSERT INTO `software` (`softwareID`, `softwareName`, `softwareSerial`, `equipID
 -- Table structure for table `status`
 --
 
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE IF NOT EXISTS `status` (
   `statusID` int(11) NOT NULL AUTO_INCREMENT,
   `status` varchar(20) NOT NULL,
@@ -226,6 +237,7 @@ INSERT INTO `status` (`statusID`, `status`) VALUES
 -- Table structure for table `ticket`
 --
 
+DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE IF NOT EXISTS `ticket` (
   `ticketID` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
@@ -252,6 +264,7 @@ INSERT INTO `ticket` (`ticketID`, `userID`, `statusID`, `categoryID`, `priorityI
 -- Table structure for table `ticketComment`
 --
 
+DROP TABLE IF EXISTS `ticketComment`;
 CREATE TABLE IF NOT EXISTS `ticketComment` (
   `commentID` int(11) NOT NULL AUTO_INCREMENT,
   `ticketID` int(11) NOT NULL,
@@ -274,6 +287,7 @@ INSERT INTO `ticketComment` (`commentID`, `ticketID`, `userID`, `comment`, `time
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `userID` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
@@ -317,6 +331,7 @@ INSERT INTO `user` (`userID`, `username`, `passwd`, `dateRegistered`, `datePassw
 -- Table structure for table `userEquip`
 --
 
+DROP TABLE IF EXISTS `userEquip`;
 CREATE TABLE IF NOT EXISTS `userEquip` (
   `linkID` int(11) NOT NULL AUTO_INCREMENT,
   `equipID` int(11) NOT NULL,
