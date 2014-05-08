@@ -7,23 +7,23 @@ To Do List
 ==========
 Additional mockups?  
 Blank template of entire site  
-Header/Footer
-Dashboard unique to each user role
-User pages
---View current tickets
---Create ticket
---View specifics of selected ticket
---View assets
-Help Desk pages
---View all available tickets (sort by priority, date, status, etc dropdown menu)
---View their assigned tickets (sort function as above)
---View selected ticket and take/release them or add comments, also view ticker owner's assets
-Manager pages
---View all tickets (dropdown menu for ticket status including closed, search filter for name)
---View all assets (dropdown menu by department, search filter for name)
-SysAdmin pages
---Identical to Manager with added CRUD functionality
---Error logs
+Header/Footer  
+Dashboard unique to each user role  
+User pages  
+--View current tickets  
+--Create ticket  
+--View specifics of selected ticket  
+--View assets  
+Help Desk pages  
+--View all available tickets (sort by priority, date, status, etc dropdown menu)  
+--View their assigned tickets (sort function as above)  
+--View selected ticket and take/release them or add comments, also view ticker owner's assets  
+Manager pages  
+--View all tickets (dropdown menu for ticket status including closed, search filter for name)  
+--View all assets (dropdown menu by department, search filter for name)  
+SysAdmin pages  
+--Identical to Manager with added CRUD functionality  
+--Error logs  
 
 Optional Additions (If we have time for them)
 ---
