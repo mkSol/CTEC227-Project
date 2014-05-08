@@ -30,7 +30,10 @@
 		$_SESSION['logged_in'] = "1";
 		$_SESSION['firstName'] = $result['firstName'];
 		$_SESSION['lastName'] = $result['lastName'];
+		$_SESSION['username'] = $result['username'];
 		$_SESSION['email'] = $result['email'];
+		$_SESSION['role'] = $result['privRole'];
+		$_SESSION['privLevel'] = $result['privilege'];
 	}
 
 	require("incl/sqlConnect.inc.php"); // Connect to SQL DB
@@ -40,7 +43,8 @@
 	} else {
 		$username = $_POST['username'];
 		$passwd = $_POST['passwd'];
-		$query = mysqli_query($dbc, "SELECT username,passwd,firstName,lastName,email FROM user WHERE username='$username'");
+		// Query for username, password, first+last name, email, priv level and role
+		$query = mysqli_query($dbc, "SELECT username,passwd,firstName,lastName,email,privilege,privilege.privRole FROM user INNER JOIN privilege on user.privilege=privilege.privID WHERE username='$username'");
 		$result = mysqli_fetch_array($query);
 
 		if ($result['passwd'] === $passwd) {
