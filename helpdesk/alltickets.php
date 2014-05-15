@@ -1,8 +1,6 @@
 
 <div id="allTickets">
 <?php 
-	//require("incl/sqlConnect.inc.php"); // Connect to SQL DB
-	//session_start();
 	$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID");
 	$rows = mysqli_num_rows($result);
 

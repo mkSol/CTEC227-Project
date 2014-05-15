@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 08, 2014 at 01:58 AM
+-- Generation Time: May 15, 2014 at 04:18 AM
 -- Server version: 5.5.37-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `equipType` (
   `equipTypeID` int(11) NOT NULL AUTO_INCREMENT,
   `equipType` varchar(40) NOT NULL,
   PRIMARY KEY (`equipTypeID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `equipType`
@@ -115,6 +115,28 @@ INSERT INTO `equipType` (`equipTypeID`, `equipType`) VALUES
 (1, 'Desktop PC'),
 (2, 'Laptop PC'),
 (3, 'Peripheral');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `errorLog`
+--
+
+DROP TABLE IF EXISTS `errorLog`;
+CREATE TABLE IF NOT EXISTS `errorLog` (
+  `errorID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `errorDump` text NOT NULL,
+  PRIMARY KEY (`errorID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `errorLog`
+--
+
+INSERT INTO `errorLog` (`errorID`, `userID`, `timestamp`, `errorDump`) VALUES
+(1, 1, '2014-05-06 00:19:00', 'WARNING TEST ERROR IGNORE');
 
 -- --------------------------------------------------------
 
@@ -248,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `timestamp` datetime NOT NULL,
   `issueDesc` text NOT NULL,
   PRIMARY KEY (`ticketID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `ticket`
@@ -256,7 +278,9 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 
 INSERT INTO `ticket` (`ticketID`, `userID`, `statusID`, `categoryID`, `priorityID`, `assignedTo`, `timestamp`, `issueDesc`) VALUES
 (1, 2, 1, 1, 1, NULL, '2014-05-03 00:00:00', 'Help! My paper won''t fit into the cd drive!'),
-(2, 1, 2, 5, 1, 1, '2014-05-08 00:00:00', 'This website isn''t working yet.');
+(2, 1, 2, 5, 1, 1, '2014-05-08 00:00:00', 'This website isn''t working yet.'),
+(3, 1, 1, 3, 2, NULL, '2014-05-13 17:05:18', 'I have no emails to answer!'),
+(4, 1, 1, 4, 3, NULL, '2014-05-13 17:06:16', 'My printer is on fire.');
 
 -- --------------------------------------------------------
 
@@ -347,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `userEquip` (
 INSERT INTO `userEquip` (`linkID`, `equipID`, `userID`, `deptID`) VALUES
 (1, 3, NULL, 2),
 (2, 1, 1, NULL),
-(3, 3, 2, NULL);
+(3, 2, 2, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

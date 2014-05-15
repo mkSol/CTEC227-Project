@@ -5,6 +5,9 @@
 	<title>Greenwell IRS - Login</title>
 </head>
 <body>
+	<script type="text/javascript">
+		document.cookie = "currentPage=default; expires=0; path=/";
+	</script>
 <?php
 	function display_login_form() {
 		?>
@@ -31,6 +34,7 @@
 		$_SESSION['firstName'] = $result['firstName'];
 		$_SESSION['lastName'] = $result['lastName'];
 		$_SESSION['username'] = $result['username'];
+		$_SESSION['userID'] = $result['userID'];
 		$_SESSION['email'] = $result['email'];
 		$_SESSION['role'] = $result['privRole'];
 		$_SESSION['privLevel'] = $result['privilege'];
@@ -44,12 +48,13 @@
 		$username = $_POST['username'];
 		$passwd = $_POST['passwd'];
 		// Query for username, password, first+last name, email, priv level and role
-		$query = mysqli_query($dbc, "SELECT username,passwd,firstName,lastName,email,privilege,privilege.privRole FROM user INNER JOIN privilege on user.privilege=privilege.privID WHERE username='$username'");
+		$query = mysqli_query($dbc, "SELECT username,userID,passwd,firstName,lastName,email,privilege,privilege.privRole FROM user INNER JOIN privilege on user.privilege=privilege.privID WHERE username='$username'");
 		$result = mysqli_fetch_array($query);
 
 		if ($result['passwd'] === $passwd) {
 			session_start();
 			set_session_variables();
+			setcookie("privLevel", $result['privilege']);
 			header("Location: home.php");
 		} else {
 			echo "<p>Incorrect username or password, please try again.</p>";
