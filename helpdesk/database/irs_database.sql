@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 15, 2014 at 04:18 AM
+-- Generation Time: May 19, 2014 at 01:52 PM
 -- Server version: 5.5.37-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -36,6 +36,11 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
+-- Truncate table before insert `category`
+--
+
+TRUNCATE TABLE `category`;
+--
 -- Dumping data for table `category`
 --
 
@@ -60,6 +65,11 @@ CREATE TABLE IF NOT EXISTS `department` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
+-- Truncate table before insert `department`
+--
+
+TRUNCATE TABLE `department`;
+--
 -- Dumping data for table `department`
 --
 
@@ -83,8 +93,13 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `equipSerial` varchar(255) NOT NULL,
   `equipDesc` text NOT NULL,
   PRIMARY KEY (`equipID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Truncate table before insert `equipment`
+--
+
+TRUNCATE TABLE `equipment`;
 --
 -- Dumping data for table `equipment`
 --
@@ -92,7 +107,9 @@ CREATE TABLE IF NOT EXISTS `equipment` (
 INSERT INTO `equipment` (`equipID`, `equipType`, `equipSerial`, `equipDesc`) VALUES
 (1, 1, 'IT-001', 'Dell XPS 8700'),
 (2, 2, 'HR-001', 'Dell Inspiron 15'),
-(3, 3, 'HR-001', 'HP 1010 Deskjet Printer');
+(3, 3, 'HR-001', 'HP 1010 Deskjet Printer'),
+(4, 2, 'x92', 'Zoom Laptop'),
+(5, 2, '92x', 'Zam Laptop');
 
 -- --------------------------------------------------------
 
@@ -107,6 +124,11 @@ CREATE TABLE IF NOT EXISTS `equipType` (
   PRIMARY KEY (`equipTypeID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+--
+-- Truncate table before insert `equipType`
+--
+
+TRUNCATE TABLE `equipType`;
 --
 -- Dumping data for table `equipType`
 --
@@ -131,6 +153,11 @@ CREATE TABLE IF NOT EXISTS `errorLog` (
   PRIMARY KEY (`errorID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
+--
+-- Truncate table before insert `errorLog`
+--
+
+TRUNCATE TABLE `errorLog`;
 --
 -- Dumping data for table `errorLog`
 --
@@ -157,6 +184,11 @@ CREATE TABLE IF NOT EXISTS `message` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
+-- Truncate table before insert `message`
+--
+
+TRUNCATE TABLE `message`;
+--
 -- Dumping data for table `message`
 --
 
@@ -176,6 +208,11 @@ CREATE TABLE IF NOT EXISTS `priority` (
   PRIMARY KEY (`priorityID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+--
+-- Truncate table before insert `priority`
+--
+
+TRUNCATE TABLE `priority`;
 --
 -- Dumping data for table `priority`
 --
@@ -199,6 +236,11 @@ CREATE TABLE IF NOT EXISTS `privilege` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
+-- Truncate table before insert `privilege`
+--
+
+TRUNCATE TABLE `privilege`;
+--
 -- Dumping data for table `privilege`
 --
 
@@ -221,14 +263,30 @@ CREATE TABLE IF NOT EXISTS `software` (
   `softwareSerial` varchar(255) NOT NULL,
   `equipID` int(11) NOT NULL,
   PRIMARY KEY (`softwareID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
+--
+-- Truncate table before insert `software`
+--
+
+TRUNCATE TABLE `software`;
 --
 -- Dumping data for table `software`
 --
 
 INSERT INTO `software` (`softwareID`, `softwareName`, `softwareSerial`, `equipID`) VALUES
-(1, 'Microsoft Office 2007', 'XYXYX-ABABA-TYTYT-LOLOL-10101', 2);
+(1, 'Microsoft Office 2007', 'XYXYX-ABABA-TYTYT-LOLOL-10101', 2),
+(2, 'LibreOffice', '99991111-1', 1),
+(3, 'OpenOffice', '111119999-9', 1),
+(4, 'LibreOffice', '99991111-1', 2),
+(5, 'OpenOffice', '111119999-9', 2),
+(6, 'Microsoft Office 2007', 'XYXYX-ABABA-TYTYT-LOLOL-10101', 1),
+(7, 'Microsoft Office 2007', 'XYXYX-ABABA-TYTYT-LOLOL-10101', 4),
+(8, 'OpenOffice', '1111199999-9', 4),
+(9, 'LibreOffice', '99991111-1', 4),
+(10, 'Microsoft Office 2007', 'XYXYX-ABABA-TYTYT-LOLOL-10101', 5),
+(11, 'OpenOffice', '1111199999-9', 5),
+(12, 'LibreOffice', '99991111-1', 5);
 
 -- --------------------------------------------------------
 
@@ -243,6 +301,11 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`statusID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
+--
+-- Truncate table before insert `status`
+--
+
+TRUNCATE TABLE `status`;
 --
 -- Dumping data for table `status`
 --
@@ -270,8 +333,13 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `timestamp` datetime NOT NULL,
   `issueDesc` text NOT NULL,
   PRIMARY KEY (`ticketID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
+--
+-- Truncate table before insert `ticket`
+--
+
+TRUNCATE TABLE `ticket`;
 --
 -- Dumping data for table `ticket`
 --
@@ -280,7 +348,9 @@ INSERT INTO `ticket` (`ticketID`, `userID`, `statusID`, `categoryID`, `priorityI
 (1, 2, 1, 1, 1, NULL, '2014-05-03 00:00:00', 'Help! My paper won''t fit into the cd drive!'),
 (2, 1, 2, 5, 1, 1, '2014-05-08 00:00:00', 'This website isn''t working yet.'),
 (3, 1, 1, 3, 2, NULL, '2014-05-13 17:05:18', 'I have no emails to answer!'),
-(4, 1, 1, 4, 3, NULL, '2014-05-13 17:06:16', 'My printer is on fire.');
+(4, 1, 1, 4, 3, NULL, '2014-05-13 17:06:16', 'My printer is on fire.'),
+(5, 3, 3, 3, 1, NULL, '2014-05-01 00:00:00', 'Lost marketing email'),
+(6, 12, 1, 2, 3, NULL, '2014-05-01 06:16:16', 'Microsoft Office 2007 not working');
 
 -- --------------------------------------------------------
 
@@ -296,14 +366,20 @@ CREATE TABLE IF NOT EXISTS `ticketComment` (
   `comment` text NOT NULL,
   `timestamp` datetime NOT NULL,
   PRIMARY KEY (`commentID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
+--
+-- Truncate table before insert `ticketComment`
+--
+
+TRUNCATE TABLE `ticketComment`;
 --
 -- Dumping data for table `ticketComment`
 --
 
 INSERT INTO `ticketComment` (`commentID`, `ticketID`, `userID`, `comment`, `timestamp`) VALUES
-(1, 1, 1, 'Paper does not go into the CD drive. CDs do.', '2014-05-03 00:00:00');
+(1, 1, 1, 'Paper does not go into the CD drive. CDs do.', '2014-05-03 00:00:00'),
+(2, 5, 3, 'Please recover from backup my lost emails. I need them for marketing', '2014-05-01 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -327,27 +403,32 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
+-- Truncate table before insert `user`
+--
+
+TRUNCATE TABLE `user`;
+--
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`userID`, `username`, `passwd`, `dateRegistered`, `datePassword`, `firstName`, `lastName`, `email`, `department`, `privilege`) VALUES
-(1, 'root', 'admin', '2014-05-03', '2014-05-03', 'Admin', 'Administrator', 'admin@greenwellbank.com', 4, 4),
-(2, 'jdoe', 'password', '2014-05-03', '2014-05-03', 'John', 'Doe', 'jdoe@greenwellbank.com', 5, 1),
-(3, 'Rebekah', 'GoIRS', '2014-05-07', '2014-05-08', 'Roth', 'Ayers', 'lectus.quis.massa@ipsumdolorsit.edu', 2, 3),
-(4, 'Arden', 'GoIRS', '2014-05-07', '2014-05-08', 'Louis', 'Jordan', 'inceptos.hymenaeos@nec.org', 2, 4),
-(5, 'Aquila', 'GoIRS', '2014-05-07', '2014-05-08', 'Veda', 'Powell', 'tellus@vellectusCum.net', 5, 1),
-(6, 'Brendan', 'GoIRS', '2014-05-07', '2014-05-08', 'Zenaida', 'Ortiz', 'quam.quis@sem.co.uk', 3, 3),
-(7, 'Virginia', 'GoIRS', '2014-05-07', '2014-05-08', 'Rachel', 'Bullock', 'nec.tempus.mauris@senectusetnetus.net', 1, 3),
-(8, 'Felicia', 'GoIRS', '2014-05-07', '2014-05-08', 'Nevada', 'Silva', 'volutpat.Nulla@velconvallisin.ca', 2, 3),
-(9, 'Minerva', 'GoIRS', '2014-05-07', '2014-05-08', 'Mannix', 'Beasley', 'in.cursus.et@Nunc.org', 4, 3),
-(10, 'Gannon', 'GoIRS', '2014-05-07', '2014-05-08', 'Diana', 'Dotson', 'a@tincidunt.edu', 5, 4),
-(11, 'Rudyard', 'GoIRS', '2014-05-07', '2014-05-08', 'Axel', 'Carney', 'vitae.semper.egestas@semvitaealiquam.com', 1, 4),
-(12, 'Gloria', 'GoIRS', '2014-05-07', '2014-05-08', 'Warren', 'Stevenson', 'fermentum.convallis@SednequeSed.ca', 5, 2),
-(13, 'Porter', 'GoIRS', '2014-05-07', '2014-05-08', 'William', 'Case', 'consectetuer.adipiscing@ProinvelitSed.edu', 5, 1),
-(14, 'Luke', 'GoIRS', '2014-05-07', '2014-05-08', 'Karyn', 'Simmons', 'tristique.pharetra@cursusluctus.org', 2, 1),
-(15, 'Eric', 'GoIRS', '2014-05-07', '2014-05-08', 'Illana', 'Stout', 'id.ante@a.com', 5, 4),
-(16, 'Omar', 'GoIRS', '2014-05-07', '2014-05-08', 'Hadassah', 'Bradshaw', 'mauris@lectussit.net', 4, 2),
-(17, 'Malik', 'GoIRS', '2014-05-07', '2014-05-08', 'Althea', 'Barton', 'est.vitae@mollisPhasellus.net', 4, 1);
+(1, 'root', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2014-05-03', '2014-05-03', 'Admin', 'Administrator', 'admin@greenwellbank.com', 4, 4),
+(2, 'jdoe', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '2014-05-03', '2014-05-03', 'John', 'Doe', 'jdoe@greenwellbank.com', 5, 1),
+(3, 'Rebekah', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Roth', 'Ayers', 'lectus.quis.massa@ipsumdolorsit.edu', 2, 3),
+(4, 'Arden', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Louis', 'Jordan', 'inceptos.hymenaeos@nec.org', 2, 4),
+(5, 'Aquila', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Veda', 'Powell', 'tellus@vellectusCum.net', 5, 1),
+(6, 'Brendan', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Zenaida', 'Ortiz', 'quam.quis@sem.co.uk', 3, 3),
+(7, 'Virginia', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Rachel', 'Bullock', 'nec.tempus.mauris@senectusetnetus.net', 1, 3),
+(8, 'Felicia', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Nevada', 'Silva', 'volutpat.Nulla@velconvallisin.ca', 2, 3),
+(9, 'Minerva', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Mannix', 'Beasley', 'in.cursus.et@Nunc.org', 4, 3),
+(10, 'Gannon', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Diana', 'Dotson', 'a@tincidunt.edu', 5, 4),
+(11, 'Rudyard', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Axel', 'Carney', 'vitae.semper.egestas@semvitaealiquam.com', 1, 4),
+(12, 'Gloria', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Warren', 'Stevenson', 'fermentum.convallis@SednequeSed.ca', 5, 2),
+(13, 'Porter', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'William', 'Case', 'consectetuer.adipiscing@ProinvelitSed.edu', 5, 1),
+(14, 'Luke', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Karyn', 'Simmons', 'tristique.pharetra@cursusluctus.org', 2, 1),
+(15, 'Eric', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Illana', 'Stout', 'id.ante@a.com', 5, 4),
+(16, 'Omar', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Hadassah', 'Bradshaw', 'mauris@lectussit.net', 4, 2),
+(17, 'Malik', 'ac7f092f24310b944ceab11b50c4064d53454b6f', '2014-05-07', '2014-05-08', 'Althea', 'Barton', 'est.vitae@mollisPhasellus.net', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -362,8 +443,13 @@ CREATE TABLE IF NOT EXISTS `userEquip` (
   `userID` int(11) DEFAULT NULL,
   `deptID` int(11) DEFAULT NULL,
   PRIMARY KEY (`linkID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Truncate table before insert `userEquip`
+--
+
+TRUNCATE TABLE `userEquip`;
 --
 -- Dumping data for table `userEquip`
 --
@@ -371,7 +457,9 @@ CREATE TABLE IF NOT EXISTS `userEquip` (
 INSERT INTO `userEquip` (`linkID`, `equipID`, `userID`, `deptID`) VALUES
 (1, 3, NULL, 2),
 (2, 1, 1, NULL),
-(3, 2, 2, NULL);
+(3, 2, 2, NULL),
+(4, 4, 3, NULL),
+(5, 5, 4, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
