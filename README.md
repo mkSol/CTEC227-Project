@@ -24,11 +24,18 @@ Manager pages
 SysAdmin pages  
 --Identical to Manager with added CRUD functionality  
 --Error logs  
+  
+MILESTONE 3  
+--Application walkthrough  
+--Identify areas of concern, surprises, etc  
+--Identify issues that crept up, scope creep, not identified in specs  
+--Identify items that will not be abke to be implemented  
 
 Optional Additions (If we have time for them)
 ---
 Lost login password system  
-User Messaging system
-Multi-edit tickets
+User Messaging system  
+Multi-edit tickets  
+
 
 
