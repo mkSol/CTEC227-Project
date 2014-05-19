@@ -147,6 +147,8 @@ $(document).ready(function(){
 	pageTrans("a.myEquip","myEquip");
 	pageTrans("a.allEquip","allEquip");
 	pageTrans("a.errorLogs","errorLogs");
+	pageTrans("a.viewAllEquip","viewAllEquip");
+	pageTrans("a.viewAllTickets","viewAllTickets");
 
 
 	// Testing modal functionality
