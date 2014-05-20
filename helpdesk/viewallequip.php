@@ -8,7 +8,8 @@
 
 	echo "<h2>View All Equipment (Read Only)</h2>";
 
-	echo "<table>";
+	echo "<table id=\"viewallequip_table\">";
+	echo "<thead>";
 	echo "<tr>";
 	echo "<th>Equip ID</th>";
 	echo "<th>Type</th>";
@@ -19,6 +20,8 @@
 	echo "<th>Last</th>";
 	echo "<th>Department</th>";
 	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
 		echo "<td>" . $rows['equipID'] . "</td>";
@@ -31,6 +34,7 @@
 		echo "<td>" . $rows['department'] . "</td>";
 		echo "</tr>";
 	}
+	echo "</tbody>";
 	echo "</table>";
 ?>
 </div>

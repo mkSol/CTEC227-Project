@@ -150,6 +150,16 @@ $(document).ready(function(){
 	pageTrans("a.viewAllEquip","viewAllEquip");
 	pageTrans("a.viewAllTickets","viewAllTickets");
 
+	// Call DataTables plugin for tables that need sort and filter
+	$('#alltickets_table').dataTable();
+	$('#allequip_table').dataTable();
+	$('#assignedtickets_table').dataTable();
+	$('#viewallequip_table').dataTable();
+	$('#viewalltickets_table').dataTable();
+	$('#myequip_table').dataTable();
+	$('#mytickets_table').dataTable();
+	$('#errorlogs_table').dataTable();
+
 
 	// Testing modal functionality
 	/*

@@ -9,7 +9,8 @@
 	echo "<h2>View Error Logs</h2>";
 
 
-	echo "<table>";
+	echo "<table id=\"errorlogs_table\">";
+	echo "<thead>";
 	echo "<tr>";
 	echo "<th>Error ID</th>";
 	echo "<th>Timestamp</th>";
@@ -17,6 +18,8 @@
 	echo "<th>Username</th>";
 	echo "<th>Error Dump</th>";
 	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
 		echo "<td>" . $rows['errorID'] . "</td>";
@@ -26,6 +29,7 @@
 		echo "<td>" . $rows['errorDump'] . "</td>";
 		echo "</tr>";
 	}
+	echo "</tbody>";
 	echo "</table>";
 
 	/*
