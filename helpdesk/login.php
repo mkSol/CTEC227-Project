@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/foundation.css">
 	<link rel="stylesheet" href="css/foundation.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
-	<script src="/js/vendor/modernizr.js"></script>
+	<script src="js/vendor/modernizr.js"></script>
 </head>
 <body>
 	<script type="text/javascript">
