@@ -86,7 +86,7 @@
   			<section class="top-bar-section">
 			<ul class="right">
 				<li><a class="myTickets" href="#">View My Tickets</a></li>
-				<li><a class="newTicket" href="#newTicket">Create New Ticket</a></li>
+				<li><a class="newTicket" href="#">Create New Ticket</a></li>
 				<li><a class="myEquip" href="#">View My Equipment</a></li>
 				<li><a class="allTickets" href="#">View Ticket Pool</a></li>
 				<li><a class="assignedTickets" href="#">View Assigned Tickets</a></li>
