@@ -1,5 +1,5 @@
-
-<div id="myTickets">
+<div class="row">
+<div class="large-12 columns" id="myTickets">
 <?php 
 	$username = $_SESSION['username'];
 	$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID WHERE user.username = '$username'");
@@ -34,4 +34,5 @@
 	}
 	echo "</table>";
 ?>
+</div>
 </div>
