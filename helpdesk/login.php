@@ -5,6 +5,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Greenwell IRS - Login</title>
+	<link rel="stylesheet" href="css/foundation.css">
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<script src="/js/vendor/modernizr.js"></script>
 </head>
 <body>
 	<script type="text/javascript">
@@ -13,20 +17,26 @@
 <?php
 	function display_login_form() {
 		?>
-		<div id="login">
-			<form id="login_form" method="post" action="">
-				<fieldset>
-	    			<legend>Welcome to the Greenwell Bank Incident Reporting System</legend> 
-					<label for="username">Username</label>
-					<input type="text" id="username" name="username">
-
-					<label for="passwd">Password</label>
-					<input type="password" id="passwd" name="passwd">
-					
-					<input type="submit" value="Login">
-				</fieldset>
-			</form>
+		<div class="row">
+			<div class="large-12 columns"><h1>Welcome to the Greenwell Bank Incident Reporting System</h1></div>
 		</div>
+		<div class="row">
+			<div class="large-8 columns" id="login">
+				<form id="login_form" method="post" action="login.php">
+					<fieldset>
+	    				<legend>Login:</legend>
+						<label for="username">Username</label>
+						<input type="text" id="username" name="username">
+
+						<label for="passwd">Password</label>
+						<input type="password" id="passwd" name="passwd">
+					
+						<input class="success button" type="submit" value="Login">
+					</fieldset>
+				</form>
+			</div>
+			<div class="large-4 columns"></div>
+		</div>	
 		<?php
 	}
 
@@ -65,6 +75,9 @@
 	}
 
 ?>
+<script src="/js/foundation.min.js"></script>
+<script src="/js/vendor/jquery.js"></script> 
+<script src="/js/vendor/fastclick.js"></script>
 </body>
 </html>
 

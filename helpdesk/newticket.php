@@ -4,7 +4,8 @@
 
 function new_ticket_form() {
 	?>
-	<div id="newticketform">
+	<div class="row">
+	<div class="large-12 columns" id="newticketform">
 		<form id="new_ticket_form" method="post" action="#newticket">
 			<fieldset>
     			<legend>Create New Ticket</legend> 
@@ -30,9 +31,10 @@ function new_ticket_form() {
 				<textarea name="desc" id="desc" rows="5" cols="100" placeholder="Please describe the problem you are experiencing here."></textarea>
 				
 				<br>
-				<input type="submit" value="Submit">
+				<input class="button" type="submit" value="Submit">
 			</fieldset>
 		</form>
+	</div>
 	</div>
 	<?php
 }
