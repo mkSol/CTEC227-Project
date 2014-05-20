@@ -76,10 +76,7 @@
 
 ?>
 <script src="js/foundation.min.js"></script>
-<<<<<<< HEAD
 <script src="js/vendor/jquery.js"></script> 
-=======
->>>>>>> FETCH_HEAD
 <script src="js/vendor/fastclick.js"></script>
 </body>
 </html>
