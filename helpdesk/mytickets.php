@@ -7,7 +7,8 @@
 
 	echo "<h2>View My Tickets</h2>";
 
-	echo "<table>";
+	echo "<table id=\"mytickets_table\">";
+	echo "<thead>";
 	echo "<tr>";
 	echo "<th>Ticket ID</th>";
 	echo "<th>First</th>";
@@ -19,6 +20,8 @@
 	echo "<th>Status</th>";
 	echo "<th>Description</th>";
 	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
 		echo "<td>" . $rows['ticketID'] . "</td>";
@@ -32,6 +35,7 @@
 		echo "<td>" . $rows['issueDesc'] . "</td>";
 		echo "</tr>";
 	}
+	echo "</tbody>";
 	echo "</table>";
 ?>
 </div>
