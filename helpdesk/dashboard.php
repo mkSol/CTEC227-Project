@@ -4,7 +4,11 @@
 			<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
     			<li class="name">
+<<<<<<< HEAD
       			<h1><a href="#">Greenwell Bank - <?php echo "Welcome {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
+=======
+      			<h1><a href="#">Greenwell Bank </a></h1>
+>>>>>>> FETCH_HEAD
     			</li>
      
     			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -113,7 +117,11 @@
 		<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
     			<li class="name">
+<<<<<<< HEAD
       			<h1><a href="#">Greenwell Bank - <?php echo "Welcome {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
+=======
+      			<h1><a href="#">Greenwell Bank - <?php echo "Welcome, {$_SESSION['firstName']} {$_SESSION['firstName']}";  ?></a></h1>
+>>>>>>> FETCH_HEAD
     			</li>
      
     			<li class="toggle-topbar"><a href="#"><span>Menu</span></a></li>
