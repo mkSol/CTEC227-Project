@@ -1,1 +1,2 @@
 helpdesk/incl/sqlConnect.inc.php
+helpdesk/database/backups/*
