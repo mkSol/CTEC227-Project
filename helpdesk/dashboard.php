@@ -15,17 +15,19 @@
 			<li class="has-dropdown">
 				<a href="#">Create</a>
 					<ul class="dropdown">
-						<li><a class="newTicket" href="#">Create New Ticket</a></li>
+						<li><a class="newTicket" href="newticket.php">Create New Ticket</a></li>
 					</ul>
 			</li>
 
 			<li class="has-dropdown">
 				<a href="#">View</a>
 					<ul class="dropdown">
-						<li><a class="myTickets" href="#">My Tickets</a></li>
-						<li><a class="myEquip" href="#">My Equipment</a></li>						
+						<li><a class="myTickets" href="mytickets.php">My Tickets</a></li>
+						<li><a class="myEquip" href="myequip.php">My Equipment</a></li>						
 					</ul>
 			</li>
+
+			<li><a href="home.php">Home</a></li>
 
 			<li><a href="logout.php">Log Out</a></li>
 		</ul>
@@ -50,19 +52,21 @@
 			<li class="has-dropdown">
 				<a href="#">Create</a>
 					<ul class="dropdown">
-						<li><a class="newTicket" href="#">New Ticket</a></li>
+						<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
 					</ul>
 			</li>
 
 			<li class="has-dropdown">
 				<a href="#">View</a>
 					<ul class="dropdown">
-						<li><a class="myTickets" href="#">My Tickets</a></li>
-						<li><a class="myEquip" href="#">My Equipment</a></li>
-						<li><a class="allTickets" href="#">Ticket Pool</a></li>
-						<li><a class="assignedTickets" href="#">Assigned Tickets</a></li>						
+						<li><a class="myTickets" href="mytickets.php">My Tickets</a></li>
+						<li><a class="myEquip" href="myequip.php">My Equipment</a></li>
+						<li><a class="allTickets" href="alltickets.php">Ticket Pool</a></li>
+						<li><a class="assignedTickets" href="assignedtickets.php">Assigned Tickets</a></li>						
 					</ul>
 			</li>
+
+			<li><a href="home.php">Home</a></li>
 
 			<li><a href="logout.php">Log Out</a></li>
 		</ul>
@@ -87,19 +91,21 @@
 			<li class="has-dropdown">
 				<a href="#">Create</a>
 					<ul class="dropdown">
-						<li><a class="newTicket" href="#">New Ticket</a></li>
+						<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
 					</ul>
 			</li>
 
 			<li class="has-dropdown">
 				<a href="#">View</a>
 				<ul class="dropdown">
-					<li><a class="myTickets" href="#">My Tickets</a></li>
-					<li><a class="myEquip" href="#">My Equipment</a></li>
-					<li><a class="viewAllTickets" href="#">Ticket Pool</a></li>
-					<li><a class="viewAllEquip" href="#">All Equipment</a></li>
+					<li><a class="myTickets" href="mytickets.php">My Tickets</a></li>
+					<li><a class="myEquip" href="myequip.php">My Equipment</a></li>
+					<li><a class="viewAllTickets" href="viewalltickets.php">Ticket Pool</a></li>
+					<li><a class="viewAllEquip" href="viewallequip.php">All Equipment</a></li>
 				</ul>
 			</li>
+
+			<li><a href="home.php">Home</a></li>
 
 			<li><a href="logout.php">Log Out</a></li>
 		</ul>
@@ -126,21 +132,23 @@
 				<li class="has-dropdown">
 					<a href="#">Create</a>
 						<ul class="dropdown">
-							<li><a class="newTicket" href="#">New Ticket</a></li>
+							<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
 						</ul>
 				</li>
 
 				<li class="has-dropdown">
 					<a href="#">View</a>
 						<ul class="dropdown">
-							<li><a class="myTickets" href="#">My Tickets</a></li>
-							<li><a class="myEquip" href="#">My Equipment</a></li>
-							<li><a class="allTickets" href="#">Ticket Pool</a></li>
-							<li><a class="assignedTickets" href="#">Assigned Tickets</a></li>
-							<li><a class="allEquip" href="#">All Equipment</a></li>
-							<li><a class="errorLogs" href="#">Error Logs</a></li>	
+							<li><a class="myTickets" href="mytickets.php">My Tickets</a></li>
+							<li><a class="myEquip" href="myequip.php">My Equipment</a></li>
+							<li><a class="allTickets" href="alltickets.php">Ticket Pool</a></li>
+							<li><a class="assignedTickets" href="assignedtickets.php">Assigned Tickets</a></li>
+							<li><a class="allEquip" href="allequip.php">All Equipment</a></li>
+							<li><a class="errorLogs" href="errorlogs.php">Error Logs</a></li>	
 						</ul>
 				</li>
+
+				<li><a href="home.php">Home</a></li>
 
 				<li><a href="logout.php">Log Out</a></li>
 			</ul>

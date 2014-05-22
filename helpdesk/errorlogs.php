@@ -1,5 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Error Logs</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/pagetrans.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+	<link rel="stylesheet" href="css/foundation.css">
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+</head>
 
-<div id="errorLogs">
+<?php 
+		session_start();
+
+		include("dashboard.php");
+		require("incl/sqlConnect.inc.php");
+
+		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
+			header("Location: login.php");
+		}
+?>
+
+<div class="row">
+<div class="large-12 columns" id="errorLogs">
 <?php 
 	$result = mysqli_query($dbc, "SELECT errorLog.errorID, errorLog.timestamp, user.userID, user.username, errorLog.errorDump FROM errorLog JOIN user ON errorLog.userID=user.userID");
 	$rows = mysqli_num_rows($result);
@@ -42,3 +68,9 @@
 	*/
 ?>
 </div>
+</div>
+<script src="js/foundation.min.js"></script>
+<script src="js/vendor/fastclick.js"></script>
+<script> $(document).foundation(); </script>
+</body>
+</html>

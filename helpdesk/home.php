@@ -38,42 +38,7 @@
 		include("dashboard.php");
 
 		// Check privilege level and load appropriate pages
-		switch ($_SESSION['privLevel']) {
-				case '1': // Load pages for User level
-					include("mytickets.php");
-					include("newticket.php");
-					include("myequip.php");
-					break;
-				case '2': // Load pages for Help Desk level
-					include("mytickets.php");
-					include("alltickets.php");
-					include("newticket.php");
-					include("myequip.php");
-					include("assignedtickets.php");
-					break;
-				case '3': // Load pages for Manager level
-					include("mytickets.php");
-					include("viewalltickets.php");
-					include("newticket.php");
-					include("viewallequip.php");
-					include("myequip.php");
-					break;
-				case '4': // Load pages for Sys Admin level
-					include("mytickets.php");
-					include("alltickets.php");
-					include("newticket.php");
-					include("assignedtickets.php");
-					include("allequip.php");
-					include("myequip.php");
-					include("errorlogs.php");
-					break;
-				
-				default:
-					// User has no role and is invalid or not logged in
-					// Throw user out to logout page
-					header("Location: logout.php");
-					break;
-		}	
+		echo "Home Page Content Goes Here.";
 	?>
 <script src="js/foundation.min.js"></script>
 <script src="js/vendor/fastclick.js"></script>
