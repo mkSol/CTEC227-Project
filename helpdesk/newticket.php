@@ -4,9 +4,8 @@
 	<meta charset="UTF-8">
 	<title>New Ticket</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/pagetrans.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 	<link rel="stylesheet" href="css/foundation.css">
 	<link rel="stylesheet" href="css/foundation.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
@@ -72,14 +71,23 @@ function new_ticket_form() {
 		$priorityID = $_POST['priority'];
 		$issueDesc = $_POST['desc'];
 		$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
+		
+		/*
+		// Debug Stuff
 		echo "<p>INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')</p>";
 
 		echo "<p>Thank you for submitting a ticket with Greenweel Bank IRS!</p>";
 		echo "<p>Your problem has been submitted and is pending investigation with our help desk associates.</p>";
 		echo "<p><a href=\"home.php\">Return</a></p>";
+		*/
 
-		// Set current page cookie to myTickets rather than newTicket again
-		setcookie("currentPage", "myTickets");
+		// Confirmation box and refresh page ater post	
+		?>
+		<script type="text/javascript">
+			alert("Your ticket has been submitted.");
+			location.reload(true);
+		</script>
+		<?php
 	}
 	
 ?>

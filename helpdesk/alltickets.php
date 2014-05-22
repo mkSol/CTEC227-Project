@@ -4,9 +4,8 @@
 	<meta charset="UTF-8">
 	<title>All Tickets</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/pagetrans.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 	<link rel="stylesheet" href="css/foundation.css">
 	<link rel="stylesheet" href="css/foundation.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
@@ -35,6 +34,7 @@
 	echo "<table id=\"alltickets_table\">";
 	echo "<thead>";
 	echo "<tr>";
+	echo "<th>Action</th>";
 	echo "<th>Ticket ID</th>";
 	echo "<th>First</th>";
 	echo "<th>Last</th>";
@@ -49,6 +49,7 @@
 	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
+		echo "<td><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a><a class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/edit.png\"></a></td>";
 		echo "<td>" . $rows['ticketID'] . "</td>";
 		echo "<td>" . $rows['firstName'] . "</td>";
 		echo "<td>" . $rows['lastName'] . "</td>";
@@ -63,6 +64,8 @@
 	echo "<tbody>";
 	echo "</table>";
 ?>
+<div id="editTicket"></div>
+
 </div>
 </div>
 <script src="js/foundation.min.js"></script>
