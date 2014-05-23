@@ -2,6 +2,8 @@
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		require("incl/sqlConnect.inc.php");
+
+		
 		mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='{$_POST['desc']}' WHERE ticketID='{$_POST['id']}' LIMIT 1");
 		//echo "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='{$_POST['desc']}' WHERE ticketID='{$_POST['id']}' LIMIT 1";
 		header("Location: alltickets.php");
