@@ -16,9 +16,12 @@
 
 		 ?>
 
-		<form action="alltickets.php">
+		<form action="alltickets.php" method="post">
 			<div class="row">
 				<div class="large-6 columns">
+					
+					<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+
 					<label>Date:</label>
 					<input type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
 				</div>
@@ -46,7 +49,7 @@
 
 				<div class="large-6 columns">
 					<label for="status">Status:</label>
-					<select name="status" id="priority">
+					<select name="status" id="status">
 						<option selected="selected" value="1">Open</option>
 						<option <?php if($rows['statusID'] == '1') echo "selected=\"selected\"" ?> value="2">Assigned</option>
 						<option <?php if($rows['statusID'] == '2') echo "selected=\"selected\"" ?> value="3">Closed(Solved)</option>
