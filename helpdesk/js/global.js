@@ -11,7 +11,7 @@ $(document).ready(function(){
 	$('#errorlogs_table').dataTable();
 
 	$('#allTickets a').bind('click', function(e) {
-		alert("!");
+		//alert("!");
 		var id = $(this).attr('class');
 		$('#editTicket').load('incl/modifyticket.inc.php' + id);
 	});

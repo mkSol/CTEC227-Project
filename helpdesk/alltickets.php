@@ -49,7 +49,7 @@
 	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
-		echo "<td><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a><a class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/edit.png\"></a></td>";
+		echo "<td><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a><a data-reveal-id=\"editTicket\" class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/edit.png\"></a></td>";
 		echo "<td>" . $rows['ticketID'] . "</td>";
 		echo "<td>" . $rows['firstName'] . "</td>";
 		echo "<td>" . $rows['lastName'] . "</td>";
@@ -64,7 +64,9 @@
 	echo "<tbody>";
 	echo "</table>";
 ?>
-<div id="editTicket"></div>
+<div id="editTicket" class="reveal-modal" data-reveal>
+
+</div>
 
 </div>
 </div>
