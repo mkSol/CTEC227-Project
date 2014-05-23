@@ -33,11 +33,11 @@
 		echo "<p>User ID: {$_SESSION['userID']}</p>";
 		*/
 
-		// Display dashboard
+		// Display navigation
 		include("navigation.php");
 
 		// Check privilege level and load appropriate pages
-		echo "Home Page Content Goes Here.";
+		include("dashboard.php");
 	?>
 <script src="js/foundation.min.js"></script>
 <script src="js/vendor/fastclick.js"></script>

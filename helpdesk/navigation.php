@@ -12,24 +12,26 @@
 
   		<section class="top-bar-section">
 		<ul>
-			<li class="has-dropdown">
-				<a href="#">Create</a>
-					<ul class="dropdown">
-						<li><a class="newTicket" href="newticket.php">Create New Ticket</a></li>
-					</ul>
-			</li>
+			<ul class="right">
+				<li class="has-dropdown">
+					<a href="#">Create</a>
+						<ul class="dropdown">
+							<li><a class="newTicket" href="newticket.php">Create New Ticket</a></li>
+						</ul>
+				</li>
 
-			<li class="has-dropdown">
-				<a href="#">View</a>
-					<ul class="dropdown">
-						<li><a class="myTickets" href="mytickets.php">My Tickets</a></li>
-						<li><a class="myEquip" href="myequip.php">My Equipment</a></li>						
-					</ul>
-			</li>
+				<li class="has-dropdown">
+					<a href="#">View</a>
+						<ul class="dropdown">
+							<li><a class="myTickets" href="mytickets.php">My Tickets</a></li>
+							<li><a class="myEquip" href="myequip.php">My Equipment</a></li>						
+						</ul>
+				</li>
 
-			<li><a href="home.php">Home</a></li>
+				<li><a href="home.php">Home</a></li>
 
-			<li><a href="logout.php">Log Out</a></li>
+				<li><a href="logout.php">Log Out</a></li>
+			</ul>	
 		</ul>
 		</section>
 		</nav>
@@ -159,7 +161,7 @@
 		
 	// ============================ Page Content Start ===============================
 
-	// Open dasboard div
+	// Open navigation div
 	echo "<div id=\"nav\">";
 
 	switch ($_SESSION['privLevel']) {
@@ -176,5 +178,5 @@
 				admin_nav();
 				break;
 		}
-	echo "</div>" // Close dashboard div
+	echo "</div>" // Close navigation div
 ?>
