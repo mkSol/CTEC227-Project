@@ -73,7 +73,7 @@
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='{$_POST['desc']}' WHERE ticketID='{$_POST['id']}' LIMIT 1");
-	
+
 		// Refresh page after recieving edit form post to update page table
 	?>
 		<script type="text/javascript">
@@ -83,6 +83,7 @@
 		<?php
 	}
 ?>
+
 
 
 

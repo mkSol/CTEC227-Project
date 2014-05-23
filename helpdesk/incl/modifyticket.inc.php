@@ -50,10 +50,10 @@
 				<div class="large-6 columns">
 					<label for="status">Status:</label>
 					<select name="status" id="status">
-						<option selected="selected" value="1">Open</option>
-						<option <?php if($rows['statusID'] == '1') echo "selected=\"selected\"" ?> value="2">Assigned</option>
-						<option <?php if($rows['statusID'] == '2') echo "selected=\"selected\"" ?> value="3">Closed(Solved)</option>
-						<option <?php if($rows['statusID'] == '3') echo "selected=\"selected\"" ?> value="4">Closed(Cannot Fix)</option>
+						<option <?php if($rows['statusID'] == '1') echo "selected=\"selected\"" ?> value="1">Open</option>
+						<option <?php if($rows['statusID'] == '2') echo "selected=\"selected\"" ?> value="2">Assigned</option>
+						<option <?php if($rows['statusID'] == '3') echo "selected=\"selected\"" ?> value="3">Closed(Solved)</option>
+						<option <?php if($rows['statusID'] == '4') echo "selected=\"selected\"" ?> value="4">Closed(Cannot Fix)</option>
 					</select>
 				</div>
 			</div>
