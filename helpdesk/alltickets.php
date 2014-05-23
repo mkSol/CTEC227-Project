@@ -1,12 +1,14 @@
 <?php 
 
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		require("incl/sqlConnect.inc.php");
-		mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='{$_POST['desc']}' WHERE ticketID='{$_POST['id']}' LIMIT 1");
-		echo "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='{$_POST['desc']}' WHERE ticketID='{$_POST['id']}' LIMIT 1";
-		header("Location: alltickets.php");
-		// Refresh page after recieving edit form post to update page table
-		//header("Location: alltickets.php");
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			require("incl/sqlConnect.inc.php");
+			
+			// Sanitize ticket description and escape special chars for mySQL query
+			$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
+			mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+			
+			// Refresh page after recieving edit form post to update page table
+			header("Location: alltickets.php");
 
 	?>
 		<script type="text/javascript">
@@ -86,23 +88,6 @@
 <div id="editTicket" class="reveal-modal" data-reveal>
 
 </div>
-
-	
-	<?php 
-		mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='{$_POST['desc']}' WHERE ticketID='{$_POST['id']}' LIMIT 1");
-
-		// Refresh page after recieving edit form post to update page table
-	?>
-		<script type="text/javascript">
-			//alert("Your ticket has been submitted.");
-			location.reload(true);
-		</script>
-		<?php
-	}
-?>
-
-
-
 
 </div>
 </div>
