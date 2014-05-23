@@ -1,5 +1,4 @@
 <?php 
-
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			require("incl/sqlConnect.inc.php");
 			
@@ -89,6 +88,12 @@
 
 </div>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> fac09b309870ef277b93c00e97a78d378b5bf3e7
 </div>
 </div>
 <script src="js/foundation.min.js"></script>
