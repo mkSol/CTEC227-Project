@@ -22,183 +22,39 @@
 					<label>Date:</label>
 					<input type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
 				</div>
-
-					<?php 
-
-				//Okay this looks like the most convoluted case/switch statement ever, but basicly I 
-				//have it emit a default selection based on what $row['catagoryID'] value is. Because
-				//I didn't want to have to echo out the html so I excaped the php after every case.
-
-					switch ($rows['categoryID']) {
-					 	case '1': ?>
-							<div class="large-6 columns">
-								<legend>Category</legend>	
-								<select name="category" id="category">
-									<option selected="selected" value="1">PC Hardware</option>
-									<option value="2">Software</option>
-									<option value="3">Email</option>
-									<option value="4">Printer/Scanner/Fax/Misc</option>
-									<option value="5">General</option>
-								</select>
-							</div>
-					<?php	break;
-					 	
-					 	case '2': ?>
-							<div class="large-6 columns">
-								<legend>Category</legend>	
-								<select name="category" id="category">
-									<option value="1">PC Hardware</option>
-									<option selected="selected" value="2">Software</option>
-									<option value="3">Email</option>
-									<option value="4">Printer/Scanner/Fax/Misc</option>
-									<option value="5">General</option>
-								</select>
-							</div>
-
-					 		
-					<?php 	break;
-
-						case '3': ?>
-							<div class="large-6 columns">
-								<legend>Category</legend>	
-								<select name="category" id="category">
-									<option value="1">PC Hardware</option>
-									<option value="2">Software</option>
-									<option selected="selected" value="3">Email</option>
-									<option value="4">Printer/Scanner/Fax/Misc</option>
-									<option value="5">General</option>
-								</select>
-							</div>
-
-					 		
-					<?php 	break;
-
-						case '4': ?>
-							<div class="large-6 columns">
-								<legend>Category</legend>	
-								<select name="category" id="category">
-									<option value="1">PC Hardware</option>
-									<option value="2">Software</option>
-									<option selected="selected" value="3">Email</option>
-									<option value="4">Printer/Scanner/Fax/Misc</option>
-									<option value="5">General</option>
-								</select>
-							</div>
-
-					 		
-					<?php 	break;
-
-						case '5': ?>
-							<div class="large-6 columns">
-								<legend>Category</legend>	
-								<select name="category" id="category">
-									<option value="1">PC Hardware</option>
-									<option value="2">Software</option>
-									<option value="3">Email</option>
-									<option value="4">Printer/Scanner/Fax/Misc</option>
-									<option selected="selected" value="5">General</option>
-								</select>
-							</div>
-
-					 		
-					<?php 		break;
-					} 
-						?>
-			</div>
+					<div class="large-6 columns">
+						<legend>Category</legend>	
+						<select name="category" id="category">
+							<option <?php if($rows['categoryID'] == '1') echo "selected=\"selected\"" ?> value="1">PC Hardware</option>
+							<option <?php if($rows['categoryID'] == '2') echo "selected=\"selected\"" ?> value="2">Software</option>
+							<option <?php if($rows['categoryID'] == '3') echo "selected=\"selected\"" ?> value="3">Email</option>
+							<option <?php if($rows['categoryID'] == '4') echo "selected=\"selected\"" ?> value="4">Printer/Scanner/Fax/Misc</option>
+							<option <?php if($rows['categoryID'] == '5') echo "selected=\"selected\"" ?> value="5">General</option>
+						</select>
+					</div>
+				</div>
 
 			<div class="row">
+				<div class="large-6 columns">
+					<label for="priority">Priority (Default: Low)</label>
+					<select name="priority" id="priority">
+						<option <?php if($rows['priorityID'] == '1') echo "selected=\"selected\"" ?> value="1">High</option>
+						<option <?php if($rows['priorityID'] == '2') echo "selected=\"selected\"" ?> value="2">Medium</option>
+						<option <?php if($rows['priorityID'] == '3') echo "selected=\"selected\"" ?> value="3">Low</option>
+					</select>
+				</div>
 
-					<?php
-
-					switch ($rows['priorityID']) {
-					 	case '1': ?>
-					 		<div class="large-6 columns">
-								<label for="priority">Priority (Default: Low)</label>
-								<select name="priority" id="priority">
-									<option selected="selected" value="1">High</option>
-									<option value="2">Medium</option>
-									<option value="3">Low</option>
-								</select>
-							</div>
-					<?php 	break;
-
-						case '2': ?>
-					 		<div class="large-6 columns">
-								<label for="priority">Priority (Default: Low)</label>
-								<select name="priority" id="priority">
-									<option value="1">High</option>
-									<option selected="selected" value="2">Medium</option>
-									<option value="3">Low</option>
-								</select>
-							</div>
-					<?php 	break;
-
-						case '3': ?>
-					 		<div class="large-6 columns">
-								<label for="priority">Priority (Default: Low)</label>
-								<select name="priority" id="priority">
-									<option value="1">High</option>
-									<option value="2">Medium</option>
-									<option selected="selected" value="3">Low</option>
-								</select>
-							</div>
-					<?php 	break;
-					} 
-						?>
-
-					<?php	
-
-					switch ($rows['statusID']) {
-					 	case '1': ?>
-					 		<div class="large-6 columns">
-								<label for="status">Status:</label>
-								<select name="status" id="priority">
-									<option selected="selected" value="1">Open</option>
-									<option value="2">Assigned</option>
-									<option value="3">Closed(Solved)</option>
-									<option value="4">Closed(Cannot Fix)</option>
-								</select>
-							</div>
-					<?php 	break;
-
-						case '2': ?>
-					 		<div class="large-6 columns">
-								<label for="status">Status:</label>
-								<select name="status" id="priority">
-									<option value="1">Open</option>
-									<option selected="selected" value="2">Assigned</option>
-									<option value="3">Closed(Solved)</option>
-									<option value="4">Closed(Cannot Fix)</option>
-								</select>
-							</div>
-					<?php 	break;
-
-						case '3': ?>
-					 		<div class="large-6 columns">
-								<label for="status">Status:</label>
-								<select name="status" id="priority">
-									<option value="1">Open</option>
-									<option value="2">Assigned</option>
-									<option selected="selected" value="3">Closed(Solved)</option>
-									<option value="4">Closed(Cannot Fix)</option>
-								</select>
-							</div>
-					<?php 	break;
-
-						case '4': ?>
-					 		<div class="large-6 columns">
-								<label for="status">Status:</label>
-								<select name="status" id="priority">
-									<option value="1">Open</option>
-									<option value="2">Assigned</option>
-									<option value="3">Closed(Solved)</option>
-									<option selected="selected" value="4">Closed(Cannot Fix)</option>
-								</select>
-							</div>
-					<?php 	break;
-					} 
-						?>
+				<div class="large-6 columns">
+					<label for="status">Status:</label>
+					<select name="status" id="priority">
+						<option selected="selected" value="1">Open</option>
+						<option <?php if($rows['statusID'] == '1') echo "selected=\"selected\"" ?> value="2">Assigned</option>
+						<option <?php if($rows['statusID'] == '2') echo "selected=\"selected\"" ?> value="3">Closed(Solved)</option>
+						<option <?php if($rows['statusID'] == '3') echo "selected=\"selected\"" ?> value="4">Closed(Cannot Fix)</option>
+					</select>
+				</div>
 			</div>
+
 			<div class="row">
 				<div class="large-12 columns">
 
@@ -207,7 +63,6 @@
 				
 				<br>
 				<input class="button" type="submit" value="Edit">
-			</fieldset>
 				</div>
 			</div>
 		</form>
