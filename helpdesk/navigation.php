@@ -1,5 +1,5 @@
 <?php
-	function user_dashboard() {
+	function user_nav() {
 		?>
 			<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
@@ -36,7 +36,7 @@
 		<?php
 	}
 
-	function helpdesk_dashboard() {
+	function helpdesk_nav() {
 		?>
 		<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
@@ -75,7 +75,7 @@
 		<?php
 	}
 
-	function manager_dashboard() {
+	function manager_nav() {
 		?>
 		<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
@@ -114,7 +114,7 @@
 		<?php
 	}
 
-	function admin_dashboard() {
+	function admin_nav() {
 		?>
 		<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
@@ -160,20 +160,20 @@
 	// ============================ Page Content Start ===============================
 
 	// Open dasboard div
-	echo "<div id=\"dashboard\">";
+	echo "<div id=\"nav\">";
 
 	switch ($_SESSION['privLevel']) {
 			case '1':
-				user_dashboard();
+				user_nav();
 				break;
 			case '2':
-				helpdesk_dashboard();
+				helpdesk_nav();
 				break;
 			case '3':
-				manager_dashboard();
+				manager_nav();
 				break;
 			case '4':
-				admin_dashboard();
+				admin_nav();
 				break;
 		}
 	echo "</div>" // Close dashboard div

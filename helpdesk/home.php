@@ -34,7 +34,7 @@
 		*/
 
 		// Display dashboard
-		include("dashboard.php");
+		include("navigation.php");
 
 		// Check privilege level and load appropriate pages
 		echo "Home Page Content Goes Here.";

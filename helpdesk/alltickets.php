@@ -36,7 +36,7 @@
 <?php 
 		session_start();
 
-		include("dashboard.php");
+		include("navigation.php");
 		require("incl/sqlConnect.inc.php");
 
 		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
