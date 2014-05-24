@@ -2,10 +2,10 @@
 
 	function display_newest_tickets() {
 
-		require("sqlConnect.inc.php");
+		require("incl/sqlConnect.inc.php");
 		$username = $_SESSION['username'];
 		$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID WHERE user.username = '$username' ORDER BY timestamp DESC LIMIT 5 ");
-		$rows = mysqli_num_rows($result);
+		//$rows = mysqli_num_rows($result);
 
 		echo "<h2>Latest Tickets<h2>\n";
 
@@ -14,7 +14,7 @@
 			while ($rows=mysqli_fetch_array($result)) {
 
 				echo "<dd>\n";
-				echo "<a href='#" . $rows['ticketID'] . "'>" . $rows['timestamp'] ."  " . $rows['category'] . "  " . $rows['priorityID'] ."  " . $rows['statusID'] ."</a>\n";
+				echo "<a href='#" . $rows['ticketID'] . "'>" . $rows['timestamp'] ."  " . $rows['category'] . "  " . $rows['priority'] ."  " . $rows['status'] ."</a>\n";
 				echo "<div id='" . $rows['ticketID'] . "' class='content'>\n";
 				echo "<p><h3>Description:<h3><p>\n";
 				echo "<p>" . $rows['issueDesc'] . "</p>\n";
