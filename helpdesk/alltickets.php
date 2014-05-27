@@ -85,9 +85,7 @@
 	echo "<tbody>";
 	echo "</table>";
 ?>
-<div id="editTicket" class="reveal-modal" data-reveal>
-
-</div>
+<div id="editTicket" class="reveal-modal" data-reveal></div>
 </div>
 </div>
 <script src="js/foundation.min.js"></script>

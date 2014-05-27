@@ -146,6 +146,7 @@
 							<li><a class="allTickets" href="alltickets.php">Ticket Pool</a></li>
 							<li><a class="assignedTickets" href="assignedtickets.php">Assigned Tickets</a></li>
 							<li><a class="allEquip" href="allequip.php">All Equipment</a></li>
+							<li><a class="alltables" href="alltables.php">All Tables</a></li>
 							<li><a class="errorLogs" href="errorlogs.php">Error Logs</a></li>	
 						</ul>
 				</li>

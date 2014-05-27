@@ -24,15 +24,14 @@
 ?>
 
 <div class="row">
-<div class"large-12 columns" id="viewAllTickets">
+<div class="large-12 columns" id="allTickets">
 <?php 
+	$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID");
+	$rows = mysqli_num_rows($result);
 
+	echo "<h2>View All Tickets</h2>";
 
-	// ============================ Page Content Start ===============================
-
-	echo "<h2>View All Tickets (Read Only)</h2>";
-
-	echo "<table id=\"viewalltickets_table\">";
+	echo "<table id=\"alltickets_table\">";
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>Ticket ID</th>";
@@ -60,10 +59,10 @@
 		echo "<td>" . $rows['issueDesc'] . "</td>";
 		echo "</tr>";
 	}
-	echo "</tbody>";
+	echo "<tbody>";
 	echo "</table>";
-
 ?>
+
 </div>
 </div>
 <script src="js/foundation.min.js"></script>
@@ -71,4 +70,3 @@
 <script> $(document).foundation(); </script>
 </body>
 </html>
-

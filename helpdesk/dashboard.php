@@ -54,13 +54,16 @@
 				user_dashboard();
 				break;
 			case '2':
-				helpdesk_dashboard();
+				echo "<p>No Help Desk Dashboard Yet!";
+				//helpdesk_dashboard();
 				break;
 			case '3':
-				manager_dashboard();
+				echo "<p>No Manager Dashboard Yet!";
+				//manager_dashboard();
 				break;
 			case '4':
-				admin_dashboard();
+				echo "<p>No Admin Dashboard Yet!";
+				//admin_dashboard();
 				break;
 	}
 

@@ -71,7 +71,8 @@
 		</form>
 
 
-	<?php	echo "<a class=\"close-reveal-modal\">&#215;</a>";
+	<?php	
+		echo "<a class=\"close-reveal-modal\">&#215;</a>";
 	}	
 
 	?>
