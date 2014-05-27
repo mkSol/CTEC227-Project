@@ -39,7 +39,7 @@
 					<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
 					<input type="hidden" name="linkID" value="<?php echo $link; ?>">
 
-					<label>User ID ("none" to remove):</label>
+					<label>User ID (Blank to Remove):</label>
 					<input type="text" name="userID" value="<?php echo $user; ?>">
 				</div>
 				<div class="large-6 columns">
