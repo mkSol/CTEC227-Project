@@ -5,6 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Greenwell IRS - Login</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/foundation.css">
 	<link rel="stylesheet" href="css/foundation.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
