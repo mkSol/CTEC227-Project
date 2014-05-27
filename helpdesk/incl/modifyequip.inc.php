@@ -17,7 +17,7 @@
 		if (isset($_GET['user'])) {
 			$user = $_GET['user'];
 		} else { // Set to none if does not exist
-			$user = "none";
+			$user = "";
 		}
 		if (isset($_GET['dept'])) {
 			$dept = $_GET['dept'];
