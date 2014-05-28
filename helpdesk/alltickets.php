@@ -1,22 +1,32 @@
 <?php 
+	// Connect to SQL DB
+	require("incl/sqlConnect.inc.php");
 
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
-			require("incl/sqlConnect.inc.php");
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		switch ($_POST['submitType']) {
+			case 'edit':
+				// Sanitize ticket description and escape special chars for mySQL query
+				$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
+				mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+				break;
 			
-			// Sanitize ticket description and escape special chars for mySQL query
-			$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
-			mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
-			
-			// Refresh page after recieving edit form post to update page table
-			header("Location: alltickets.php");
+			case 'comment':
+				// Sanitize ticket description and escape special chars for mySQL query
+				$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
+				mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
+				echo mysqli_error($dbc);
+				echo "<pre>" . print_r($_SESSION) . "</pre>";
+				echo "<pre>" . $_SESSION['userID'] . "</pre>";
+				break;
 
-	?>
-		<script type="text/javascript">
-			//alert("Your ticket has been submitted.");
-			//location.reload(true);
-		</script>
-		<?php 
+			default:
+				break;
+		}
+		// Refresh page after recieving edit form post to update page table
+		//header("Location: alltickets.php");
 	}
+
+		
 ?>
 
 <!doctype html>
@@ -70,7 +80,11 @@
 	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
-		echo "<td><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a><a data-reveal-id=\"editTicket\" class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/edit.png\"></a></td>";
+		echo "<td>";
+		echo "<span id=\"delete" . $rows['0'] . "\"><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a></span>";
+		echo "<span id=\"edit" . $rows['0'] . "\"><a data-reveal-id=\"editTicket\" class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a></span>";
+		echo "<span id=\"view" . $rows['0'] . "\"><a data-reveal-id=\"viewTicket\" class=\"?viewid=" . $rows['0'] . "\" href=\"#\"><img src=\"images/view.png\"></a></span>";
+		echo "</td>";
 		echo "<td>" . $rows['ticketID'] . "</td>";
 		echo "<td>" . $rows['firstName'] . "</td>";
 		echo "<td>" . $rows['lastName'] . "</td>";
@@ -86,6 +100,7 @@
 	echo "</table>";
 ?>
 <div id="editTicket" class="reveal-modal" data-reveal></div>
+<div id="viewTicket" class="reveal-modal" data-reveal></div>
 </div>
 </div>
 <script src="js/foundation.min.js"></script>

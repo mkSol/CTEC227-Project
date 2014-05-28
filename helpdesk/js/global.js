@@ -8,10 +8,17 @@ $(document).ready(function(){
 	// =========================== All Tickets Page ============================
 
 	// Load in ticket details for edit modal
-	$('#allTickets').on('click', 'a', function() {
+	$('[id^=edit]').on('click', 'a', function() {
 		var id = $(this).attr('class');
 		// Append url parameters to load request
 		$('#editTicket').load('incl/modifyticket.inc.php' + id);
+	});
+
+	// Load in ticket details for view modal
+	$('[id^=view]').on('click', 'a', function() {
+		var id = $(this).attr('class');
+		// Append url parameters to load request
+		$('#viewTicket').load('incl/viewticket.inc.php' + id);
 	});
 
 	// =========================== All Equipment Page ============================
@@ -70,5 +77,5 @@ $(document).ready(function(){
 
 	// =========================== All Tables Page ============================
 
-	
+
 });

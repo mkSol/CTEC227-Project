@@ -1,10 +1,10 @@
 <?php 
-	if (isset($_GET['delete'])) {
+	/*if (isset($_GET['delete'])) {
 		echo "<h1>Deleting ticket ID: {$_GET['id']}</h1>";
 		require("sqlConnect.inc.php");
 		mysqli_query($dbc, "DELETE FROM ticket WHERE ticketID='{$_GET['id']}' LIMIT 1");
 		echo "DELETE FROM ticket WHERE ticketID='{$_GET['id']}' LIMIT 1";
-	}
+	}*/
 
 	if (isset($_GET['edit'])) {
 		echo "<h1>Ticket ID: {$_GET['id']}</h1>";
@@ -21,6 +21,7 @@
 				<div class="large-6 columns">
 					
 					<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+					<input type="hidden" name="submitType" value="edit">
 
 					<label>Date:</label>
 					<input type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
