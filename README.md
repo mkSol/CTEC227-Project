@@ -5,32 +5,18 @@ CTEC 227 Project - IT Help Desk
 
 To Do List
 ==========
-Additional mockups?  
-Blank template of entire site  
-Header/Footer  
-Dashboard unique to each user role  
-User pages  
---View current tickets  
---Create ticket  
---View specifics of selected ticket  
---View assets  
-Help Desk pages  
---View all available tickets (sort by priority, date, status, etc dropdown menu)  
---View their assigned tickets (sort function as above)  
---View selected ticket and take/release them or add comments, also view ticker owner's assets  
-Manager pages  
---View all tickets (dropdown menu for ticket status including closed, search filter for name)  
---View all assets (dropdown menu by department, search filter for name)  
-SysAdmin pages  
---Identical to Manager with added CRUD functionality  
---Error logs  
+--Fill out database with clean looking data  
+--Dashboard unique to each user role  
+--Port NewTicket page to a model popup, possibly embedded in the nav bar?  
+--Error handling code that submits all error dumps to database  
+--Dynamic CRUD functionality for Admin AllTables page  
+--Button on ticket pool page to assign ticket to current user viewing page  
+--Add relavent equipment to view ticket details
+--Port ticket edit and view code to MyAssignedTickets  
+--Port ticket view code to MyTickets
+--Port ticket view code to ViewAllTickets?  
+	--Could also make alltickets+allequip check privLevel to strip edit functions out  
   
-MILESTONE 3  
---Application walkthrough  
---Identify areas of concern, surprises, etc  
---Identify issues that crept up, scope creep, not identified in specs  
---Identify items that will not be abke to be implemented  
-
 Optional Additions (If we have time for them)
 ---
 Lost login password system  
