@@ -7,16 +7,14 @@
 			case 'edit':
 				// Sanitize ticket description and escape special chars for mySQL query
 				$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
-				mysqli_query($dbc, "UPDATE ticket SET timestamp='{$_POST['date']}', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+				$date = mysqli_real_escape_string($dbc, $_POST['date']);
+				mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
 				break;
 			
 			case 'comment':
 				// Sanitize ticket description and escape special chars for mySQL query
 				$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
 				mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
-				echo mysqli_error($dbc);
-				echo "<pre>" . print_r($_SESSION) . "</pre>";
-				echo "<pre>" . $_SESSION['userID'] . "</pre>";
 				break;
 
 			default:
@@ -52,6 +50,7 @@
 		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
 			header("Location: login.php");
 		}
+
 ?>
 
 <div class="row">

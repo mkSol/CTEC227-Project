@@ -5,23 +5,27 @@
 			
 			// Set variables, assign "none" to userID if deptID is used
 			if ($_POST['deptID'] == "none") {
-				$userID = $_POST['userID'];
+				$userID = mysqli_real_escape_string($dbc, $_POST['userID']);
 				$deptID = "none";
 			} else {
 				$userID = "";
 				$deptID = $_POST['deptID'];	
 			}
 			
+			// Sanitize ticket description and escape special chars for mySQL query
+			$equipDesc = mysqli_real_escape_string($dbc, $_POST['equipDesc']);
+			$equipSerial = mysqli_real_escape_string($dbc, $_POST['equipSerial']);
+
 			// If a linkID is set in userEquip table:
 			if ($_POST['linkID'] !== "none") {
-				mysqli_query($dbc, "UPDATE equipment SET equipDesc='{$_POST['equipDesc']}', equipSerial='{$_POST['equipSerial']}', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
+				mysqli_query($dbc, "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
 				if ($userID == "" && $deptID == "none") { // If no user and dept is set, delete userEquip record
 					mysqli_query($dbc, "DELETE FROM userEquip WHERE linkID='{$_POST['linkID']}' LIMIT 1");
 				} else { // Otherwise update userEquip record
 					mysqli_query($dbc, "UPDATE userEquip SET userID='$userID', deptID='$deptID' WHERE linkID='{$_POST['linkID']}' LIMIT 1");
 				}
 			} else { // Create a new userEquip link if there isn't one
-				mysqli_query($dbc, "UPDATE equipment SET equipDesc='{$_POST['equipDesc']}', equipSerial='{$_POST['equipSerial']}', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
+				mysqli_query($dbc, "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
 				if ($userID == "") { // Set when no userID is set
 					mysqli_query($dbc, "INSERT INTO userEquip (equipID, userID, deptID) VALUES ('{$_POST['id']}', NULL, '$deptID')");
 				} else { // Set when no deptID is set

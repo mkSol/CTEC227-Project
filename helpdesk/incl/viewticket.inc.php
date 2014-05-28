@@ -1,21 +1,25 @@
 <?php 
+	session_start();
+
 	if (isset($_GET['viewid'])) {
 		echo "<h1>View Details for Ticket ID: {$_GET['viewid']}</h1>";
-		require("sqlConnect.inc.php");
+		require("sqlConnect.inc.php"); // Connect to SQL DB
 
-		$result = mysqli_query($dbc, "SELECT * FROM ticket WHERE ticketID='{$_GET['viewid']}' LIMIT 1");
-		$rows = mysqli_fetch_array($result);
-
+		// MySQL query to populate basic ticket details
+		//$result = mysqli_query($dbc, "SELECT * FROM ticket WHERE ticketID='{$_GET['viewid']}' LIMIT 1");
+		//$rows = mysqli_fetch_array($result);
 
 		 ?>
-
+		<!-- Open form on modal to apply formatting to tables below -->
 		<form action="alltickets.php" method="post">
 			<div class="row">
 				<?php
 
+				// MySQL query to populate basic ticket details
 				$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID WHERE ticket.ticketID = '{$_GET['viewid']}'");
 				$rows = mysqli_num_rows($result);
 
+				// Print out small table with ticket details
 				echo "<table id=\"viewticket_table\">";
 				echo "<thead>";
 				echo "<tr>";
@@ -47,12 +51,12 @@
 				echo "<tbody>";
 				echo "</table>";
 
-				// ----- Start ticket comments -----
-
+				// MySQL query to list comments associated with ticket
 				$result = mysqli_query($dbc, "SELECT ticketComment.timestamp, ticketComment.comment, user.username FROM ticketComment JOIN user ON ticketComment.userID=user.userID WHERE ticketComment.ticketID = '{$_GET['viewid']}'");
 				$rows = mysqli_num_rows($result);
 
 				if ($rows) { // If comments exist...
+					// Print out comments in a table
 					echo "<table id=\"ticket_comment_table\">";
 					echo "<thead>";
 					echo "<tr>";
@@ -78,6 +82,7 @@
 
 				?>
 
+			<!-- Print out form to submit new ticket comments -->
 			<div class="row">
 				<div class="large-12 columns">
 					<input type="hidden" name="ticketID" value="<?php echo $_GET['viewid']; ?>">
@@ -97,9 +102,5 @@
 			</div>
 		</form>
 
-
-	<?php	
-		echo "<a class=\"close-reveal-modal\">&#215;</a>";
-	}	
-
-	?>
+		<a class="close-reveal-modal">&#215;</a>
+	<?php	} // Close function	?>

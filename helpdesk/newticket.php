@@ -66,20 +66,13 @@ function new_ticket_form() {
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 		new_ticket_form();
 	} else {
+		// Set variables
 		$userID = $_SESSION['userID'];
 		$categoryID = $_POST['category'];
 		$priorityID = $_POST['priority'];
-		$issueDesc = $_POST['desc'];
+		// Sanitize ticket description and escape special chars for mySQL query
+		$issueDesc = mysqli_real_escape_string($dbc, $_POST['desc']);
 		$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
-		
-		/*
-		// Debug Stuff
-		echo "<p>INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')</p>";
-
-		echo "<p>Thank you for submitting a ticket with Greenweel Bank IRS!</p>";
-		echo "<p>Your problem has been submitted and is pending investigation with our help desk associates.</p>";
-		echo "<p><a href=\"home.php\">Return</a></p>";
-		*/
 
 		// Confirmation box and refresh page ater post	
 		?>
