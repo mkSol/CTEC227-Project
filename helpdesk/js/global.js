@@ -13,6 +13,15 @@ $(document).ready(function(){
 		$('#newTicket').load('incl/newticket.inc.php');
 	});
 
+	// =========================== My Tickets Page ============================
+
+	// Load in ticket details for view modal
+	$('#myTickets').on('click', '[id^=view]', function() {
+		var id = $(this).attr('class');
+		// Append url parameters to load request
+		$('#viewTicket').load('incl/viewticket.inc.php' + id);
+	});
+
 	// =========================== All Tickets Page ============================
 
 	// Load in ticket details for edit modal
@@ -22,6 +31,7 @@ $(document).ready(function(){
 		$('#editTicket').load('incl/modifyticket.inc.php' + id);
 		$(document).ajaxComplete(function() {
 			//alert("!");
+			$('#editTicketTimestamp').off();
 			$('#editTicketTimestamp').AnyTime_picker();
 		});
 	});
