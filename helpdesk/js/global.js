@@ -20,12 +20,10 @@ $(document).ready(function(){
 		var id = $(this).attr('class');
 		// Append url parameters to load request
 		$('#editTicket').load('incl/modifyticket.inc.php' + id);
-	});
-
-
-	$(document).ajaxStop(function() {
-		//alert("!");
-		//$('#editTicketTimestamp').AnyTime_picker();
+		$(document).ajaxComplete(function() {
+			//alert("!");
+			//$('#editTicketTimestamp').AnyTime_picker();
+		});
 	});
 
 	// Load in ticket details for view modal

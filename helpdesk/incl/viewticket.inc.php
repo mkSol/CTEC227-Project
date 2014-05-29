@@ -90,7 +90,6 @@
 				echo "<table id=\"ticketdeptequip_table\">";
 				echo "<thead>";
 				echo "<tr>";
-				echo "<th>Action</th>";
 				echo "<th>Equip ID</th>";
 				echo "<th>Type</th>";
 				echo "<th>Description</th>";
@@ -100,7 +99,6 @@
 				echo "<tbody>";
 				while ($rows2=mysqli_fetch_array($result2)) {
 					echo "<tr>";
-					echo "<td><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a><a data-reveal-id=\"editEquip\" class=\"?edit=1&id=" . $rows['0'] . "&dept=" . $rows['deptID'] . "&link=" . $rows['linkID'] . "\" href=\"#\"><img src=\"images/edit.png\"></a></td>";
 					echo "<td>" . $rows2['equipID'] . "</td>";
 					echo "<td>" . $rows2['equipType'] . "</td>";
 					echo "<td>" . $rows2['equipDesc'] . "</td>";
