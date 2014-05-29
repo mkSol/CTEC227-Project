@@ -6,6 +6,8 @@
 		echo "DELETE FROM ticket WHERE ticketID='{$_GET['id']}' LIMIT 1";
 	}*/
 
+	session_start();
+
 	if (isset($_GET['edit'])) {
 		echo "<h1>Ticket ID: {$_GET['id']}</h1>";
 		require("sqlConnect.inc.php");
@@ -13,10 +15,9 @@
 		$result = mysqli_query($dbc, "SELECT * FROM ticket WHERE ticketID='{$_GET['id']}' LIMIT 1");
 		$rows = mysqli_fetch_array($result);
 
-
 		 ?>
 
-		<form action="alltickets.php" method="post">
+		<form action="<?php echo $_SESSION['ticketpage']; ?>.php" method="post">
 			<div class="row">
 				<div class="large-6 columns">
 					
@@ -24,7 +25,8 @@
 					<input type="hidden" name="submitType" value="edit">
 
 					<label>Date:</label>
-					<input type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
+					<input id="editTicketTimestamp" type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
+					<script>$('#editTicketTimestamp').AnyTime_picker();</script>
 				</div>
 					<div class="large-6 columns">
 						<legend>Category</legend>	

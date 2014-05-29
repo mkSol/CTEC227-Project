@@ -134,10 +134,11 @@
 				<li class="has-dropdown">
 					<a href="#">Create</a>
 						<ul class="dropdown">
+							<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 							<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
 						</ul>
 				</li>
-
+				
 				<li class="has-dropdown">
 					<a href="#">View</a>
 						<ul class="dropdown">
@@ -181,3 +182,5 @@
 		}
 	echo "</div>" // Close navigation div
 ?>
+	<!-- Modal div for creating new tickets -->
+	<div id="newTicket" class="reveal-modal" data-reveal></div>

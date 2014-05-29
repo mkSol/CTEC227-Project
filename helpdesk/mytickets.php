@@ -1,27 +1,61 @@
+<?php 
+	session_start();
+	// Connect to SQL DB
+	require("incl/sqlConnect.inc.php");
+	include("navigation.php");
+
+	if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
+		header("Location: login.php");
+	}
+
+	// Set session var for view ticket form direct
+	$_SESSION['ticketpage'] = "mytickets";
+
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		
+		switch ($_POST['submitType']) {
+			case 'comment':
+				// Sanitize ticket description and escape special chars for mySQL query
+				$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
+				mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
+				break;
+
+			case 'newTicket':
+				// Set variables
+				$userID = $_SESSION['userID'];
+				$categoryID = $_POST['category'];
+				$priorityID = $_POST['priority'];
+				// Sanitize ticket description and escape special chars for mySQL query
+				$issueDesc = mysqli_real_escape_string($dbc, $_POST['desc']);
+				$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
+
+				// Confirmation box and refresh page ater post	
+				?>
+				<script type="text/javascript">
+					alert("Your ticket has been submitted.");
+					location.reload(true);
+				</script>
+				<?php		
+				break;
+			
+			default:
+				break;
+		}
+
+		// Refresh page after recieving edit form post to update page table
+		header("Location: mytickets.php");
+	}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>My Tickets</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<link rel="stylesheet" href="css/foundation.css">
-	<link rel="stylesheet" href="css/foundation.min.css">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<?php 
+		require("incl/scripts.inc.html")
+	?>	
 </head>
-
-<?php 
-		session_start();
-
-		include("navigation.php");
-		require("incl/sqlConnect.inc.php");
-
-		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-			header("Location: login.php");
-		}
-?>
 
 <div class="row">
 <div class="large-12 columns" id="myTickets">	
@@ -35,6 +69,7 @@
 	echo "<table id=\"mytickets_table\">";
 	echo "<thead>";
 	echo "<tr>";
+	echo "<th>View</th>";
 	echo "<th>Ticket ID</th>";
 	echo "<th>First</th>";
 	echo "<th>Last</th>";
@@ -49,11 +84,14 @@
 	echo "<tbody>";
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
+		echo "<td>";
+		echo "<span id=\"view" . $rows['0'] . "\"><a data-reveal-id=\"viewTicket\" class=\"?viewid=" . $rows['0'] . "\" href=\"#\"><img src=\"images/view.png\"></a></span>";
+		echo "</td>";
 		echo "<td>" . $rows['ticketID'] . "</td>";
 		echo "<td>" . $rows['firstName'] . "</td>";
 		echo "<td>" . $rows['lastName'] . "</td>";
 		echo "<td>" . $rows['username'] . "</td>";
-		echo "<td>" . $rows['timestamp'] . "</td>";
+		echo "<td>" . date("m/d/y g:i A", strtotime($rows['timestamp'])) . "</td>";
 		echo "<td>" . $rows['category'] . "</td>";
 		echo "<td>" . $rows['priority'] . "</td>";
 		echo "<td>" . $rows['status'] . "</td>";
@@ -63,10 +101,8 @@
 	echo "</tbody>";
 	echo "</table>";
 ?>
+<div id="viewTicket" class="reveal-modal" data-reveal></div>
 </div>
 </div>
-<script src="js/foundation.min.js"></script>
-<script src="js/vendor/fastclick.js"></script>
-<script> $(document).foundation(); </script>
 </body>
 </html>

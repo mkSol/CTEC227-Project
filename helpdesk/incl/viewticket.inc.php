@@ -29,7 +29,7 @@
 			echo "<td>" . $rows['firstName'] . "</td>";
 			echo "<td>" . $rows['lastName'] . "</td>";
 			echo "<td>" . $rows['username'] . "</td>";
-			echo "<td>" . $rows['timestamp'] . "</td>";
+			echo "<td>" . date("m/d/y g:i A", strtotime($rows['timestamp'])) . "</td>";
 			echo "<td>" . $rows['category'] . "</td>";
 			echo "<td>" . $rows['priority'] . "</td>";
 			echo "<td>" . $rows['status'] . "</td>";
@@ -152,9 +152,12 @@
 		echo "<h1>View Details for Ticket ID: {$_GET['viewid']}</h1>";
 		require("sqlConnect.inc.php"); // Connect to SQL DB
 
+		// Page to submit form to
+		$submitTo = $_SESSION['ticketpage']
+
 		 ?>
 		<!-- Open form on modal to apply formatting to tables below -->
-		<form action="alltickets.php" method="post">
+		<form action="<?php echo $_SESSION['ticketpage']; ?>.php" method="post">
 			<div class="row">
 				<?php
 

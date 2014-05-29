@@ -65,12 +65,19 @@
 			case '4':
 				echo "<p>No Admin Dashboard Yet!";
 				//admin_dashboard();
+
+				// Testing timestamp conversions, ignore
+				$mdate = date('Y-m-d H:i:s',strtotime('Tue, 06 Dec 2011 16:47:11 +0000'));
+				$sdate = date("F jS\, Y h:i:s A", strtotime($mdate));
+				echo "<p>" . $mdate . "</p>";
+				echo "<p>" . $sdate . "</p>";
+				?>
+					<input type="text" id="testtimestamp" size="50">
+				<?php
 				break;
 	}
 
 	echo "</div>"; //close dashboard div
-
-
 
 ?>
 

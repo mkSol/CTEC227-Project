@@ -1,9 +1,17 @@
 $(document).ready(function(){
 
 	// =========================== Uncategorized ============================
+	
+	// Load Foundation
+	$(document).foundation();
 
 	// Call DataTables plugin for all tables to add sort and filter
 	$('table').dataTable();
+
+	// Load new ticket modal
+	$('.newTicketLink').on('click', 'a', function() {
+		$('#newTicket').load('incl/newticket.inc.php');
+	});
 
 	// =========================== All Tickets Page ============================
 
@@ -14,12 +22,28 @@ $(document).ready(function(){
 		$('#editTicket').load('incl/modifyticket.inc.php' + id);
 	});
 
+	$(document).ajaxStop(function() {
+		//alert("!");
+		$('#editTicketTimestamp').AnyTime_picker();
+	});
+
 	// Load in ticket details for view modal
 	$('[id^=view]').on('click', 'a', function() {
 		var id = $(this).attr('class');
 		// Append url parameters to load request
 		$('#viewTicket').load('incl/viewticket.inc.php' + id);
 	});
+
+	// Load delete confirmation modal
+	$('[id^=delete]').on('click', 'a', function() {
+		var id = $(this).attr('class');
+		// Append url parameters to load request
+		$('#deleteTicket').load('incl/confirmdelete.inc.php' + id);
+	});
+
+	// =========================== Edit Ticket ============================
+
+	
 
 	// =========================== All Equipment Page ============================
 

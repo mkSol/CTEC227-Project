@@ -3,13 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>New Ticket</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<link rel="stylesheet" href="css/foundation.css">
-	<link rel="stylesheet" href="css/foundation.min.css">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<?php 
+		require("incl/scripts.inc.html")
+	?>	
 </head>
 
 <?php 
@@ -85,8 +81,5 @@ function new_ticket_form() {
 	
 ?>
 </div>
-<script src="js/foundation.min.js"></script>
-<script src="js/vendor/fastclick.js"></script>
-<script> $(document).foundation(); </script>
 </body>
 </html>
