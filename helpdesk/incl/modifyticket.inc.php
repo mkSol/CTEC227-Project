@@ -26,7 +26,7 @@
 
 					<label>Date:</label>
 					<input id="editTicketTimestamp" type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
-					<script>$('#editTicketTimestamp').AnyTime_picker();</script>
+					<!--script>$('#editTicketTimestamp').AnyTime_picker();</script-->
 				</div>
 					<div class="large-6 columns">
 						<legend>Category</legend>	

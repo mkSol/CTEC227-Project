@@ -22,7 +22,7 @@ $(document).ready(function(){
 		$('#editTicket').load('incl/modifyticket.inc.php' + id);
 		$(document).ajaxComplete(function() {
 			//alert("!");
-			//$('#editTicketTimestamp').AnyTime_picker();
+			$('#editTicketTimestamp').AnyTime_picker();
 		});
 	});
 
