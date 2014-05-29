@@ -71,9 +71,6 @@
 				$sdate = date("F jS\, Y h:i:s A", strtotime($mdate));
 				echo "<p>" . $mdate . "</p>";
 				echo "<p>" . $sdate . "</p>";
-				?>
-					<input type="text" id="testtimestamp" size="50">
-				<?php
 				break;
 	}
 

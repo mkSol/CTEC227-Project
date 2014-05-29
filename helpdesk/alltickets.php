@@ -78,10 +78,9 @@
 	while ($rows=mysqli_fetch_array($result)) {
 		echo "<tr>";
 		echo "<td>";
-		echo "<span id=\"view" . $rows['0'] . "\"><a data-reveal-id=\"viewTicket\" class=\"?viewid=" . $rows['0'] . "\" href=\"#\"><img src=\"images/view.png\"></a></span>";
-		echo "<span id=\"delete" . $rows['0'] . "\"><a data-reveal-id=\"deleteTicket\" class=\"?delete=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a></span>";
-		//echo "<span id=\"delete" . $rows['0'] . "\"><a class=\"?delete=1&id=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a></span>";
-		echo "<span id=\"edit" . $rows['0'] . "\"><a data-reveal-id=\"editTicket\" class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a></span>";
+		echo "<span><a data-reveal-id=\"viewTicket\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "\" href=\"#\"><img src=\"images/view.png\"></a></span>";
+		echo "<span><a data-reveal-id=\"deleteTicket\" id=\"delete" . $rows['0'] . "\" class=\"?delete=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a></span>";
+		echo "<span><a data-reveal-id=\"editTicket\" id=\"edit" . $rows['0'] . "\" class=\"?edit=1&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a></span>";
 		echo "</td>";
 		echo "<td>" . $rows['ticketID'] . "</td>";
 		echo "<td>" . $rows['firstName'] . "</td>";
