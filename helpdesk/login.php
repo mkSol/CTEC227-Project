@@ -56,8 +56,8 @@
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 		display_login_form();
 	} else {
-		$username = $_POST['username'];
-		$passwd = $_POST['passwd'];
+		$username = mysqli_real_escape_string($dbc, $_POST['username']);
+		$passwd = mysqli_real_escape_string($dbc, $_POST['passwd']);
 		// Query for username, password, first+last name, email, priv level and role
 		$query = mysqli_query($dbc, "SELECT username,userID,passwd,firstName,lastName,email,privilege,privilege.privRole FROM user INNER JOIN privilege on user.privilege=privilege.privID WHERE username='$username' AND passwd=SHA1('$passwd')");
 		$result = mysqli_fetch_array($query);
