@@ -245,7 +245,7 @@ $sql = "SELECT userID AS 'User ID', username AS Username, email AS Email, firstN
 
 // This function is all that's needed to call a full table
 // Just pass in an SQL statement and the name of the table you want it labeled as
-//output_table($sql,"User_Table");
+output_table($sql,"User_Table");
 
 ?>
 
