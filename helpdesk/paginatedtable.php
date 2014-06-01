@@ -174,7 +174,7 @@ function output_table($sql,$tableName) {
 	}
 	
 	$result = mysqli_query($dbc, $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage");
-	//echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
+	echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
 	if ($result) { // If records were found...
 		echo mysqli_error($dbc);
 		$numCols = mysqli_num_fields($result);
