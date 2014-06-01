@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$(document).foundation();
 
 	// Call DataTables plugin for all tables to add sort and filter
-	$('table').dataTable({paging: false});
+	//$('table').dataTable({paging: false});
 
 	// Load new ticket modal
 	$('.newTicketLink').on('click', 'a', function() {

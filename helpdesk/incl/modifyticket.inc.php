@@ -28,17 +28,17 @@
 					<input id="editTicketTimestamp" type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
 					<!--script>$('#editTicketTimestamp').AnyTime_picker();</script-->
 				</div>
-					<div class="large-6 columns">
-						<legend>Category</legend>	
-						<select name="category" id="category">
-							<option <?php if($rows['categoryID'] == '1') echo "selected=\"selected\"" ?> value="1">PC Hardware</option>
-							<option <?php if($rows['categoryID'] == '2') echo "selected=\"selected\"" ?> value="2">Software</option>
-							<option <?php if($rows['categoryID'] == '3') echo "selected=\"selected\"" ?> value="3">Email</option>
-							<option <?php if($rows['categoryID'] == '4') echo "selected=\"selected\"" ?> value="4">Printer/Scanner/Fax/Misc</option>
-							<option <?php if($rows['categoryID'] == '5') echo "selected=\"selected\"" ?> value="5">General</option>
-						</select>
-					</div>
+				<div class="large-6 columns">
+					<legend>Category</legend>	
+					<select name="category" id="category">
+						<option <?php if($rows['categoryID'] == '1') echo "selected=\"selected\"" ?> value="1">PC Hardware</option>
+						<option <?php if($rows['categoryID'] == '2') echo "selected=\"selected\"" ?> value="2">Software</option>
+						<option <?php if($rows['categoryID'] == '3') echo "selected=\"selected\"" ?> value="3">Email</option>
+						<option <?php if($rows['categoryID'] == '4') echo "selected=\"selected\"" ?> value="4">Printer/Scanner/Fax/Misc</option>
+						<option <?php if($rows['categoryID'] == '5') echo "selected=\"selected\"" ?> value="5">General</option>
+					</select>
 				</div>
+			</div>
 
 			<div class="row">
 				<div class="large-6 columns">
