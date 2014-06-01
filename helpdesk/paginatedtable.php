@@ -92,7 +92,7 @@
 			next_page($page);
 		}
 		// Form logic for entering a page number manually
-		echo '<form method="post" action="paginatedtable.php?' . $_SERVER['QUERY_STRING'] . '">';
+		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">';
 		echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
 		echo '<input class="button" type="submit" value="Go">';
 		echo '</form>';
@@ -103,7 +103,7 @@
 	function search_filter() {
 		// Form for submitting search filter string
 		// Reset page counter back to 1 when submitting form
-		echo '<form method="post" action="paginatedtable.php?' . http_build_query(array_merge($_GET, array("page"=>"1"))) . '">';
+		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query(array_merge($_GET, array("page"=>"1"))) . '">';
 		echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
 		echo '<input class="button" type="submit" value="Search">';
 		echo '</form>';
@@ -159,68 +159,83 @@ function output_table($sql,$tableName) {
 		$rowsPerPage = 10;
 		$pageOffset = $page * $rowsPerPage - $rowsPerPage;	
 	}
+	
+	// Set sort parameters for SQL query
+	$sortParams = null;
 	if ($sortBy) {
-		$sortParms = "ORDER BY $sortBy $sortOrder";
+		$sortParams = "ORDER BY $sortBy $sortOrder";
+	}
+	
+	$result = mysqli_query($dbc,$sql . " " . $searchParams);
+	if ($result) {
+		$numRows = mysqli_num_rows($result);
 	} else {
-		$sortParams = null;
+		$numRows = "0";
 	}
 	
-	$numRows = mysqli_num_rows(mysqli_query($dbc,$sql . " " . $searchParams));
 	$result = mysqli_query($dbc, $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage");
-	echo mysqli_error($dbc);
-	$numCols = mysqli_num_fields($result);
+	//echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
+	if ($result) { // If records were found...
+		echo mysqli_error($dbc);
+		$numCols = mysqli_num_fields($result);
 
-	// Begin table
-	echo "<table id=\"$tableName\">";
-	
-	// *********** I have no idea how the hell to format these things here
-	echo '<div class=large-12 columns>';
-	echo '<div class=large-6 columns>';
-	pagination_links($numRows,$rowsPerPage,$page);
-	echo '</div>';
-	echo '<div class=large-6 columns>';
-	search_filter();
-	echo '</div>';
-	echo '</div>';
-	echo "</div>";
+		// Begin table
+		echo "<table id=\"$tableName\">";
+		
+		// *********** I have no idea how the hell to format these things here
+		echo '<div class=large-12 columns>';
+		echo '<div class=large-6 columns>';
+		pagination_links($numRows,$rowsPerPage,$page);
+		echo '</div>';
+		echo '<div class=large-6 columns>';
+		search_filter();
+		echo '</div>';
+		echo '</div>';
+		echo "</div>";
 
-	echo '<div class="row">';
-	// Build table head
-	echo "<thead>";
-	echo "<tr>";
-
-	// Insert edit/delete column
-	/*echo "<th>";
-	echo "Edit";
-	echo "</th>";*/
-
-	// Continue building table head
-	while ($col_name = mysqli_fetch_field($result)) { // While more columns exist...
-		column_sort($col_name); // Output table column name with sort links
-	}
-	echo "</tr>";
-	echo "</thead>";
-
-	// Build table body
-	echo "<tbody>";
-	while ($rows=mysqli_fetch_row($result)) { // While more rows exist...
+		echo '<div class="row">';
+		// Build table head
+		echo "<thead>";
 		echo "<tr>";
-		/*echo "<td>";
-		// Insert edit button and pass first column value (ID) as url parameter
-		echo "<a class=\"?id={$rows['0']}\" href=\"#\">Test Link</a>";
-		echo "</td>";*/
-		for ($col_num=0; $col_num < $numCols; $col_num++) { // Run through $numCols number of columns each row
-			echo "<td>";
-			echo $rows[$col_num]; // Spit out data for specified column on this row
-			echo "</td>";
+
+		// Insert edit/delete column
+		/*echo "<th>";
+		echo "Edit";
+		echo "</th>";*/
+
+		// Continue building table head
+		while ($col_name = mysqli_fetch_field($result)) { // While more columns exist...
+			column_sort($col_name); // Output table column name with sort links
 		}
 		echo "</tr>";
-	}
-	echo "</tbody>";
+		echo "</thead>";
 
-	// Close table
-	echo "</table>";
-	echo "</div>";
+		// Build table body
+		echo "<tbody>";
+		while ($rows=mysqli_fetch_row($result)) { // While more rows exist...
+			echo "<tr>";
+			/*echo "<td>";
+			// Insert edit button and pass first column value (ID) as url parameter
+			echo "<a class=\"?id={$rows['0']}\" href=\"#\">Test Link</a>";
+			echo "</td>";*/
+			for ($col_num=0; $col_num < $numCols; $col_num++) { // Run through $numCols number of columns each row
+				echo "<td>";
+				echo $rows[$col_num]; // Spit out data for specified column on this row
+				echo "</td>";
+			}
+			echo "</tr>";
+		}
+		echo "</tbody>";
+
+		// Close table
+		echo "</table>";
+		echo "</div>";
+	} else { // SQL query returned no records
+		pagination_links($numRows,$rowsPerPage,$page);
+		search_filter();
+		echo "<p>No Results.</p>";
+	}
+	
 }
 
 
