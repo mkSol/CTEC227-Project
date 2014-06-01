@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+	//session_start();
 	// Connect to SQL DB
 	require("incl/sqlConnect.inc.php");
 
@@ -92,7 +92,7 @@
 			next_page($page);
 		}
 		// Form logic for entering a page number manually
-		echo '<form method="post" action="allusers.php?' . $_SERVER['QUERY_STRING'] . '">';
+		echo '<form method="post" action="paginatedtable.php?' . $_SERVER['QUERY_STRING'] . '">';
 		echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
 		echo '<input class="button" type="submit" value="Go">';
 		echo '</form>';
@@ -103,7 +103,7 @@
 	function search_filter() {
 		// Form for submitting search filter string
 		// Reset page counter back to 1 when submitting form
-		echo '<form method="post" action="allusers.php?' . http_build_query(array_merge($_GET, array("page"=>"1"))) . '">';
+		echo '<form method="post" action="paginatedtable.php?' . http_build_query(array_merge($_GET, array("page"=>"1"))) . '">';
 		echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
 		echo '<input class="button" type="submit" value="Search">';
 		echo '</form>';
@@ -118,7 +118,7 @@ function output_table($sql,$tableName) {
 	if (isset($_GET['sortBy'])) {
 		$sortBy = mysqli_real_escape_string($dbc,$_GET['sortBy']);
 	} else {
-		$sortBy = "userID";
+		$sortBy = null;
 	}
 	if (isset($_GET['sortOrder'])) {
 		$sortOrder = mysqli_real_escape_string($dbc,$_GET['sortOrder']);
@@ -159,10 +159,14 @@ function output_table($sql,$tableName) {
 		$rowsPerPage = 10;
 		$pageOffset = $page * $rowsPerPage - $rowsPerPage;	
 	}
-
+	if ($sortBy) {
+		$sortParms = "ORDER BY $sortBy $sortOrder";
+	} else {
+		$sortParams = null;
+	}
 	
 	$numRows = mysqli_num_rows(mysqli_query($dbc,$sql . " " . $searchParams));
-	$result = mysqli_query($dbc, $sql . " " . $searchParams . " ORDER BY $sortBy $sortOrder LIMIT $pageOffset, $rowsPerPage");
+	$result = mysqli_query($dbc, $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage");
 	echo mysqli_error($dbc);
 	$numCols = mysqli_num_fields($result);
 
@@ -226,7 +230,7 @@ $sql = "SELECT userID AS 'User ID', username AS Username, email AS Email, firstN
 
 // This function is all that's needed to call a full table
 // Just pass in an SQL statement and the name of the table you want it labeled as
-output_table($sql,"User_Table");
+//output_table($sql,"User_Table");
 
 ?>
 
