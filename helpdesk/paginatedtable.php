@@ -4,6 +4,7 @@
 	require("incl/sqlConnect.inc.php");
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		print_r($_POST);
 		if (isset($_POST['pageNo'])) { // If page number was submitted...
 			$urlParams = http_build_query(array_merge($_GET, array("page"=>$_POST['pageNo']))); // Merge page number into the url params
 			header("Location: " . $_SERVER['PHP_SELF'] . "?" . $urlParams); // And reload the page so the url params go into effect
@@ -11,6 +12,58 @@
 		if (isset($_POST['searchFilter'])) {  // If search filter was submitted...
 			$urlParams = http_build_query(array_merge($_GET, array("search"=>$_POST['searchFilter']))); // Merge search filter into the url params
 			header("Location: " . $_SERVER['PHP_SELF'] . "?" . $urlParams); // And reload the page so the url params go into effect
+		}
+		if (isset($_POST['submitType'])) {
+			switch ($_POST['submitType']) {
+				case 'editDynamic':
+					// Build MySQL Statement while sanitizing inputted data
+					$postCount = 0;
+					$sqlEdit = "UPDATE " . $_POST['table'] . " SET ";
+					foreach ($_POST as $key => $value) { // Loops through POST (ignore first 2 values of submitType and table)
+						if ($postCount > 1) {
+							if ($postCount == 2) { // Make sure to ignore leading comma on first field entry
+								$sqlEdit .= $key . "=" . "'" . mysqli_real_escape_string($dbc,$value) . "'";
+								$idName = $key;
+								$idVal = mysqli_real_escape_string($dbc,$value);
+							} else {
+								// And continue building SQL update statement
+								$sqlEdit .= ", " . $key . "=" . "'" . mysqli_real_escape_string($dbc,$value) . "'";	
+							}
+						}
+						$postCount++;
+					}
+					// Finalize SQL statement with a qualifier and limit
+					$sqlEdit .= " WHERE " . $idName . "='" . $idVal . "' LIMIT 1";
+					//echo $sqlEdit;
+					mysqli_query($dbc,$sqlEdit);
+					break;
+
+				case 'edit':
+					// Sanitize ticket description and escape special chars for mySQL query
+					$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
+					$date = mysqli_real_escape_string($dbc, $_POST['date']);
+					mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+					break;
+
+				case 'comment':
+					// Sanitize ticket description and escape special chars for mySQL query
+					$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
+					mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
+					break;
+
+				case 'delete':				
+					mysqli_query($dbc, "DELETE FROM ticket WHERE ticketID='{$_POST['id']}' LIMIT 1");
+					mysqli_query($dbc, "DELETE FROM ticketComment WHERE ticketID='{$_POST['id']}'");
+					break;
+
+				case 'deleteDynamic':				
+					//mysqli_query($dbc, "DELETE FROM ticket WHERE ticketID='{$_POST['id']}' LIMIT 1");
+					//mysqli_query($dbc, "DELETE FROM ticketComment WHERE ticketID='{$_POST['id']}'");
+					break;
+
+				default:
+					break;
+			}
 		}
 	}
 
@@ -111,7 +164,7 @@
 
 	// ================== Table Page Start ====================
 
-function output_table($sql,$tableName) {
+function output_table($sql,$tableName,$view,$edit,$delete) {
 	global $dbc;
 	
 	// Set sorting and page variables
@@ -174,13 +227,13 @@ function output_table($sql,$tableName) {
 	}
 	
 	$result = mysqli_query($dbc, $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage");
-	echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
+	//echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
 	if ($result) { // If records were found...
-		echo mysqli_error($dbc);
+		//echo mysqli_error($dbc);
 		$numCols = mysqli_num_fields($result);
 
 		// Begin table
-		echo "<table id=\"$tableName\">";
+		echo "<table id=\"" . "tbl_" . $tableName . "\">";
 		
 		// *********** I have no idea how the hell to format these things here
 		echo '<div class=large-12 columns>';
@@ -198,10 +251,12 @@ function output_table($sql,$tableName) {
 		echo "<thead>";
 		echo "<tr>";
 
-		// Insert edit/delete column
-		/*echo "<th>";
-		echo "Edit";
-		echo "</th>";*/
+		// Insert edit/delete column if selected
+		if ($view || $edit || $delete) {
+			echo "<th>";
+			echo "Action";
+			echo "</th>";
+		}
 
 		// Continue building table head
 		while ($col_name = mysqli_fetch_field($result)) { // While more columns exist...
@@ -214,10 +269,22 @@ function output_table($sql,$tableName) {
 		echo "<tbody>";
 		while ($rows=mysqli_fetch_row($result)) { // While more rows exist...
 			echo "<tr>";
-			/*echo "<td>";
-			// Insert edit button and pass first column value (ID) as url parameter
-			echo "<a class=\"?id={$rows['0']}\" href=\"#\">Test Link</a>";
-			echo "</td>";*/
+
+			// Insert View/Edit/Delete options if enabled
+			if ($view || $edit || $delete) {
+			echo "<th>";
+			if ($view) {
+				echo "<a data-reveal-id=\"viewRecord\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "\" href=\"#\"><img src=\"images/view.png\"></a>";
+			}
+			if ($edit) {
+				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
+			}
+			if ($delete) {
+				echo "<a data-reveal-id=\"deleteRecord\" id=\"delete" . $rows['0'] . "\" class=\"?delete=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a>";
+			}
+			echo "</th>";
+		
+		}
 			for ($col_num=0; $col_num < $numCols; $col_num++) { // Run through $numCols number of columns each row
 				echo "<td>";
 				echo $rows[$col_num]; // Spit out data for specified column on this row
@@ -235,17 +302,23 @@ function output_table($sql,$tableName) {
 		search_filter();
 		echo "<p>No Results.</p>";
 	}
+
+	// Include modal divs for view/edit/delete functions
+	echo '<div id="viewRecord" class="reveal-modal" data-reveal></div>';
+	echo '<div id="editRecord" class="reveal-modal" data-reveal></div>';
+	echo '<div id="deleteRecord" class="reveal-modal" data-reveal></div>';
 	
 }
 
 
 // ====================== Page Content Start ================================
 
-$sql = "SELECT userID AS 'User ID', username AS Username, email AS Email, firstName AS First, lastName AS Last FROM user";
+//$sql = "SELECT userID AS 'User ID', username AS Username, email AS Email, firstName AS First, lastName AS Last FROM user";
 
 // This function is all that's needed to call a full table
 // Just pass in an SQL statement and the name of the table you want it labeled as
-output_table($sql,"User_Table");
+
+//output_table($sql,"User_Table");
 
 ?>
 

@@ -2,6 +2,28 @@ $(document).ready(function(){
 
 	// =========================== Uncategorized ============================
 	
+	// Parse cokies for given cookie name and return value
+	function checkCookie(cookieName) {
+		var name = cookieName + "=";
+		var allCookies = document.cookie.split(';');
+		for(var i=0; i<allCookies.length; i++) {
+			var cookie = allCookies[i].trim();
+			if (cookie.indexOf(name)==0) {
+				return cookie.substring(name.length,cookie.length);
+			}
+		}
+		return "";
+	}
+
+	function setScrollPos() {
+		document.cookie='scrollPosition=' + window.pageYOffset;	
+	}
+
+	function keepScroll() {
+		//alert("!");
+		window.scrollTo(0,checkCookie('scrollPosition'));
+	}
+
 	// Load Foundation
 	$(document).foundation();
 
@@ -110,5 +132,17 @@ $(document).ready(function(){
 
 	// =========================== All Tables Page ============================
 
+	// Load delete confirmation modal
+	$('#allTables').on('click', '[id^=edit]', function() {
+		var id = $(this).attr('class');
+		// Append url parameters to load request
+		$('#editRecord').load('incl/modifydynamic.inc.php' + id);
+	});
 
+	// Load delete confirmation modal
+	$('#allTables').on('click', '[id^=delete]', function() {
+		var id = $(this).attr('class');
+		// Append url parameters to load request
+		$('#deleteRecord').load('incl/confirmdeletedynamic.inc.php' + id);
+	});
 });
