@@ -22,7 +22,7 @@
 <div class="row">
 <div class="large-12 columns" id="errorLogs">
 <?php 
-	include("paginatedtable.php");
+	include("incl/paginatedtable.inc.php");
 
 	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorDump AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
 	// Output ticket table named MyTickets, view=true, edit=fale, delete=false

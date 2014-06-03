@@ -25,7 +25,7 @@
 <div class="row">
 <div class="large-12 columns" id="myEquip">
 <?php 
-	include("paginatedtable.php");
+	include("incl/paginatedtable.inc.php");
 
 	// Get username
 	$username = $_SESSION['username'];

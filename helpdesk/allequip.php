@@ -59,7 +59,7 @@
 </head>
 
 <?php 
-	include("paginatedtable.php");
+	include("incl/paginatedtable.inc.php");
 
 	function table_user_assigned_equip() {
 		global $dbc;

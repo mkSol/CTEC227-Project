@@ -48,7 +48,7 @@
 <div class="large-12 columns" id="assignedTickets">
 	
 <?php 
-	include("paginatedtable.php");
+	include("incl/paginatedtable.inc.php");
 
 	// Get userID
 	$userID = $_SESSION['userID'];

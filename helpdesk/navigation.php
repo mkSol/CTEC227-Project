@@ -13,12 +13,7 @@
   		<section class="top-bar-section">
 		<ul>
 			<ul class="right">
-				<li class="has-dropdown">
-					<a href="#">Create</a>
-						<ul class="dropdown">
-							<li><a class="newTicket" href="newticket.php">Create New Ticket</a></li>
-						</ul>
-				</li>
+				<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 
 				<li class="has-dropdown">
 					<a href="#">View</a>
@@ -51,12 +46,7 @@
 
   		<section class="top-bar-section">
 		<ul>
-			<li class="has-dropdown">
-				<a href="#">Create</a>
-					<ul class="dropdown">
-						<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
-					</ul>
-			</li>
+			<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 
 			<li class="has-dropdown">
 				<a href="#">View</a>
@@ -90,12 +80,7 @@
 
   		<section class="top-bar-section">
 		<ul>
-			<li class="has-dropdown">
-				<a href="#">Create</a>
-					<ul class="dropdown">
-						<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
-					</ul>
-			</li>
+			<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 
 			<li class="has-dropdown">
 				<a href="#">View</a>
@@ -131,13 +116,7 @@
 
   			<section class="top-bar-section">
 			<ul class="right">
-				<li class="has-dropdown">
-					<a href="#">Create</a>
-						<ul class="dropdown">
-							<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
-							<li><a class="newTicket" href="newticket.php">New Ticket</a></li>
-						</ul>
-				</li>
+				<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 				
 				<li class="has-dropdown">
 					<a href="#">View</a>

@@ -55,7 +55,7 @@
 <div class="row">
 <div class="large-12 columns" id="allTickets">
 <?php 
-	include("paginatedtable.php");
+	include("incl/paginatedtable.inc.php");
 
 	$sql = "SELECT ticketID AS 'Ticket ID',user.firstName AS 'First',user.lastName AS 'Last',user.username AS 'Username',timestamp AS 'Date',issueDesc AS 'Issue Description',category.category AS 'Category',status.status AS 'Status',priority.priority AS 'Priority' FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID";
 	output_table($sql,"TicketPool",1,1,1);

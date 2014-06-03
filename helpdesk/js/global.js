@@ -142,7 +142,7 @@ $(document).ready(function(){
 	});
 
 	// Load in equip details for edit modal
-	$('#tbl_UnassignedEquip').on('click', 'a', function() {
+	$('#tbl_equipment').on('click', 'a', function() {
 		var id = $(this).attr('class');
 		// Append url parameters to load request
 		$('#editRecord').load('incl/modifyequip.inc.php' + id);
