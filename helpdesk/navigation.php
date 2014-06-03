@@ -11,7 +11,7 @@
   			</ul>
 
   		<section class="top-bar-section">
-		<ul>
+		<ul class="right">
 			<ul class="right">
 				<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 
@@ -61,7 +61,7 @@
   			</ul>
 
   		<section class="top-bar-section">
-		<ul>
+		<ul class="right">
 			<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 
 			<li class="has-dropdown">
@@ -111,7 +111,7 @@
   			</ul>
 
   		<section class="top-bar-section">
-		<ul>
+		<ul class="right">
 			<li class="newTicketLink"><a data-reveal-id="newTicket" href="#">New Ticket</a></li>
 
 			<li class="has-dropdown">
