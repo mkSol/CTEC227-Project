@@ -17,9 +17,9 @@
 
 		echo '<div class="row">' . "\n";
 		echo '<div class="large-6 columns">' . "\n";
-		echo '<div class="row collapse">' . "\n";
+		//echo '<div class="row collapse">' . "\n";
 
-		echo '<div class="small-10 columns">' . "\n";
+		echo '<div class="large-10 columns">' . "\n";
 		echo '<select name="tableSelect" id="tableSelect">' . "\n";
 			for ($tblCount=0; $tblCount < count($tables); $tblCount++) { 
 			echo '<option value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
@@ -31,7 +31,7 @@
 		echo '<input type="submit" value="Go" class="button">' . "\n";
 		echo '</div>';
 
-		echo '</div>'; // Close row collapse
+		//echo '</div>'; // Close row collapse
 		echo '</div>'; // Close large-6
 		echo '</div>'; // CLose row
 

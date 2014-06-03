@@ -274,13 +274,13 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		echo "<table id=\"" . "tbl_" . $tableName . "\">";
 		
 		// *********** I have no idea how the hell to format these things here
-		echo '<div class=large-12 columns>';
-		echo '<div class=large-6 columns>';
+		//echo '<div class=large-12 columns>';
+		echo "<div class='large-6 columns'>";
 		pagination_links($numRows,$rowsPerPage,$page);
 		echo '</div>';
-		echo '<div class=large-6 columns>';
+		echo "<div class='large-6 columns'>";
 		search_filter();
-		echo '</div>';
+		//echo '</div>';
 		echo '</div>';
 		echo "</div>";
 
