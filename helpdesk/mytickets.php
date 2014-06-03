@@ -11,7 +11,7 @@
 	// Set session var for view ticket form direct
 	$_SESSION['ticketpage'] = "mytickets";
 
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+	/*if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		switch ($_POST['submitType']) {
 			case 'comment':
@@ -44,7 +44,7 @@
 
 		// Refresh page after recieving edit form post to update page table
 		header("Location: mytickets.php");
-	}
+	} */
 ?>
 
 <!doctype html>
@@ -60,6 +60,28 @@
 <div class="row">
 <div class="large-12 columns" id="myTickets">	
 <?php 
+	include("paginatedtable.php");
+
+	// Get username
+	$username = $_SESSION['username'];
+	$sql = "SELECT ticketID AS 'Ticket ID',user.firstName AS 'First',user.lastName AS 'Last',user.username AS 'Username',timestamp AS 'Date',issueDesc AS 'Issue Description',category.category AS 'Category',status.status AS 'Status',priority.priority  AS 'Priority' FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID WHERE user.username = '$username'";
+	// Output ticket table named MyTickets depending on pirvilege level, view=true, edit=fale, delete=false
+	switch ($_SESSION['privLevel']) {
+			case '1':
+				output_table($sql,"MyTickets",1,0,0);
+				break;
+			case '2':
+				output_table($sql,"MyTickets",1,1,0);
+				break;
+			case '3':
+				output_table($sql,"MyTickets",1,0,0);
+				break;
+			case '4':
+				output_table($sql,"MyTickets",1,1,1);
+				break;
+	}
+	
+	/*
 	$username = $_SESSION['username'];
 	$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID WHERE user.username = '$username'");
 	$rows = mysqli_num_rows($result);
@@ -100,8 +122,9 @@
 	}
 	echo "</tbody>";
 	echo "</table>";
+	*/
 ?>
-<div id="viewTicket" class="reveal-modal" data-reveal></div>
+<!--div id="viewTicket" class="reveal-modal" data-reveal></div-->
 </div>
 </div>
 </body>

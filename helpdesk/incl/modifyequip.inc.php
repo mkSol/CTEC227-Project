@@ -1,12 +1,12 @@
 <?php 
-	if (isset($_GET['delete'])) {
+	/*if (isset($_GET['delete'])) {
 		echo "<h1>Deleting equip ID: {$_GET['id']}</h1>";
 		require("sqlConnect.inc.php");
 		mysqli_query($dbc, "DELETE FROM ticket WHERE ticketID='{$_GET['id']}' LIMIT 1");
 		echo "DELETE FROM ticket WHERE ticketID='{$_GET['id']}' LIMIT 1";
-	}
+	}*/
 
-	if (isset($_GET['edit'])) {
+	if (isset($_GET['id'])) {
 		echo "<h1>Equip ID: {$_GET['id']}</h1>";
 		require("sqlConnect.inc.php");
 
@@ -32,10 +32,11 @@
 
 		 ?>
 
-		<form action="allequip.php" method="post">
+		<form action="#" method="post">
 			<div class="row">
 				<div class="large-6 columns">
 					
+					<input type="hidden" name="submitType" value="editEquip">
 					<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
 					<input type="hidden" name="linkID" value="<?php echo $link; ?>">
 

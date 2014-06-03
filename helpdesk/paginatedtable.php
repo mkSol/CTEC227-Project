@@ -4,7 +4,7 @@
 	require("incl/sqlConnect.inc.php");
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		print_r($_POST);
+		//print_r($_POST);
 		if (isset($_POST['pageNo'])) { // If page number was submitted...
 			$urlParams = http_build_query(array_merge($_GET, array("page"=>$_POST['pageNo']))); // Merge page number into the url params
 			header("Location: " . $_SERVER['PHP_SELF'] . "?" . $urlParams); // And reload the page so the url params go into effect
@@ -42,7 +42,10 @@
 					// Sanitize ticket description and escape special chars for mySQL query
 					$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
 					$date = mysqli_real_escape_string($dbc, $_POST['date']);
-					mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+					$category = mysqli_real_escape_string($dbc, $_POST['category']);
+					$priority = mysqli_real_escape_string($dbc, $_POST['priority']);
+					$status = mysqli_real_escape_string($dbc, $_POST['status']);
+					mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
 					break;
 
 				case 'comment':
@@ -56,9 +59,43 @@
 					mysqli_query($dbc, "DELETE FROM ticketComment WHERE ticketID='{$_POST['id']}'");
 					break;
 
-				case 'deleteDynamic':				
-					//mysqli_query($dbc, "DELETE FROM ticket WHERE ticketID='{$_POST['id']}' LIMIT 1");
-					//mysqli_query($dbc, "DELETE FROM ticketComment WHERE ticketID='{$_POST['id']}'");
+				case 'deleteDynamic':	
+					// Build MySQL Statement to delete record
+					$sqlDelete = "DELETE FROM " . $_POST['table'] . " WHERE " . $_POST['firstColumn'] . "=" . $_POST['id'];
+					//echo $sqlDelete;
+					mysqli_query($dbc,$sqlDelete);			
+					break;
+				case 'editEquip':
+					// Set variables, assign "none" to userID if deptID is used
+					if ($_POST['deptID'] == "none") {
+						$userID = mysqli_real_escape_string($dbc, $_POST['userID']);
+						$deptID = "none";
+					} else {
+						$userID = "";
+						$deptID = $_POST['deptID'];	
+					}
+					
+					// Sanitize ticket description and escape special chars for mySQL query
+					$equipDesc = mysqli_real_escape_string($dbc, $_POST['equipDesc']);
+					$equipSerial = mysqli_real_escape_string($dbc, $_POST['equipSerial']);
+
+					// If a linkID is set in userEquip table:
+					if ($_POST['linkID'] !== "none") {
+						mysqli_query($dbc, "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
+						if ($userID == "" && $deptID == "none") { // If no user and dept is set, delete userEquip record
+							mysqli_query($dbc, "DELETE FROM userEquip WHERE linkID='{$_POST['linkID']}' LIMIT 1");
+						} else { // Otherwise update userEquip record
+							mysqli_query($dbc, "UPDATE userEquip SET userID='$userID', deptID='$deptID' WHERE linkID='{$_POST['linkID']}' LIMIT 1");
+						}
+					} else { // Create a new userEquip link if there isn't one
+						mysqli_query($dbc, "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
+						if ($userID == "") { // Set when no userID is set
+							mysqli_query($dbc, "INSERT INTO userEquip (equipID, userID, deptID) VALUES ('{$_POST['id']}', NULL, '$deptID')");
+						} else { // Set when no deptID is set
+							mysqli_query($dbc, "INSERT INTO userEquip (equipID, userID, deptID) VALUES ('{$_POST['id']}', '$userID', NULL)");
+						}
+						
+					}
 					break;
 
 				default:
@@ -87,20 +124,20 @@
 	function column_sort($col_name) {
 		//global $col_name; // Grab column name for use
 		if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) { // If something is already set to sorting
-			if ($_GET['sortBy'] !== $col_name->orgname) { // If not sorting by the link that was clicked, set it to the new sort
-				$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
+			if ($_GET['sortBy'] !== $col_name->table . "." . $col_name->orgname) { // If not sorting by the link that was clicked, set it to the new sort
+				$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
 				echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "</a></th>";
 			} else {
 				if ($_GET['sortOrder'] == "ASC") { // If it was sorting ascending, swap it to descending
-					$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->orgname,"sortOrder"=>"DESC"))); // Merge/add sort options into url params
+					$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"DESC"))); // Merge/add sort options into url params
 					echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "</a></th>";
 				} else { // Otherwise make it ascending
-					$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
+					$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
 					echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "</a></th>";
 				}
 			}
 		} else { // If nothing was previously set, add sorting
-			$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
+			$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
 			echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "</a></th>";
 		}
 	}
@@ -267,7 +304,15 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 
 		// Build table body
 		echo "<tbody>";
-		while ($rows=mysqli_fetch_row($result)) { // While more rows exist...
+
+		if (!$rows=mysqli_fetch_row($result)) { // If no records are returned...
+			echo "<tr><td>No Entries Found.</td></tr>";
+		}
+		// Reset pointer after above empty check, otherwise we lose first record
+		mysqli_data_seek($result,0);
+		
+		while ($rows=mysqli_fetch_row($result)) { // While more rows exist...			
+
 			echo "<tr>";
 
 			// Insert View/Edit/Delete options if enabled
@@ -280,7 +325,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
 			}
 			if ($delete) {
-				echo "<a data-reveal-id=\"deleteRecord\" id=\"delete" . $rows['0'] . "\" class=\"?delete=" . $rows['0'] . "\" href=\"#\"><img src=\"images/delete.png\"></a>";
+				echo "<a data-reveal-id=\"deleteRecord\" id=\"delete" . $rows['0'] . "\" class=\"?delete=" . $rows['0'] . "&table=" . $tableName . "\" href=\"#\"><img src=\"images/delete.png\"></a>";
 			}
 			echo "</th>";
 		

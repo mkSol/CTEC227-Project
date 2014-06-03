@@ -8,7 +8,7 @@
 
 	session_start();
 
-	if (isset($_GET['edit'])) {
+	//if (isset($_GET['edit'])) {
 		echo "<h1>Ticket ID: {$_GET['id']}</h1>";
 		require("sqlConnect.inc.php");
 
@@ -76,6 +76,6 @@
 
 	<?php	
 		echo "<a class=\"close-reveal-modal\">&#215;</a>";
-	}	
+	//}	
 
 	?>

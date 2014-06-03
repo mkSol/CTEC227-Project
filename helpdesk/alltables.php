@@ -84,6 +84,8 @@
 		echo '<div id="allTables" class="row">';
 		output_table($tblSQL,$_SESSION['tableSelect'],0,1,1);
 		echo '</div>';
+	} else {
+		output_table("SELECT * FROM user","user",0,1,1);
 	}
 
 ?>

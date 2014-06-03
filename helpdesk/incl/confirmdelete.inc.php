@@ -14,7 +14,7 @@
 					<input type="hidden" name="submitType" value="delete">
 
 					<h1>Deleting Ticket ID: <?php echo $_GET['delete']; ?></h1>
-					<p>Are you sure you wish to delete this?</p>
+					<p>Are you sure you wish to delete this ticket?</p>
 				</div>
 				
 				<input class="button" type="submit" value="Confirm">

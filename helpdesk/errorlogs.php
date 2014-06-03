@@ -22,6 +22,13 @@
 <div class="row">
 <div class="large-12 columns" id="errorLogs">
 <?php 
+	include("paginatedtable.php");
+
+	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorDump AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
+	// Output ticket table named MyTickets, view=true, edit=fale, delete=false
+	output_table($sql,"ErrorLogs",0,0,1);
+
+	/*
 	$result = mysqli_query($dbc, "SELECT errorLog.errorID, errorLog.timestamp, user.userID, user.username, errorLog.errorDump FROM errorLog JOIN user ON errorLog.userID=user.userID");
 	$rows = mysqli_num_rows($result);
 

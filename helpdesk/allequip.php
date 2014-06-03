@@ -8,7 +8,7 @@
 		header("Location: login.php");
 	}
 
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+	/*if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		require("incl/sqlConnect.inc.php");
 		
 		// Set variables, assign "none" to userID if deptID is used
@@ -45,7 +45,7 @@
 		// Refresh page after recieving edit form post to update page table
 		header("Location: allequip.php");
 
-	}
+	} */
 ?>
 
 <!doctype html>
@@ -59,9 +59,32 @@
 </head>
 
 <?php 
+	include("paginatedtable.php");
 
 	function table_user_assigned_equip() {
 		global $dbc;
+		$sql = "SELECT equipment.equipID AS 'Equipment ID', equipment.equipSerial AS 'Serial', equipment.equipDesc AS 'Description', equipType.equipType AS 'Type', userEquip.userID AS 'User ID', user.username AS 'Username', user.firstName AS 'First', user.lastName AS 'Last', department.department AS 'Department', userEquip.linkID AS 'Link ID' FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN user ON userEquip.userID=user.userID JOIN department ON user.department=department.deptID AND userEquip.userID=user.userID AND userEquip.equipID=equipment.equipID";
+		// Output ticket table named AssignedTickets depending on pirvilege level, view=true, edit=fale, delete=false
+		echo '<div class="row">';
+		echo '<div class="large-12 columns" id="userEquip">';
+
+		echo "<p>Equipment Assigned to Employees:</p>";
+		switch ($_SESSION['privLevel']) {
+				case '1':
+					break;
+				case '2':
+					output_table($sql,"UserEquip",0,1,0);
+					break;
+				case '3':
+					output_table($sql,"UserEquip",0,0,0);
+					break;
+				case '4':
+					output_table($sql,"UserEquip",0,1,0);
+					break;
+		}
+		echo "</div>";
+		echo "</div>";
+		/*
 		$result = mysqli_query($dbc, "SELECT equipment.equipID, equipment.equipDesc, equipType.equipType, userEquip.userID, userEquip.linkID, user.username, user.firstName, user.lastName, department.department FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN user ON userEquip.userID=user.userID JOIN department ON user.department=department.deptID AND userEquip.userID=user.userID AND userEquip.equipID=equipment.equipID");
 		$rows = mysqli_num_rows($result);
 
@@ -102,10 +125,33 @@
 		echo "</table>";
 		echo "</div>";
 		echo "</div>";
+		*/
 	}
 
 	function table_dept_assigned_equip() {
 		global $dbc;
+		$sql = "SELECT equipment.equipID AS 'Equipment ID', equipment.equipSerial AS 'Serial', equipment.equipDesc AS 'Description', equipType.equipType AS 'Type', department.department AS 'Department', userEquip.linkID AS 'Link ID' FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN department ON userEquip.deptID=department.deptID AND userEquip.equipID=equipment.equipID";
+		// Output ticket table named AssignedTickets depending on pirvilege level, view=true, edit=fale, delete=false
+		echo '<div class="row">';
+		echo '<div class="large-12 columns" id="deptEquip">';
+
+		echo "<p>Equipment Assigned to Departments:</p>";
+		switch ($_SESSION['privLevel']) {
+				case '1':
+					break;
+				case '2':
+					output_table($sql,"DeptEquip",0,1,0);
+					break;
+				case '3':
+					output_table($sql,"DeptEquip",0,0,0);
+					break;
+				case '4':
+					output_table($sql,"DeptEquip",0,1,0);
+					break;
+		}
+		echo "</div>";
+		echo "</div>";
+		/*
 		$result = mysqli_query($dbc, "SELECT equipment.equipID, equipment.equipDesc, equipType.equipType, userEquip.userID, userEquip.linkID, department.deptID, department.department FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN department ON userEquip.deptID=department.deptID AND userEquip.equipID=equipment.equipID");
 		$rows = mysqli_num_rows($result);
 
@@ -138,10 +184,33 @@
 		echo "</table>";
 		echo "</div>";
 		echo "</div>";
+		*/
 	}
 
 	function table_unassigned_equip() {
 		global $dbc;
+		$sql = "SELECT equipment.equipID AS 'Equipment ID', equipment.equipSerial AS 'Serial', equipment.equipDesc AS 'Description', equipType.equipType AS 'Type' FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID WHERE NOT EXISTS (SELECT userEquip.equipID FROM userEquip WHERE equipment.equipID=userEquip.equipID)";
+		// Output ticket table named AssignedTickets depending on pirvilege level, view=true, edit=fale, delete=false
+		echo '<div class="row">';
+		echo '<div class="large-12 columns" id="unassignedEquip">';
+
+		echo "<p>Unassigned Equipment:</p>";
+		switch ($_SESSION['privLevel']) {
+				case '1':
+					break;
+				case '2':
+					output_table($sql,"equipment",0,1,0);
+					break;
+				case '3':
+					output_table($sql,"equipment",0,0,0);
+					break;
+				case '4':
+					output_table($sql,"equipment",0,1,1);
+					break;
+		}
+		echo "</div>";
+		echo "</div>";
+		/*
 		$result = mysqli_query($dbc, "SELECT equipment.equipID, equipment.equipDesc, equipType.equipType FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID WHERE NOT EXISTS (SELECT userEquip.equipID FROM userEquip WHERE equipment.equipID=userEquip.equipID)");
 		$rows = mysqli_num_rows($result);
 
@@ -172,6 +241,7 @@
 		echo "</table>";
 		echo "</div>";
 		echo "</div>";
+		*/
 	}
 
 	//=================================Page content start=================================
@@ -179,14 +249,38 @@
 	echo "<h2>View All Equipment</h2>";
 
 	?>
-		<button type="button" id="showUserEquip">Equipment Assigned to Users</button>
+		<!--button type="button" id="showUserEquip">Equipment Assigned to Users</button>
 		<button type="button" id="showDeptEquip">Equipment Assigned to Departments</button>
-		<button type="button" id="showUnassignedEquip">Unassigned Equipment</button>
+		<button type="button" id="showUnassignedEquip">Unassigned Equipment</button-->
+		<a href="?tbl=UserEquip" class="button">Equipment Assigned to Users</a>
+		<a href="?tbl=DeptEquip" class="button">Equipment Assigned to Departments</a>
+		<a href="?tbl=UnassignedEquip" class="button">Unassigned Equipment</a>
 	<?php
 
-	table_user_assigned_equip();
-	table_dept_assigned_equip();
-	table_unassigned_equip();
+	// Check GET param to choose which table to display
+	if (isset($_GET['tbl'])) {
+		switch ($_GET['tbl']) {
+			case 'UserEquip':
+				table_user_assigned_equip();
+				break;
+
+			case 'DeptEquip':
+				table_dept_assigned_equip();
+				break;
+
+			case 'UnassignedEquip':
+				table_unassigned_equip();
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	} else { // Load UserEquip by default on clean page load
+		table_user_assigned_equip();
+	}
+	//table_dept_assigned_equip();
+	//table_unassigned_equip();
 
 	/*
 	

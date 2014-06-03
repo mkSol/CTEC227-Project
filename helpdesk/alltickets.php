@@ -11,6 +11,7 @@
 	// Set session var for view ticket form direct
 	$_SESSION['ticketpage'] = "alltickets";
 
+	/*
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		switch ($_POST['submitType']) {
 			case 'edit':
@@ -36,7 +37,7 @@
 		}
 		// Refresh page after recieving edit form post to update page table
 		header("Location: alltickets.php");
-	}
+	} */
 
 		
 ?>
@@ -54,6 +55,11 @@
 <div class="row">
 <div class="large-12 columns" id="allTickets">
 <?php 
+	include("paginatedtable.php");
+
+	$sql = "SELECT ticketID AS 'Ticket ID',user.firstName AS 'First',user.lastName AS 'Last',user.username AS 'Username',timestamp AS 'Date',issueDesc AS 'Issue Description',category.category AS 'Category',status.status AS 'Status',priority.priority AS 'Priority' FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID";
+	output_table($sql,"TicketPool",1,1,1);
+	/*
 	$result = mysqli_query($dbc, "SELECT ticketID,user.firstName,user.lastName,user.username,timestamp,issueDesc,category.category,status.status,priority.priority FROM ticket JOIN category ON ticket.categoryID=category.categoryID JOIN status ON ticket.statusID=status.statusID JOIN priority ON ticket.priorityID = priority.priorityID JOIN user ON ticket.userID = user.userID");
 	$rows = mysqli_num_rows($result);
 
@@ -95,10 +101,11 @@
 	}
 	echo "<tbody>";
 	echo "</table>";
+	*/
 ?>
-<div id="editTicket" class="reveal-modal" data-reveal></div>
+<!--div id="editTicket" class="reveal-modal" data-reveal></div>
 <div id="viewTicket" class="reveal-modal" data-reveal></div>
-<div id="deleteTicket" class="reveal-modal" data-reveal></div>
+<div id="deleteTicket" class="reveal-modal" data-reveal></div-->
 </div>
 </div>
 </body>
