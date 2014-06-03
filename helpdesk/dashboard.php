@@ -30,6 +30,11 @@
 	function user_dashboard() {	
 
 		?>
+		<div class="row">
+			<div class="large-12 columns">
+				<?php echo "<h1>{$_SESSION['firstName']} {$_SESSION['lastName']}'s Dashboard</h1>"; ?>
+			</div>
+		</div>
 		
 		<div class="row">
 			<div class="large-4 columns">
