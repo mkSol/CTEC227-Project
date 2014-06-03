@@ -15,7 +15,7 @@
 		
 		echo '<h1>Edit ID: ' . $_GET['id'] . '</h1>';
 		// Open form
-		echo '<form action="#" method="post">';
+		echo '<form action="#" method="post" data-abide>';
 		// Include hidden field to identify table being edited
 		echo '<input type="hidden" name="table" value="' . $_GET['table'] . '">';
 		// Include hidden field of sybmitType so result page knows how to process this form (As EDIT)
@@ -36,7 +36,10 @@
 				if ($firstField) { // Make first field (ID) read-only
 					echo '<input type="text" name="' . $columns[$i] . '" value="' . $rows[$i] . '" readonly="true">';
 				} else {
-					echo '<input type="text" name="' . $columns[$i] . '" value="' . $rows[$i] . '">';
+					echo '<div class="input-wrapper">' . "\n";
+					echo '<input type="text" name="' . $columns[$i] . '" value="' . $rows[$i] . '" required>';
+					echo '<small class="error">This field is required"</small>' . "\n";
+					echo '</div>' . "\n";
 				}
 				$firstField = false; // Invalidate firstField var after firing once
 				echo '</div>' . "\n"; // Close column

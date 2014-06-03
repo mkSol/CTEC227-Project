@@ -17,7 +17,7 @@
 
 		 ?>
 
-		<form action="<?php echo $_SESSION['ticketpage']; ?>.php" method="post">
+		<form action="<?php echo $_SESSION['ticketpage']; ?>.php" method="post" data-abide>
 			<div class="row">
 				<div class="large-6 columns">
 					
@@ -25,7 +25,7 @@
 					<input type="hidden" name="submitType" value="edit">
 
 					<label>Date:</label>
-					<input id="editTicketTimestamp" type="text" name="date" value="<?php echo $rows['timestamp']; ?>">
+					<input id="editTicketTimestamp" type="date" name="date" value="<?php echo $rows['timestamp']; ?>" required>
 					<!--script>$('#editTicketTimestamp').AnyTime_picker();</script-->
 				</div>
 				<div class="large-6 columns">
@@ -65,7 +65,7 @@
 				<div class="large-12 columns">
 
 				<label for="desc">Problem Description</label>
-				<textarea name="desc" id="desc" rows="5" cols="100"><?php echo $rows['issueDesc']; ?></textarea>
+				<textarea name="desc" id="desc" rows="5" cols="100" required><?php echo $rows['issueDesc']; ?></textarea>
 				
 				<br>
 				<input class="button" type="submit" value="Edit">

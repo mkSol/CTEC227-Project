@@ -70,12 +70,16 @@
 			case '4':
 				echo "<p>No Admin Dashboard Yet!";
 				//admin_dashboard();
-
-				// Testing timestamp conversions, ignore
-				$mdate = date('Y-m-d H:i:s',strtotime('Tue, 06 Dec 2011 16:47:11 +0000'));
-				$sdate = date("F jS\, Y h:i:s A", strtotime($mdate));
-				echo "<p>" . $mdate . "</p>";
-				echo "<p>" . $sdate . "</p>";
+				?>
+				<dl class="accordion" data-accordion="software1">
+					<dd>
+						<a href="#softwareFor<?php echo "1" ?>">Software</a>
+						<div id="softwareFor<?php echo "1" ?>" class="content">
+							Test
+						</div>
+					</dd>
+				</dl>
+				<?php
 				break;
 	}
 

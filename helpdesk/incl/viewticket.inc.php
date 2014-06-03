@@ -1,6 +1,36 @@
 <?php 
 	session_start();
 
+	function list_software($equipID) {
+		global $dbc;
+		// MySQL query to populate basic ticket details
+		$result2 = mysqli_query($dbc, "SELECT softwareID, softwareName, softwareSerial FROM software WHERE equipID='$equipID'");
+		$rows2 = mysqli_num_rows($result2);
+		
+		// Print out software for selected equipID
+		//echo "<table>";
+		echo "<thead>";
+		echo "<tr>";
+		echo "<th></th>"; // Blank column to indent software list from equip list
+		echo "<th>Software ID</th>";
+		echo "<th>Name</th>";
+		echo "<th>Serial</th>";
+		echo "</tr>";
+		echo "</thead>";
+		echo "<tbody>";
+		while ($rows2=mysqli_fetch_array($result2)) {
+			echo "<tr>";
+			echo "<td></td>"; // Blank column to indent software list from equip list
+			echo "<td>" . $rows2['softwareID'] . "</td>";
+			echo "<td>" . $rows2['softwareName'] . "</td>";
+			echo "<td>" . $rows2['softwareSerial'] . "</td>";
+			echo "</tr>";
+
+		}
+		echo "<tbody>";
+		//echo "</table>";
+	}
+
 	function ticket_details() {
 		global $dbc;
 		// MySQL query to populate basic ticket details
@@ -35,7 +65,6 @@
 			echo "<td>" . $rows['status'] . "</td>";
 			echo "<td>" . $rows['issueDesc'] . "</td>";
 			echo "</tr>";
-
 		}
 		echo "<tbody>";
 		echo "</table>";
@@ -56,20 +85,21 @@
 				echo "<p>Equipment Associated with $username:</p>";
 				// Print out equipment in a table
 				echo "<table id=\"ticketequip_table\">";
-				echo "<thead>";
-				echo "<tr>";
-				echo "<th>Equip ID</th>";
-				echo "<th>Type</th>";
-				echo "<th>Description</th>";
-				echo "<th>User ID</th>";
-				echo "<th>Username</th>";
-				echo "<th>First</th>";
-				echo "<th>Last</th>";
-				echo "<th>Department</th>";
-				echo "</tr>";
-				echo "</thead>";
-				echo "<tbody>";
+				
 				while ($rows=mysqli_fetch_array($result)) {
+					echo "<thead>";
+					echo "<tr>";
+					echo "<th>Equip ID</th>";
+					echo "<th>Type</th>";
+					echo "<th>Description</th>";
+					echo "<th>User ID</th>";
+					echo "<th>Username</th>";
+					echo "<th>First</th>";
+					echo "<th>Last</th>";
+					echo "<th>Department</th>";
+					echo "</tr>";
+					echo "</thead>";
+					echo "<tbody>";
 					echo "<tr>";
 					echo "<td>" . $rows['equipID'] . "</td>";
 					echo "<td>" . $rows['equipType'] . "</td>";
@@ -80,6 +110,9 @@
 					echo "<td>" . $rows['lastName'] . "</td>";
 					echo "<td>" . $rows['department'] . "</td>";
 					echo "</tr>";
+					echo "<tr>";
+					list_software($rows['equipID']);
+					echo "<tr>";
 				}
 				echo "</tbody>";
 				echo "</table>";

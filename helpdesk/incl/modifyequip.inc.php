@@ -32,7 +32,7 @@
 
 		 ?>
 
-		<form action="#" method="post">
+		<form action="#" method="post" data-abide>
 			<div class="row">
 				<div class="large-6 columns">
 					
@@ -67,14 +67,14 @@
 				</div>
 				<div class="large-6 columns">
 					<label>Equipment Description:</label>
-					<input type="text" name="equipDesc" value="<?php echo $rows['equipDesc']; ?>">
+					<input type="text" name="equipDesc" value="<?php echo $rows['equipDesc']; ?>" required>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="large-6 columns">
 					<label>Equipment Serial:</label>
-					<input type="text" name="equipSerial" value="<?php echo $rows['equipSerial']; ?>">
+					<input type="text" name="equipSerial" value="<?php echo $rows['equipSerial']; ?>" required>
 				</div>
 				<input class="button" type="submit" value="Edit">
 			</div>
