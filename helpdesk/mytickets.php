@@ -11,40 +11,6 @@
 	// Set session var for view ticket form direct
 	$_SESSION['ticketpage'] = "mytickets";
 
-	/*if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		
-		switch ($_POST['submitType']) {
-			case 'comment':
-				// Sanitize ticket description and escape special chars for mySQL query
-				$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
-				mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
-				break;
-
-			case 'newTicket':
-				// Set variables
-				$userID = $_SESSION['userID'];
-				$categoryID = $_POST['category'];
-				$priorityID = $_POST['priority'];
-				// Sanitize ticket description and escape special chars for mySQL query
-				$issueDesc = mysqli_real_escape_string($dbc, $_POST['desc']);
-				$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
-
-				// Confirmation box and refresh page ater post	
-				?>
-				<script type="text/javascript">
-					alert("Your ticket has been submitted.");
-					location.reload(true);
-				</script>
-				<?php		
-				break;
-			
-			default:
-				break;
-		}
-
-		// Refresh page after recieving edit form post to update page table
-		header("Location: mytickets.php");
-	} */
 ?>
 
 <!doctype html>

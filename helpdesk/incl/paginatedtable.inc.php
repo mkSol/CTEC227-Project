@@ -51,7 +51,8 @@
 				case 'comment':
 					// Sanitize ticket description and escape special chars for mySQL query
 					$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
-					mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
+					mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '$comment')");
+					echo "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '$comment')";
 					break;
 
 				case 'delete':				

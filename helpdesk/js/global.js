@@ -44,6 +44,11 @@ $(document).ready(function(){
 		$('#newTicket').load('incl/newticket.inc.php');
 	});
 
+	// Load new message modal
+	$('.newMessage').on('click', 'a', function() {
+		$('#newMessage').load('incl/newmessage.inc.php');
+	});
+
 	// =========================== My Tickets Page ============================
 
 	// Load in ticket details for view modal
