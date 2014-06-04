@@ -12,7 +12,7 @@
 			</div>
 			<div class="large-6 columns">
 				<label for="msgTo">To: </label>
-				<input type="text" name="msgTo" required>
+				<input type="text" name="msgTo" value="<?php if (isset($_GET['username'])) {echo $_GET['username'];} ?>" required>
 			</div>
 		</div>
 

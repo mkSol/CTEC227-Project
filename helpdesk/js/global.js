@@ -25,17 +25,13 @@ $(document).ready(function(){
 	}
 
 	// Load Foundation
-	$(document).foundation({
-		abide: {
-			patterns: {  // 2013-01-26 00:00:00
-				mysqldatetime: /^[0-9][0-9][0-9][0-9]\-[0-9][0-9]-[0-9][0-9]\ [0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]&/
-				//mysqldatetime: /^((([0-9]{4})(-)(0[13578]|10|12)(-)(0[1-9]|[12][0-9]|3[01]))|(([0-9]{4})(-)(0[469]|1‌​1)(-)([0][1-9]|[12][0-9]|30))|((\d{4})(-)(02)(-)(0[1-9]|1[0-9]|2[0-8]))|(([02468]‌​[048]00)(-)(02)(-)(29))|(([13579][26]00)(-)(02)(-)(29))|(([0-9][0-9][0][48])(-)(0‌​2)(-)(29))|(([0-9][0-9][2468][048])(-)(02)(-)(29))|(([0-9][0-9][13579][26])(-)(02‌​)(-)(29)))([ ]([0-1][0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9]))$/
-			}
-		}
-	});
+	$(document).foundation();
 
-	// Call DataTables plugin for all tables to add sort and filter
-	//$('table').dataTable({paging: false});
+	// Load confirm assign modal
+	$('span').on('click', 'a', function() {
+		var id = $(this).attr('id');
+		$('#assign').load('incl/confirmassign.inc.php' + id);
+	});
 
 	// =========================== Navigation Page ============================
 
@@ -47,6 +43,12 @@ $(document).ready(function(){
 	// Load new message modal
 	$('.newMessage').on('click', 'a', function() {
 		$('#newMessage').load('incl/newmessage.inc.php');
+	});
+
+	// Load new message modal from a clicked username to pre=populate msgTo slot
+	$('table').on('click', '[id^=message]', function() {
+		var id = $(this).attr('class');
+		$('#newMessage').load('incl/newmessage.inc.php' + id);
 	});
 
 	// =========================== My Tickets Page ============================

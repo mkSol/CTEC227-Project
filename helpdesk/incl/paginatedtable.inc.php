@@ -45,7 +45,12 @@
 					$category = mysqli_real_escape_string($dbc, $_POST['category']);
 					$priority = mysqli_real_escape_string($dbc, $_POST['priority']);
 					$status = mysqli_real_escape_string($dbc, $_POST['status']);
-					mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+					if ($status == "1") { // If setting ticket to OPEN status
+						// Then make sure to clear assignedTo field
+						mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc', assignedTo=null WHERE ticketID='{$_POST['id']}' LIMIT 1");	
+					} else { // Otherwise, simply update ticket details
+						mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+					}
 					break;
 
 				case 'comment':
@@ -98,6 +103,13 @@
 						
 					}
 					break;
+
+				case 'assign':
+					// Update ticket and change assignedTo field to help desk's userID, then set status to assigned
+					$userID = $_SESSION['userID'];
+					$assignSQL = "UPDATE ticket SET assignedTo='" . $userID . "', statusID='2' WHERE ticketID='{$_POST['id']}'";
+					//echo $assignSQL;
+					mysqli_query($dbc,$assignSQL);
 
 				default:
 					break;
@@ -297,9 +309,13 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		}
 
 		// Continue building table head
+		$columnList = [];
 		while ($col_name = mysqli_fetch_field($result)) { // While more columns exist...
 			column_sort($col_name); // Output table column name with sort links
+			// Store column names in an arrya for later use
+			array_push($columnList, $col_name->orgname);
 		}
+		//print_r($columnList);
 		echo "</tr>";
 		echo "</thead>";
 
@@ -312,7 +328,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		// Reset pointer after above empty check, otherwise we lose first record
 		mysqli_data_seek($result,0);
 		
-		while ($rows=mysqli_fetch_row($result)) { // While more rows exist...			
+		while ($rows=mysqli_fetch_array($result)) { // While more rows exist...			
 
 			echo "<tr>";
 
@@ -320,7 +336,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 			if ($view || $edit || $delete) {
 			echo "<th>";
 			if ($view) {
-				echo "<a data-reveal-id=\"viewRecord\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "\" href=\"#\"><img src=\"images/view.png\"></a>";
+				echo "<a data-reveal-id=\"viewRecord\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "&assignedTo=" . $rows['8'] . "\" href=\"#\"><img src=\"images/view.png\"></a>";
 			}
 			if ($edit) {
 				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
@@ -333,7 +349,32 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		}
 			for ($col_num=0; $col_num < $numCols; $col_num++) { // Run through $numCols number of columns each row
 				echo "<td>";
-				echo $rows[$col_num]; // Spit out data for specified column on this row
+				
+				if ($columnList[$col_num] == "username") { // If it's a username column
+					//echo "Username!";
+					//echo $rows[$col_num]; // Echo out username
+					echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[3] . '"class="?username=' . $rows[3] . '">' . $rows[$col_num] . '</a>';
+				} elseif ($columnList[$col_num] == "assignedTo") { // If it's an AssignedTo column
+					//echo "AssignedTo!";
+					if ($rows[$col_num]) { // If a help desk person is listed...
+						$assignedTo = $rows[$col_num]; // Store assignedTo userID
+						// Query SQL for the username of specified help desk person since we cannot join ticket table on username twice, use separate query
+						$assignedToSQL = "SELECT user.username FROM user JOIN ticket ON ticket.assignedTo=user.userID WHERE ticket.assignedTo='$assignedTo'";
+						$assignedToResult = mysqli_query($dbc,$assignedToSQL);
+						while ($assignedToRows=mysqli_fetch_array($assignedToResult)) { // While more rows exist...	
+							// Echo out username of help desk person
+							echo $assignedToRows[0];
+							// Not sure why this loops, so breka out after listing help desk username once
+							break;
+						}
+					} else {
+						//echo "UNASSIGNED";
+						// Make a link to allow assigning ticket to self
+						echo '<span id="assign' . $rows[0] . '"><a data-reveal-id="assign" href="#" class="tiny success button" id="?ticketID=' . $rows[0] . '">Click to Assign</a></span>';
+					}
+				} else { // For everything else...
+					echo $rows[$col_num]; // Spit out data for specified column on this row
+				}
 				echo "</td>";
 			}
 			echo "</tr>";
@@ -353,6 +394,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	echo '<div id="viewRecord" class="reveal-modal" data-reveal></div>';
 	echo '<div id="editRecord" class="reveal-modal" data-reveal></div>';
 	echo '<div id="deleteRecord" class="reveal-modal" data-reveal></div>';
+	echo '<div id="assign" class="reveal-modal" data-reveal>Testing</div>';
 	
 }
 
