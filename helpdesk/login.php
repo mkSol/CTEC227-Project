@@ -49,6 +49,7 @@
 		$_SESSION['email'] = $result['email'];
 		$_SESSION['role'] = $result['privRole'];
 		$_SESSION['privLevel'] = $result['privilege'];
+		$_SESSION['deptID'] = $result['department'];
 	}
 
 	require("incl/sqlConnect.inc.php"); // Connect to SQL DB
@@ -59,7 +60,7 @@
 		$username = mysqli_real_escape_string($dbc, $_POST['username']);
 		$passwd = mysqli_real_escape_string($dbc, $_POST['passwd']);
 		// Query for username, password, first+last name, email, priv level and role
-		$query = mysqli_query($dbc, "SELECT username,userID,passwd,firstName,lastName,email,privilege,privilege.privRole FROM user INNER JOIN privilege on user.privilege=privilege.privID WHERE username='$username' AND passwd=SHA1('$passwd')");
+		$query = mysqli_query($dbc, "SELECT username,userID,passwd,firstName,lastName,email,department,privilege,privilege.privRole FROM user INNER JOIN privilege on user.privilege=privilege.privID WHERE username='$username' AND passwd=SHA1('$passwd')");
 		$result = mysqli_fetch_array($query);
 
 		if ($result) {
