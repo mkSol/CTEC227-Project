@@ -247,6 +247,9 @@
 	// ============================ Page Content Start ===============================
 
 	// Open navigation div
+	echo "<div id='header'>";
+	echo "<a href='home.php'><img src='images/greenwell_logo_flat.png' height='244'></a>";
+	echo "</div>";
 	echo "<div id=\"nav\">";
 
 	switch ($_SESSION['privLevel']) {
