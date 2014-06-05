@@ -7,7 +7,6 @@ To Do List
 ==========
 --Dashboard unique to each user role  
 --Error handling code that submits all error dumps to database  
---Fancier inbox and outbox that marks messages as read or deleted  
   
 Optional Additions (If we have time for them)
 ==========
