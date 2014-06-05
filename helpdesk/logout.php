@@ -5,8 +5,12 @@
 	<title>Logout</title>
 </head>
 <body>
-	<?php 
+	<?php
+		require("incl/sqlConnect.inc.php");
 		session_start();
+		$errorlog_var = "INSERT INTO errorlog VALUES (" . "NULL" . "," . "{$_SESSION['userID']}"  .  "," . "now()" . "," . "'user logged out'" . ")";
+		echo "$errorlog_var";
+		$err_result =mysqli_query($dbc, $errorlog_var);
 		session_destroy();
 		header("Location: login.php");
 	?>

@@ -67,6 +67,8 @@
 			session_start();
 			set_session_variables();
 			setcookie("privLevel", $result['privilege']);
+			$errorlog_var = "INSERT INTO errorlog VALUES (" . "NULL" . "," . "{$_SESSION['userID']}"  .  "," . "now()" . "," . "'user logged in'" . ")";
+			$err_result =mysqli_query($dbc, $errorlog_var);			
 			header("Location: home.php");
 		} else {
 			echo "<p>Incorrect username or password, please try again.</p>";
