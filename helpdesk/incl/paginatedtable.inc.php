@@ -137,16 +137,21 @@
 	function column_sort($col_name) {
 		// Set some vars
 		// Check if sortBy matches current column to determine sort icon
-		if ($_GET['sortBy'] == $col_name->table . "." . $col_name->orgname) {
-			if ($_GET['sortOrder'] == "DESC") { // If it's descending, use desc icon
-				$sortImg = '<img src="images/sort_desc.png">';
-			} else { // Else it's ascending, use asc icon
-				$sortImg = '<img src="images/sort_asc.png">';
+		if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) {
+			if ($_GET['sortBy'] == $col_name->table . "." . $col_name->orgname) {
+				if ($_GET['sortOrder'] == "DESC") { // If it's descending, use desc icon
+					$sortImg = '<img src="images/sort_desc.png">';
+				} else { // Else it's ascending, use asc icon
+					$sortImg = '<img src="images/sort_asc.png">';
+				}
+			} else { // If no match, use the blank sort icon
+				$sortImg = '<img src="images/sort_both.png">';
 			}
-		} else { // If no match, use the blank sort icon
+		} else { // if no url params set, default to blank sort icon
 			$sortImg = '<img src="images/sort_both.png">';
 		}
 		
+
 		if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) { // If something is already set to sorting
 			if ($_GET['sortBy'] !== $col_name->table . "." . $col_name->orgname) { // If not sorting by the link that was clicked, set it to the new sort
 				$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params

@@ -60,14 +60,17 @@
 				user_dashboard();
 				break;
 			case '2':
+				header("Location: assignedtickets.php");
 				echo "<p>No Help Desk Dashboard Yet!";
 				//helpdesk_dashboard();
 				break;
 			case '3':
+				header("Location: allequip.php");
 				echo "<p>No Manager Dashboard Yet!";
 				//manager_dashboard();
 				break;
 			case '4':
+				header("Location: alltables.php");
 				echo "<p>No Admin Dashboard Yet!";
 				//admin_dashboard();
 				?>
