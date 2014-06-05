@@ -10,7 +10,7 @@
 			header("Location: " . $_SERVER['PHP_SELF'] . "?" . $urlParams); // And reload the page so the url params go into effect
 		}
 		if (isset($_POST['searchFilter'])) {  // If search filter was submitted...
-			$urlParams = http_build_query(array_merge($_GET, array("search"=>$_POST['searchFilter']))); // Merge search filter into the url params
+			$urlParams = http_build_query(array_merge($_GET, array("search"=>$_POST['searchFilter'],"page"=>"1"))); // Merge search filter into the url params
 			header("Location: " . $_SERVER['PHP_SELF'] . "?" . $urlParams); // And reload the page so the url params go into effect
 		}
 		if (isset($_POST['submitType'])) {
@@ -222,7 +222,7 @@
 	function search_filter() {
 		// Form for submitting search filter string
 		// Reset page counter back to 1 when submitting form
-		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query(array_merge($_GET, array("page"=>"1"))) . '">';
+		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET) . '">';
 		echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
 		echo '<input class="success button" type="submit" value="Search">';
 		echo '</form>';
@@ -258,7 +258,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	$searchParams = null;
 	if ($searchFilter) {
 		// First reset page counter to 1 for search results
-		array_merge($_GET, array("page"=>"1"));
+		//array_merge($_GET, array("page"=>"1"));
 		$result = mysqli_query($dbc,$sql);
 		while ($col_name = mysqli_fetch_field($result)) { // Get columns and loop through each
 			if (!$searchParams) {
@@ -273,7 +273,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		}
 		$rowsPerPage = 10;
 		$pageOffset = 0;
-		$page = 1;
+		//$page = 1;
 	} else {
 		$rowsPerPage = 10;
 		$pageOffset = $page * $rowsPerPage - $rowsPerPage;	
