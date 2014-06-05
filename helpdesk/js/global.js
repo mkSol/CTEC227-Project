@@ -187,4 +187,21 @@ $(document).ready(function(){
 		$('#deleteRecord').load('incl/confirmdeletedynamic.inc.php' + id);
 	});	
 
+	// =========================== Uncategorized ============================
+
+	// Mark message as read upon opening accordion link
+	// Also loads in delete and unread markers
+	$('#inbox_accordion').on('click', 'a', function() {
+		var id = $(this).attr('id');
+		//Append url parameters to load request
+		$('#updateMessage').load('incl/updatemessage.inc.php' + id);
+	});	
+
+	// Button for delete as sender from outbox
+	$('#outbox_accordion').on('click', 'a', function() {
+		var id = $(this).attr('id');
+		//Append url parameters to load request
+		$('#updateMessage').load('incl/updatemessage.inc.php' + id);
+	});	
+
 });

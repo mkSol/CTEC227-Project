@@ -339,7 +339,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 				echo "<a data-reveal-id=\"viewRecord\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "&assignedTo=" . $rows['8'] . "\" href=\"#\"><img src=\"images/view.png\"></a>";
 			}
 			if ($edit && ($_SESSION['privLevel'] == '4' || $_SESSION['privLevel'] == '4')) { // Make certain only help desk and admins can edit
-				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
+				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
 			}
 			if ($delete && $_SESSION['privLevel'] == '4') { // Make certain only admins can delete
 				echo "<a data-reveal-id=\"deleteRecord\" id=\"delete" . $rows['0'] . "\" class=\"?delete=" . $rows['0'] . "&table=" . $tableName . "\" href=\"#\"><img src=\"images/delete.png\"></a>";
@@ -353,7 +353,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 				if ($columnList[$col_num] == "username") { // If it's a username column
 					//echo "Username!";
 					//echo $rows[$col_num]; // Echo out username
-					echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[3] . '"class="?username=' . $rows[3] . '">' . $rows[$col_num] . '</a>';
+					echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[0] . '"class="?username=' . $rows[3] . '">' . $rows[$col_num] . '</a>';
 				} elseif ($columnList[$col_num] == "assignedTo") { // If it's an AssignedTo column
 					//echo "AssignedTo!";
 					
@@ -363,8 +363,9 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 						$assignedToSQL = "SELECT user.username FROM user JOIN ticket ON ticket.assignedTo=user.userID WHERE ticket.assignedTo='$assignedTo'";
 						$assignedToResult = mysqli_query($dbc,$assignedToSQL);
 						while ($assignedToRows=mysqli_fetch_array($assignedToResult)) { // While more rows exist...	
-							// Echo out username of help desk person
-							echo $assignedToRows[0];
+							// Echo out username of help desk person with link to message user
+							echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[0] . '"class="?username=' . $assignedToRows[0] . '">' . $assignedToRows[0] . '</a>';
+							//echo $assignedToRows[0];
 							// Not sure why this loops, so breka out after listing help desk username once
 							break;
 						}

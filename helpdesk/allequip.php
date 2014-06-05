@@ -103,7 +103,7 @@
 
 	//=================================Page content start=================================
 
-	echo "<h2>View All Equipment</h2>";
+	echo "<h2>All Equipment</h2>";
 
 	?>
 		<a href="?tbl=UserEquip" class="success button">Equipment Assigned to Users</a>

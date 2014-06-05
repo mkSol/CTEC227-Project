@@ -25,6 +25,9 @@
 	include("incl/paginatedtable.inc.php");
 
 	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorDump AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
+	
+	echo "<h2>Error Logs</h2>";
+
 	// Output ticket table named MyTickets, view=true, edit=fale, delete=false
 	output_table($sql,"errorLog",0,0,1);
 

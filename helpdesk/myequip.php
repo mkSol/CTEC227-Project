@@ -30,6 +30,9 @@
 	// Get username
 	$username = $_SESSION['username'];
 	$sql = "SELECT equipment.equipID AS 'Equipment ID', equipment.equipSerial AS 'Serial', equipment.equipDesc AS 'Description', equipType.equipType AS 'Type', userEquip.userID AS ' User ID', user.username AS 'Username', user.firstName AS 'First', user.lastName AS 'Last', department.department AS 'Department' FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN user ON userEquip.userID=user.userID JOIN department ON user.department=department.deptID AND userEquip.userID=user.userID AND userEquip.equipID=equipment.equipID WHERE user.username='$username'";
+	
+	echo "<h2>My Equipment</h2>";
+
 	// Output ticket table named MyTickets depending on pirvilege level, view=true, edit=fale, delete=false
 	switch ($_SESSION['privLevel']) {
 			case '1':
