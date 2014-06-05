@@ -304,7 +304,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		// Insert edit/delete column if selected
 		if ($view || $edit || $delete) {
 			echo "<th>";
-			echo "Action";
+			echo "<a href=\"\">Action</a>";
 			echo "</th>";
 		}
 
