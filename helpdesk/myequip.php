@@ -61,8 +61,6 @@
 	$username = $_SESSION['username'];
 	$userID = $_SESSION['userID'];
 	$department = $_SESSION['deptID'];
-	
-	print_r($_SESSION);
 
 	// MySQL query to list equipment associated with ticket owner
 	$result = mysqli_query($dbc, "SELECT equipment.equipID, equipment.equipDesc, equipType.equipType, userEquip.userID, user.username, user.firstName, user.lastName, department.department FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN user ON userEquip.userID=user.userID JOIN department ON user.department=department.deptID AND userEquip.userID=user.userID AND userEquip.equipID=equipment.equipID WHERE user.userID='$userID'");
