@@ -11,27 +11,6 @@
 	// Set session var for view ticket form direct
 	$_SESSION['ticketpage'] = "assignedtickets";
 
-	/*if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		switch ($_POST['submitType']) {
-			case 'edit':
-				// Sanitize ticket description and escape special chars for mySQL query
-				$desc = mysqli_real_escape_string($dbc, $_POST['desc']);
-				$date = mysqli_real_escape_string($dbc, $_POST['date']);
-				mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='{$_POST['category']}', priorityID='{$_POST['priority']}', statusID='{$_POST['status']}', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
-				break;
-			
-			case 'comment':
-				// Sanitize ticket description and escape special chars for mySQL query
-				$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
-				mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '{$_POST['comment']}')");
-				break;
-
-			default:
-				break;
-		}
-		// Refresh page after recieving edit form post to update page table
-		header("Location: assignedtickets.php");
-	} */
 ?>
 
 <!doctype html>

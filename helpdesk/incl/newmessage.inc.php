@@ -23,7 +23,7 @@
 			<textarea name="body" rows="5" cols="100"></textarea>
 			
 			<br>
-			<input class="button" type="submit" value="Send">
+			<input class="success button" type="submit" value="Send">
 			</div>
 		</div>
 	</form>

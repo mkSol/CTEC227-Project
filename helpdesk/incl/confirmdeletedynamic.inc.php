@@ -23,11 +23,11 @@
 					<input type="hidden" name="table" value="<?php echo $_GET['table']; ?>">
 					<input type="hidden" name="firstColumn" value="<?php echo $columns[0]; ?>">
 
-					<h1>Deleting Ticket ID: <?php echo $_GET['delete']; ?></h1>
+					<h1>Deleting <?php echo $_GET['table']; ?> ID: <?php echo $_GET['delete']; ?></h1>
 					<p>Are you sure you wish to delete this?</p>
 				</div>
 				
-				<input class="button" type="submit" value="Confirm">
+				<input class="success button" type="submit" value="Confirm">
 			</div>
 		</form>
 

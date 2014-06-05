@@ -219,7 +219,7 @@
 			<div class="row">
 				<div class="large-12 columns">
 				<br>
-				<input class="button" type="submit" value="Submit Comment">
+				<input class="success button" type="submit" value="Submit Comment">
 				</div>
 			</div>
 		</form>

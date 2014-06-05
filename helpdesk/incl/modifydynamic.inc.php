@@ -49,7 +49,7 @@
 				}
 			}
 			// Submit button
-			echo '<input type="submit" value="Edit" class="button">';
+			echo '<input type="submit" value="Edit" class="success button">';
 			// Close form
 			echo '</form>';
 			// Close modal button

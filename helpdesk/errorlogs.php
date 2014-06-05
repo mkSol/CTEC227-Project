@@ -26,48 +26,9 @@
 
 	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorDump AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
 	// Output ticket table named MyTickets, view=true, edit=fale, delete=false
-	output_table($sql,"ErrorLogs",0,0,1);
+	output_table($sql,"errorLog",0,0,1);
 
-	/*
-	$result = mysqli_query($dbc, "SELECT errorLog.errorID, errorLog.timestamp, user.userID, user.username, errorLog.errorDump FROM errorLog JOIN user ON errorLog.userID=user.userID");
-	$rows = mysqli_num_rows($result);
-
-	// ============================ Page Content Start ===============================
-
-	echo "<h2>View Error Logs</h2>";
-
-
-	echo "<table id=\"errorlogs_table\">";
-	echo "<thead>";
-	echo "<tr>";
-	echo "<th>Error ID</th>";
-	echo "<th>Timestamp</th>";
-	echo "<th>User ID</th>";
-	echo "<th>Username</th>";
-	echo "<th>Error Dump</th>";
-	echo "</tr>";
-	echo "</thead>";
-	echo "<tbody>";
-	while ($rows=mysqli_fetch_array($result)) {
-		echo "<tr>";
-		echo "<td>" . $rows['errorID'] . "</td>";
-		echo "<td>" . $rows['timestamp'] . "</td>";
-		echo "<td>" . $rows['userID'] . "</td>";
-		echo "<td>" . $rows['username'] . "</td>";
-		echo "<td>" . $rows['errorDump'] . "</td>";
-		echo "</tr>";
-	}
-	echo "</tbody>";
-	echo "</table>";
-
-	/*
-
-	errorID, errorDump, timestamp, userID, username, privilege
-
-	SELECT errorLog.errorID, errorLog.timestamp, user.userID, user.username, errorLog.errorDump FROM errorLog JOIN user ON errorLog.userID=user.userID;
-
-
-	*/
+	
 ?>
 </div>
 </div>

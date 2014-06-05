@@ -197,7 +197,7 @@
 		// Form logic for entering a page number manually
 		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">';
 		echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
-		echo '<input class="button" type="submit" value="Go">';
+		echo '<input class="success button" type="submit" value="Go">';
 		echo '</form>';
 		// List total page number
 		echo "<p>Number of pages: $numPages</p>";
@@ -208,7 +208,7 @@
 		// Reset page counter back to 1 when submitting form
 		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query(array_merge($_GET, array("page"=>"1"))) . '">';
 		echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
-		echo '<input class="button" type="submit" value="Search">';
+		echo '<input class="success button" type="submit" value="Search">';
 		echo '</form>';
 	}
 
@@ -335,13 +335,13 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 			// Insert View/Edit/Delete options if enabled
 			if ($view || $edit || $delete) {
 			echo "<th>";
-			if ($view) {
+			if ($view) { // Anyone can view
 				echo "<a data-reveal-id=\"viewRecord\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "&assignedTo=" . $rows['8'] . "\" href=\"#\"><img src=\"images/view.png\"></a>";
 			}
-			if ($edit) {
+			if ($edit && ($_SESSION['privLevel'] == '4' || $_SESSION['privLevel'] == '4')) { // Make certain only help desk and admins can edit
 				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
 			}
-			if ($delete) {
+			if ($delete && $_SESSION['privLevel'] == '4') { // Make certain only admins can delete
 				echo "<a data-reveal-id=\"deleteRecord\" id=\"delete" . $rows['0'] . "\" class=\"?delete=" . $rows['0'] . "&table=" . $tableName . "\" href=\"#\"><img src=\"images/delete.png\"></a>";
 			}
 			echo "</th>";
@@ -356,6 +356,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 					echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[3] . '"class="?username=' . $rows[3] . '">' . $rows[$col_num] . '</a>';
 				} elseif ($columnList[$col_num] == "assignedTo") { // If it's an AssignedTo column
 					//echo "AssignedTo!";
+					
 					if ($rows[$col_num]) { // If a help desk person is listed...
 						$assignedTo = $rows[$col_num]; // Store assignedTo userID
 						// Query SQL for the username of specified help desk person since we cannot join ticket table on username twice, use separate query
@@ -368,9 +369,13 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 							break;
 						}
 					} else {
-						//echo "UNASSIGNED";
-						// Make a link to allow assigning ticket to self
-						echo '<span id="assign' . $rows[0] . '"><a data-reveal-id="assign" href="#" class="tiny success button" id="?ticketID=' . $rows[0] . '">Click to Assign</a></span>';
+						if ($_SESSION['privLevel'] == '2' || $_SESSION['privLevel'] == '4') { // Make sure user is help desk or admin to be able to assign themselves
+							//echo "UNASSIGNED";
+							// Make a link to allow assigning ticket to self
+							echo '<span id="assign' . $rows[0] . '"><a data-reveal-id="assign" href="#" class="tiny success button" id="?ticketID=' . $rows[0] . '">Click to Assign</a></span>';
+						} else { // If user or manager, just list as unassigned
+							echo "Unassigned";
+						}
 					}
 				} else { // For everything else...
 					echo $rows[$col_num]; // Spit out data for specified column on this row

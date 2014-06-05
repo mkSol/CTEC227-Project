@@ -28,7 +28,7 @@
 		echo '</div>';
 
 		echo '<div class="small-2 columns" id="allTablesSubmit">' . "\n";
-		echo '<input type="submit" value="Go" class="button">' . "\n";
+		echo '<input type="submit" value="Go" class="success button">' . "\n";
 		echo '</div>';
 
 		//echo '</div>'; // Close row collapse
@@ -53,13 +53,10 @@
 	while($table = mysqli_fetch_row($tblresult)) {
 		array_push($tables, $table[0]);
 
-		//echo "<div id=tbl" . $tables['0'] . ">";
-
 		$result = mysqli_query($dbc, "SELECT * FROM " . $tables['0']);
 		$rows = mysqli_num_rows($result);
 		$numCols = mysqli_num_fields($result);
 
-		//echo "<p>Table: " . $tables['0'] . "</p>";
 	}
 	
 	// ======================= All Tables Page Content Start ========================

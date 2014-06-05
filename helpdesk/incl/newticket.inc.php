@@ -34,7 +34,7 @@
 			<textarea name="desc" id="desc" rows="5" cols="100" placeholder="Please describe the problem you are experiencing here."></textarea>
 			
 			<br>
-			<input class="button" type="submit" value="Submit">
+			<input class="success button" type="submit" value="Submit">
 			</div>
 		</div>
 	</form>

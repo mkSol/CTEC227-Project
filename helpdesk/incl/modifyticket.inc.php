@@ -68,7 +68,7 @@
 				<textarea name="desc" id="desc" rows="5" cols="100" required><?php echo $rows['issueDesc']; ?></textarea>
 				
 				<br>
-				<input class="button" type="submit" value="Edit">
+				<input class="success button" type="submit" value="Edit">
 				</div>
 			</div>
 		</form>

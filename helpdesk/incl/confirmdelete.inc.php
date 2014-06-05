@@ -17,7 +17,7 @@
 					<p>Are you sure you wish to delete this ticket?</p>
 				</div>
 				
-				<input class="button" type="submit" value="Confirm">
+				<input class="success button" type="submit" value="Confirm">
 			</div>
 		</form>
 

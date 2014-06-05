@@ -178,4 +178,13 @@ $(document).ready(function(){
 		$('#deleteRecord').load('incl/confirmdeletedynamic.inc.php' + id);
 	});
 
+	// =========================== Error Logs Page ============================
+
+	// Load delete confirmation modal
+	$('#tbl_errorLog').on('click', '[id^=delete]', function() {
+		var id = $(this).attr('class');
+		// Append url parameters to load request
+		$('#deleteRecord').load('incl/confirmdeletedynamic.inc.php' + id);
+	});	
+
 });

@@ -76,7 +76,7 @@
 					<label>Equipment Serial:</label>
 					<input type="text" name="equipSerial" value="<?php echo $rows['equipSerial']; ?>" required>
 				</div>
-				<input class="button" type="submit" value="Edit">
+				<input class="success button" type="submit" value="Edit">
 			</div>
 		</form>
 
