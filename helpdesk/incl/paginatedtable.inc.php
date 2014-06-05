@@ -354,7 +354,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 			if ($view) { // Anyone can view
 				echo "<a data-reveal-id=\"viewRecord\" id=\"view" . $rows['0'] . "\" class=\"?viewid=" . $rows['0'] . "&assignedTo=" . $rows['8'] . "\" href=\"#\"><img src=\"images/view.png\"></a>";
 			}
-			if ($edit && ($_SESSION['privLevel'] == '4' || $_SESSION['privLevel'] == '4')) { // Make certain only help desk and admins can edit
+			if ($edit && ($_SESSION['privLevel'] == '2' || $_SESSION['privLevel'] == '4')) { // Make certain only help desk and admins can edit
 				echo "<a data-reveal-id=\"editRecord\" id=\"edit" . $rows['0'] . "\" class=\"?table=" . $tableName . "&id=" . $rows['0'] . "\" href=\"#\" id=\"edit" . $rows['0'] . "\"><img src=\"images/edit.png\"></a>";
 			}
 			if ($delete && $_SESSION['privLevel'] == '4') { // Make certain only admins can delete
