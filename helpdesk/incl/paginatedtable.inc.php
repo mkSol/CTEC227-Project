@@ -195,6 +195,20 @@
 		//echo '<div class="large-6 columns">';
 		//echo '<div class="large-4 columns">';
 		// First determine number of pages needed
+		// Form logic for entering a page number manually
+		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">';
+		echo "<div class='row'>";
+		echo "<div class='row collapse'>";
+		echo "<div class='small-10 columns'>";		
+		echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
+		echo "</div>";
+		echo "<div class='small-2 columns'>";		
+		echo '<input class="success button postfix" type="submit" value="Go">';
+		echo "</div>";
+		echo "</div>";
+		echo "</div>";		
+		echo '</form>';
+
 		if ($numRows % $rowsPerPage != 0) {
 			$numPages = intval($numRows / $rowsPerPage) + 1;
 		} else {
@@ -210,11 +224,7 @@
 		if (!($page >= $numPages)) {
 			next_page($page);
 		}
-		// Form logic for entering a page number manually
-		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">';
-		echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
-		echo '<input class="success button" type="submit" value="Go">';
-		echo '</form>';
+
 		// List total page number
 		echo "<p>Number of pages: $numPages</p>";
 	}
@@ -223,8 +233,16 @@
 		// Form for submitting search filter string
 		// Reset page counter back to 1 when submitting form
 		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET) . '">';
+		echo "<div class='row'>";
+		echo "<div class='row collapse'>";
+		echo "<div class='small-10 columns'>";
 		echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
-		echo '<input class="success button" type="submit" value="Search">';
+		echo "</div>";
+		echo "<div class='small-2 columns'>";
+		echo '<input class="success button postfix" type="submit" value="Search">';
+		echo "</div>";
+		echo "</div>";
+		echo "</div>";
 		echo '</form>';
 	}
 
@@ -297,22 +315,24 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	if ($result) { // If records were found...
 		//echo mysqli_error($dbc);
 		$numCols = mysqli_num_fields($result);
-
-		// Begin table
-		echo "<table id=\"" . "tbl_" . $tableName . "\">";
 		
 		// *********** I have no idea how the hell to format these things here
-		//echo '<div class=large-12 columns>';
-		echo "<div class='large-6 columns'>";
+		echo "<div class='row'>";
+		echo "<div class='large-3 columns'>";
 		pagination_links($numRows,$rowsPerPage,$page);
 		echo '</div>';
+		echo "<div class='large-3 columns'>";
+		echo "</div>";
 		echo "<div class='large-6 columns'>";
 		search_filter();
-		//echo '</div>';
 		echo '</div>';
 		echo "</div>";
 
 		echo '<div class="row">';
+
+		// Begin table
+		echo "<table id=\"" . "tbl_" . $tableName . "\">";
+
 		// Build table head
 		echo "<thead>";
 		echo "<tr>";

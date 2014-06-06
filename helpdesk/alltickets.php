@@ -24,7 +24,7 @@
 </head>
 
 <div class="row">
-<div class="large-12 columns" id="allTickets">
+<div id="allTickets">
 <?php 
 	include("incl/paginatedtable.inc.php");
 

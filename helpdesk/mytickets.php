@@ -22,6 +22,7 @@
 		require("incl/scripts.inc.html")
 	?>	
 </head>
+<body>
 
 <div class="row">
 <div class="large-12 columns" id="myTickets">	
