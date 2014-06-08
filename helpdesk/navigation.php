@@ -1,4 +1,7 @@
 <?php
+	// Open SQL DB connection
+	require("incl/sqlConnect.inc.php");
+	
 	function user_nav($newMsgs) {
 		?>
 			<nav class="fixed top-bar" data-topbar>
@@ -238,7 +241,6 @@
 	}
 
 	// Get new message count
-	require("incl/sqlConnect.inc.php");
 	$userID = $_SESSION['userID'];
 	$msgResult = mysqli_query($dbc, "SELECT * FROM message WHERE msgRead='0' AND msgTo='$userID'");
 	$newMsgs = mysqli_num_rows($msgResult);

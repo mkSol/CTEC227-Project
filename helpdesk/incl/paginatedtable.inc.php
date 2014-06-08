@@ -311,7 +311,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	}
 	
 	$result = mysqli_query($dbc, $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage");
-	//echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
+	echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
 	if ($result) { // If records were found...
 		//echo mysqli_error($dbc);
 		$numCols = mysqli_num_fields($result);
@@ -389,7 +389,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 				if ($columnList[$col_num] == "username") { // If it's a username column
 					//echo "Username!";
 					//echo $rows[$col_num]; // Echo out username
-					echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[0] . '"class="?username=' . $rows[3] . '">' . $rows[$col_num] . '</a>';
+					echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[0] . '"class="?username=' . $rows[$col_num] . '">' . $rows[$col_num] . '</a>';
 				} elseif ($columnList[$col_num] == "assignedTo") { // If it's an AssignedTo column
 					//echo "AssignedTo!";
 					
@@ -402,7 +402,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 							// Echo out username of help desk person with link to message user
 							echo '<a data-reveal-id="newMessage" href="#" id="message' . $rows[0] . '"class="?username=' . $assignedToRows[0] . '">' . $assignedToRows[0] . '</a>';
 							//echo $assignedToRows[0];
-							// Not sure why this loops, so breka out after listing help desk username once
+							// Not sure why this loops, so break out after listing help desk username once
 							break;
 						}
 					} else {
