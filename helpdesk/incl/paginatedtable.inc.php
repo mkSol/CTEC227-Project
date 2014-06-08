@@ -175,9 +175,9 @@
 		$page++; // Increment page counter upon click
 		if ($_SERVER['QUERY_STRING']) { // If there are already url parameters, add page to the end
 			$urlParams = http_build_query(array_merge($_GET, array("page"=>$page))); // Build new url params and add/merge page
-			echo "<a href=\"?" . $urlParams . "\">Next</a>";
+			echo "<a href=\"?" . $urlParams . "\"><img src=\"images/forward_disabled.png\"></a>";
 		} else { // Otherwise set the url parameter to page
-			echo "<a href=\"?page=" . $page . "\">Next</a>";
+			echo "<a href=\"?page=" . $page . "\"><img src=\"images/forward_disabled.png\"></a>";
 		}
 	}
 
@@ -185,9 +185,9 @@
 		$page--; // Increment page counter upon click
 		if ($_SERVER['QUERY_STRING']) { // If there are already url parameters, add page to the end
 			$urlParams = http_build_query(array_merge($_GET, array("page"=>$page))); // Build new url params and add/merge page
-			echo "<a href=\"?" . $urlParams . "\">Previous</a>";
+			echo "<a href=\"?" . $urlParams . "\"><img src=\"images/back_disabled.png\"></a>";
 		} else { // Otherwise set the url parameter to page
-			echo "<a href=\"?page=" . $page . "\">Previous</a>";
+			echo "<a href=\"?page=" . $page . "\"><img src=\"images/back_disabled.png\"></a>";
 		}
 	}
 
@@ -219,7 +219,7 @@
 			prev_page($page);
 		}
 		// Echo out current page
-		echo "<pre>" . $page . "</pre>";
+		echo $page;
 		// Next page link
 		if (!($page >= $numPages)) {
 			next_page($page);
@@ -311,7 +311,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	}
 	
 	$result = mysqli_query($dbc, $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage");
-	echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
+	//echo $sql . " " . $searchParams . $sortParams . " LIMIT $pageOffset, $rowsPerPage";
 	if ($result) { // If records were found...
 		//echo mysqli_error($dbc);
 		$numCols = mysqli_num_fields($result);

@@ -1,7 +1,7 @@
 <?php
 	// Open SQL DB connection
 	require("incl/sqlConnect.inc.php");
-	
+
 	function user_nav($newMsgs) {
 		?>
 			<nav class="fixed top-bar" data-topbar>
@@ -207,37 +207,39 @@
 		<?php
 	}
 		
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		
-		switch ($_POST['submitType']) {
-			case 'newMessage':
-				$msgResult = mysqli_query($dbc, "SELECT userID FROM user WHERE username = '" . $_POST['msgTo'] . "'");
-				//echo "SELECT userID FROM user WHERE username = " . $_POST['msgTo'];
-				$rows = mysqli_fetch_array($msgResult);
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {	
+		if (isset($_POST['submitType'])) {
+			switch ($_POST['submitType']) {
+				case 'newMessage':
+					$msgResult = mysqli_query($dbc, "SELECT userID FROM user WHERE username = '" . $_POST['msgTo'] . "'");
+					//echo "SELECT userID FROM user WHERE username = " . $_POST['msgTo'];
+					$rows = mysqli_fetch_array($msgResult);
 
-				// Set variables
-				$msgFrom = $_SESSION['userID'];
-				// Sanitize message body and subject and escape special chars for mySQL query
-				$msgTo = mysqli_real_escape_string($dbc, $rows[0]);
-				$subject = mysqli_real_escape_string($dbc, $_POST['subject']);
-				$body = mysqli_real_escape_string($dbc, $_POST['body']);
-				$result = mysqli_query($dbc, "INSERT INTO message (msgSubject, msgTo, msgFrom, msgBody, timestamp) VALUES ('$subject', '$msgTo', '$msgFrom', '$body', NOW())") or die(mysqli_error($dbc));
-				//echo "INSERT INTO message (msgSubject, msgTo, msgFrom, msgBody, timestamp, read) VALUES ('$subject', '$msgTo', '$msgFrom', '$body', NOW(), '0')";
-				break;
+					// Set variables
+					$msgFrom = $_SESSION['userID'];
+					// Sanitize message body and subject and escape special chars for mySQL query
+					$msgTo = mysqli_real_escape_string($dbc, $rows[0]);
+					$subject = mysqli_real_escape_string($dbc, $_POST['subject']);
+					$body = mysqli_real_escape_string($dbc, $_POST['body']);
+					$result = mysqli_query($dbc, "INSERT INTO message (msgSubject, msgTo, msgFrom, msgBody, timestamp) VALUES ('$subject', '$msgTo', '$msgFrom', '$body', NOW())") or die(mysqli_error($dbc));
+					//echo "INSERT INTO message (msgSubject, msgTo, msgFrom, msgBody, timestamp, read) VALUES ('$subject', '$msgTo', '$msgFrom', '$body', NOW(), '0')";
+					break;
 
-			case 'newTicket':
-				// Set variables
-				$userID = $_SESSION['userID'];
-				$categoryID = $_POST['category'];
-				$priorityID = $_POST['priority'];
-				// Sanitize ticket description and escape special chars for mySQL query
-				$issueDesc = mysqli_real_escape_string($dbc, $_POST['desc']);
-				$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
-				break;
-			
-			default:
-				break;
+				case 'newTicket':
+					// Set variables
+					$userID = $_SESSION['userID'];
+					$categoryID = $_POST['category'];
+					$priorityID = $_POST['priority'];
+					// Sanitize ticket description and escape special chars for mySQL query
+					$issueDesc = mysqli_real_escape_string($dbc, $_POST['desc']);
+					$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
+					break;
+				
+				default:
+					break;
+			}
 		}
+		
 	}
 
 	// Get new message count
