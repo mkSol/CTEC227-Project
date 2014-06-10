@@ -8,9 +8,12 @@
 	<?php
 		require("incl/sqlConnect.inc.php");
 		session_start();
-		$errorlog_var = "INSERT INTO errorLog VALUES (" . "NULL" . "," . "{$_SESSION['userID']}"  .  "," . "now()" . "," . "'user logged out'" . ")";
-		echo "$errorlog_var";
-		$err_result =mysqli_query($dbc, $errorlog_var);
+
+		// Record user login to DB
+		$activitylog_var = "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Logout', '{$_SESSION['username']} logged out')";
+		$activity_result =mysqli_query($dbc, $activitylog_var);	
+
+		// Destroy dession vars before pushing user to login page
 		session_destroy();
 		header("Location: login.php");
 	?>

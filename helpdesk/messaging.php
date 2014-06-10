@@ -1,3 +1,11 @@
+<?php 
+	session_start();
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -98,19 +106,12 @@
 		}
 		echo '</dl>';
 		echo '</div>';
-	}
-
-	session_start();
-
-	include("navigation.php");
-	require("incl/sqlConnect.inc.php");
-	include("incl/paginatedtable.inc.php");
-
-	if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-		header("Location: login.php");
-	}
+}
 
 	// ============================ Page Content Start ===============================
+
+	include("navigation.php"); // Load nav bar	
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
 
 	echo '<div class="row">';
 	// Check if we should load inbox or outbox based on url params given by navigation links

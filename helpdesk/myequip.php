@@ -1,3 +1,13 @@
+<?php 
+	session_start();
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
+
+	// Set session var for view ticket form direct
+	$_SESSION['equippage'] = "myequip";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,23 +49,16 @@
 		//echo "</table>";
 	}
 
-	session_start();
+	// ============================ My Equip Page Content Start ===============================
 
-	include("navigation.php");
-	require("incl/sqlConnect.inc.php");
+	include("navigation.php"); // Load nav bar	
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
+	
 
-	if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-		header("Location: login.php");
-	}
+	echo '<div class="row">';
+	echo '<div class="large-12 columns" id="myEquip">';
 
-	// Set session var for view ticket form direct
-	$_SESSION['equippage'] = "myequip";
-?>
-
-<div class="row">
-<div class="large-12 columns" id="myEquip">
-<?php 
-	include("incl/paginatedtable.inc.php");
+	echo '<h2>My Equipment</h2>';
 
 	// Get username and ID
 	$username = $_SESSION['username'];

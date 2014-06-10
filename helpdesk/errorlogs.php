@@ -1,3 +1,11 @@
+<?php 
+	session_start();
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,26 +17,20 @@
 </head>
 
 <?php 
-		session_start();
 
-		include("navigation.php");
-		require("incl/sqlConnect.inc.php");
+	// ======================= All Tables Page Content Start ========================
 
-		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-			header("Location: login.php");
-		}
-?>
+	include("navigation.php"); // Load nav bar	
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
 
-<div class="row">
-<div class="large-12 columns" id="errorLogs">
-<?php 
-	include("incl/paginatedtable.inc.php");
+	echo '<div class="row">';
+	echo '<div class="large-12 columns" id="errorLogs">';
 
 	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorDump AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
 	
 	echo "<h2>Error Logs</h2>";
 
-	// Output ticket table named MyTickets, view=true, edit=fale, delete=false
+	// Output ticket table, view=true, edit=fale, delete=false
 	output_table($sql,"errorLog",0,0,1);
 
 	

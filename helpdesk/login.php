@@ -6,7 +6,9 @@
 	<meta charset="UTF-8">
 	<title>Greenwell IRS - Login</title>
 	<?php 
-		require("incl/scripts.inc.html")
+		require("incl/scripts.inc.html"); // CSS, Javascript, etc
+		require("incl/sqlConnect.inc.php"); // Connect to SQL DB
+		include("incl/errorhandler.inc.php"); // Error handling
 	?>	
 </head>
 <body>
@@ -52,11 +54,10 @@
 		$_SESSION['deptID'] = $result['department'];
 	}
 
-	require("incl/sqlConnect.inc.php"); // Connect to SQL DB
-
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 		display_login_form();
 	} else {
+		// Set sanitized vars for query ahead
 		$username = mysqli_real_escape_string($dbc, $_POST['username']);
 		$passwd = mysqli_real_escape_string($dbc, $_POST['passwd']);
 		// Query for username, password, first+last name, email, priv level and role
@@ -66,9 +67,12 @@
 		if ($result) {
 			session_start();
 			set_session_variables();
-			setcookie("privLevel", $result['privilege']);
-			$errorlog_var = "INSERT INTO errorLog VALUES (" . "NULL" . "," . "{$_SESSION['userID']}"  .  "," . "now()" . "," . "'user logged in'" . ")";
-			$err_result =mysqli_query($dbc, $errorlog_var);			
+
+			// Record user login to DB
+			$activitylog_var = "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Login', '{$_SESSION['username']} logged in')";
+			$activity_result =mysqli_query($dbc, $activitylog_var);			
+
+			// Push user to home page after successful login
 			header("Location: home.php");
 		} else {
 			echo "<p>Incorrect username or password, please try again.</p>";

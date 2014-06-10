@@ -36,6 +36,9 @@
 					$sqlEdit .= " WHERE " . $idName . "='" . $idVal . "' LIMIT 1";
 					//echo $sqlEdit;
 					mysqli_query($dbc,$sqlEdit);
+					// Log edit to database
+					$activityLog = mysqli_real_escape_string($dbc,$sqlEdit);
+					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Edit', '$activityLog')");
 					break;
 
 				case 'edit':
@@ -47,22 +50,32 @@
 					$status = mysqli_real_escape_string($dbc, $_POST['status']);
 					if ($status == "1") { // If setting ticket to OPEN status
 						// Then make sure to clear assignedTo field
-						mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc', assignedTo=null WHERE ticketID='{$_POST['id']}' LIMIT 1");	
+						$sqlEdit = "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc', assignedTo=null WHERE ticketID='{$_POST['id']}' LIMIT 1";
+						mysqli_query($dbc, $sqlEdit);	
 					} else { // Otherwise, simply update ticket details
-						mysqli_query($dbc, "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1");
+						$sqlEdit = "UPDATE ticket SET timestamp='$date', categoryID='$category', priorityID='$priority', statusID='$status', issueDesc='$desc' WHERE ticketID='{$_POST['id']}' LIMIT 1";
+						mysqli_query($dbc, $sqlEdit);
 					}
+					// Log edit to database
+					$activityLog = mysqli_real_escape_string($dbc,$sqlEdit);
+					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Edit Ticket', '$activityLog')");
 					break;
 
 				case 'comment':
 					// Sanitize ticket description and escape special chars for mySQL query
 					$comment = mysqli_real_escape_string($dbc, $_POST['comment']);
 					mysqli_query($dbc, "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '$comment')");
-					echo "INSERT INTO ticketComment (ticketID, userID, timestamp, comment) VALUES ('{$_POST['ticketID']}','{$_POST['userID']}', NOW(), '$comment')";
 					break;
 
-				case 'delete':				
-					mysqli_query($dbc, "DELETE FROM ticket WHERE ticketID='{$_POST['id']}' LIMIT 1");
+				case 'delete':
+					// Delete selected ticket
+					$sqlDelete = "DELETE FROM ticket WHERE ticketID='{$_POST['id']}' LIMIT 1";	
+					mysqli_query($dbc, $sqlDelete);
+					// Remove all comments associated with this ticket too
 					mysqli_query($dbc, "DELETE FROM ticketComment WHERE ticketID='{$_POST['id']}'");
+					// Log deletion to database
+					$activityLog = mysqli_real_escape_string($dbc,$sqlDelete);
+					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Delete Ticket', '$activityLog')");
 					break;
 
 				case 'deleteDynamic':	
@@ -70,6 +83,9 @@
 					$sqlDelete = "DELETE FROM " . $_POST['table'] . " WHERE " . $_POST['firstColumn'] . "=" . $_POST['id'];
 					//echo $sqlDelete;
 					mysqli_query($dbc,$sqlDelete);			
+					// Log deletion to database
+					$activityLog = mysqli_real_escape_string($dbc,$sqlDelete);
+					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Delete', '$activityLog')");
 					break;
 				case 'editEquip':
 					// Set variables, assign "none" to userID if deptID is used
@@ -87,21 +103,25 @@
 
 					// If a linkID is set in userEquip table:
 					if ($_POST['linkID'] !== "none") {
-						mysqli_query($dbc, "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
+						$sqlEquip = "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1";
+						mysqli_query($dbc, $sqlEquip);
 						if ($userID == "" && $deptID == "none") { // If no user and dept is set, delete userEquip record
 							mysqli_query($dbc, "DELETE FROM userEquip WHERE linkID='{$_POST['linkID']}' LIMIT 1");
 						} else { // Otherwise update userEquip record
 							mysqli_query($dbc, "UPDATE userEquip SET userID='$userID', deptID='$deptID' WHERE linkID='{$_POST['linkID']}' LIMIT 1");
 						}
 					} else { // Create a new userEquip link if there isn't one
-						mysqli_query($dbc, "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1");
+						$sqlEquip = "UPDATE equipment SET equipDesc='$equipDesc', equipSerial='$equipSerial', equipType='{$_POST['equipType']}' WHERE equipID='{$_POST['id']}' LIMIT 1";
+						mysqli_query($dbc, $sqlEquip);
 						if ($userID == "") { // Set when no userID is set
 							mysqli_query($dbc, "INSERT INTO userEquip (equipID, userID, deptID) VALUES ('{$_POST['id']}', NULL, '$deptID')");
 						} else { // Set when no deptID is set
 							mysqli_query($dbc, "INSERT INTO userEquip (equipID, userID, deptID) VALUES ('{$_POST['id']}', '$userID', NULL)");
-						}
-						
+						}	
 					}
+					// Log edit to database
+					$activityLog = mysqli_real_escape_string($dbc,$sqlEquip);
+					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Edit Equip', '$activityLog')");
 					break;
 
 				case 'assign':
@@ -110,6 +130,9 @@
 					$assignSQL = "UPDATE ticket SET assignedTo='" . $userID . "', statusID='2' WHERE ticketID='{$_POST['id']}'";
 					//echo $assignSQL;
 					mysqli_query($dbc,$assignSQL);
+					// Log ticket assignment to database
+					$activityLog = mysqli_real_escape_string($dbc,$assignSQL);
+					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Assign Ticket', '$activityLog')");
 
 				default:
 					break;

@@ -1,3 +1,11 @@
+<?php 
+	session_start();
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,16 +46,6 @@
 		echo '</form>' . "\n";
 	}
 
-		session_start();
-
-		include("navigation.php");
-		require("incl/sqlConnect.inc.php");
-		include("incl/paginatedtable.inc.php");
-
-		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-			header("Location: login.php");
-		}
-
 	$tblresult = mysqli_query($dbc, "SHOW TABLES");
 	$tables = [];
 	while($table = mysqli_fetch_row($tblresult)) {
@@ -60,6 +58,9 @@
 	}
 	
 	// ======================= All Tables Page Content Start ========================
+
+	include("navigation.php"); // Load nav bar	
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
 
 	echo '<div class="row">';
 	echo "<h2>View All Tables</h2>" . "\n";

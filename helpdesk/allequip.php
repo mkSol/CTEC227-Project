@@ -1,12 +1,8 @@
 <?php 
 	session_start();
-
-	include("navigation.php");
-	require("incl/sqlConnect.inc.php");
-
-	if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-		header("Location: login.php");
-	}
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
 
 ?>
 
@@ -16,12 +12,12 @@
 	<meta charset="UTF-8">
 	<title>All Equip</title>
 	<?php 
-		require("incl/scripts.inc.html")
+		require("incl/scripts.inc.html"); // CSS, Javascript, etc
+		
 	?>	
 </head>
 
 <?php 
-	include("incl/paginatedtable.inc.php");
 
 	function table_user_assigned_equip() {
 		global $dbc;
@@ -101,7 +97,13 @@
 		
 	}
 
-	//=================================Page content start=================================
+	//=================================All Equip Page content start=================================
+
+	include("navigation.php"); // Load nav bar	
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
+
+	echo '<div class="row">';
+	echo '<div class="large-12 columns" id="allEquip">';
 
 	echo "<h2>All Equipment</h2>";
 
@@ -194,6 +196,8 @@
 	*/
 ?>
 
+</div>
+</div>
 <div id="editEquip" class="reveal-modal" data-reveal></div>
 </body>
 </html>

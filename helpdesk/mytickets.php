@@ -1,12 +1,8 @@
 <?php 
 	session_start();
-	// Connect to SQL DB
-	require("incl/sqlConnect.inc.php");
-	include("navigation.php");
-
-	if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-		header("Location: login.php");
-	}
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
 
 	// Set session var for view ticket form direct
 	$_SESSION['ticketpage'] = "mytickets";
@@ -24,10 +20,16 @@
 </head>
 <body>
 
-<div class="row">
-<div class="large-12 columns" id="myTickets">	
+	
 <?php 
-	include("incl/paginatedtable.inc.php");
+
+	// ============================ Page Content Start ===============================
+
+	include("navigation.php"); // Load nav bar	
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
+
+	echo '<div class="row">';
+	echo '<div class="large-12 columns" id="myTickets">';
 
 	// Get username
 	$username = $_SESSION['username'];

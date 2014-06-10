@@ -1,3 +1,11 @@
+<?php 
+	session_start();
+	require("incl/sqlConnect.inc.php"); // Connect to DB
+	include("incl/errorhandler.inc.php"); // Error handling
+	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,22 +17,12 @@
 </head>
 <body>
 	<?php 
-		session_start();
-		require("incl/sqlConnect.inc.php"); // Connect to SQL DB
-
-		// Display navigation
-		include("navigation.php");
-		
-		// Kick user out to login page if not logged in
-		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== '1') {
-			header("Location: login.php");
-		}
 
 		// ============================ Page Content Start ===============================
 
-
-		// Check privilege level and load appropriate pages
-		include("dashboard.php");
+		include("navigation.php"); // Load nav bar	
+		include("incl/paginatedtable.inc.php"); // load function for displaying tables
+		include("dashboard.php"); // Load Dashboard
 	?>
 
 </body>
