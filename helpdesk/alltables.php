@@ -93,8 +93,8 @@
 		echo '</div>';
 	} else {
 		echo '<div id="allTables" class="row">';
-		echo '<h4>Table: ' . $_SESSION['tableSelect'] . '</h4>' . "\n";
-		output_table("SELECT * FROM user","user",0,1,1);
+		echo '<h4>Table: ' . 'activityLog' . '</h4>' . "\n";
+		output_table("SELECT * FROM user","activityLog",0,1,1);
 		echo '</div>';
 	}
 
