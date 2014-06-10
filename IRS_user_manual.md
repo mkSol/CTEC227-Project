@@ -49,10 +49,13 @@ Your new trouble ticket will be listed as open and unassigned.
 ######View Your Tickets
 ![mytickets.png](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/mytickets.png).
 
+1. The fields are sortable in ascending or descending order by clicking the column head.
+2. A search may be performed. Enter text and click Search.
+3. If you have a lot of tickets or equipment or messages, back and forth arrows will appear.
 
 
 
-View your equipment.
+######View your equipment
 ![my_equipment.png](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/my_equipment.png).
 
 
