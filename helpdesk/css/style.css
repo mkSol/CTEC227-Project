@@ -1,4 +1,13 @@
-#header{
+/* Black background for the header */
 
+#header{
 	background: #000;
+}
+
+/* Links */
+a {
+  color: #339933;
+  a:hover, a:focus {
+    color: #006600; 
+	}
 }
