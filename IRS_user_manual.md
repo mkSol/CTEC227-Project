@@ -30,8 +30,8 @@ The View and Mail menu options have a drop down shown.
  3. View tickets you have created and are open.
  3. Send and receive messages from other IRS users.
 
-Create New ticket option.
-To create a new ticket click the New Ticket menu option.
+######Create New ticket option.
+* To create a new ticket click the New Ticket menu option.
 
 ![Create_Ticket](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/create_ticket.png).
 
