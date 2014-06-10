@@ -62,7 +62,7 @@ Your new trouble ticket will be listed as open and unassigned.
 
 The messages system is self explanatory.
 
-[Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/compose_message.png).
+![Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/compose_message.png).
 
 
 
