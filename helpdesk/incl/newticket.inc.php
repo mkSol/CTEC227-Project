@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 
-	<form action="mytickets.php" method="post">
+	<form action="mytickets.php" method="post" data-abide>
 		<div class="row">
 			<h1>Create New Ticket</h1>
 			<div class="large-6 columns">
@@ -31,7 +31,7 @@
 			<div class="large-12 columns">
 
 			<label for="desc">Problem Description</label>
-			<textarea name="desc" id="desc" rows="5" cols="100" placeholder="Please describe the problem you are experiencing here."></textarea>
+			<textarea name="desc" id="desc" rows="5" cols="100" placeholder="Please describe the problem you are experiencing here." required></textarea>
 			
 			<br>
 			<input class="success button" type="submit" value="Submit">
