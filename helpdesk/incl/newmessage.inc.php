@@ -12,7 +12,24 @@
 			</div>
 			<div class="large-6 columns">
 				<label for="msgTo">To: </label>
-				<input type="text" name="msgTo" value="<?php if (isset($_GET['username'])) {echo $_GET['username'];} ?>" required>
+				<input type="text" list="users" name="msgTo" value="<?php if (isset($_GET['username'])) {echo $_GET['username'];} ?>" required>
+
+				<?php 
+
+					require("sqlConnect.inc.php"); 				
+
+					$result = mysqli_query($dbc, "SELECT username FROM user");
+
+					echo "<datalist id='users'>";
+
+					while($row = mysqli_fetch_row($result)) {
+
+						echo "<option value=\"{$row[0]}\">";
+					}
+
+					echo "</datalist>";
+
+				 ?>
 			</div>
 		</div>
 
