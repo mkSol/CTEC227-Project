@@ -73,6 +73,7 @@
 	echo '</div>';	
 	echo '</div>';
 
+	print_r($_SESSION);
 	
 	table_select($tables);
 	
