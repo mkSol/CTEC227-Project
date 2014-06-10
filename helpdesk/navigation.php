@@ -26,17 +26,18 @@
 						</ul>
 				</li>
 
+				<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
+
 				<li class="has-dropdown">
 					<?php 
 					if ($newMsgs) {
-						echo '<a href="#">Mail (' . $newMsgs . ')</a>'; 
+						echo '<a href="messaging.php?box=in">Mailbox (' . $newMsgs . ')</a>'; 
 						//echo $newMsgs;
 					} else {
-						echo '<a href="#">Mail</a>'; 
+						echo '<a href="messaging.php?box=in">Mailbox</a>'; 
 					}
 					?>
 						<ul class="dropdown">
-							<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
 							<li><a class="inbox" href="messaging.php?box=in">Inbox</a></li>
 							<li><a class="outbox" href="messaging.php?box=out">Outbox</a></li>
 						</ul>
@@ -77,21 +78,22 @@
 					</ul>
 			</li>
 
-			<li class="has-dropdown">
-				<?php 
-				if ($newMsgs) {
-					echo '<a href="#">Mail (' . $newMsgs . ')</a>'; 
-					//echo $newMsgs;
-				} else {
-					echo '<a href="#">Mail</a>'; 
-				}
-				?>
-					<ul class="dropdown">
-						<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
-						<li><a class="inbox" href="messaging.php?box=in">Inbox</a></li>
-						<li><a class="outbox" href="messaging.php?box=out">Outbox</a></li>
-					</ul>
-			</li>
+			<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
+
+				<li class="has-dropdown">
+					<?php 
+					if ($newMsgs) {
+						echo '<a href="messaging.php?box=in">Mailbox (' . $newMsgs . ')</a>'; 
+						//echo $newMsgs;
+					} else {
+						echo '<a href="messaging.php?box=in">Mailbox</a>'; 
+					}
+					?>
+						<ul class="dropdown">
+							<li><a class="inbox" href="messaging.php?box=in">Inbox</a></li>
+							<li><a class="outbox" href="messaging.php?box=out">Outbox</a></li>
+						</ul>
+				</li>
 
 			<li><a href="home.php">Home</a></li>
 
@@ -127,21 +129,22 @@
 				</ul>
 			</li>
 
-			<li class="has-dropdown">
-				<?php 
-				if ($newMsgs) {
-					echo '<a href="#">Mail (' . $newMsgs . ')</a>'; 
-					//echo $newMsgs;
-				} else {
-					echo '<a href="#">Mail</a>'; 
-				}
-				?>
-					<ul class="dropdown">
-						<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
-						<li><a class="inbox" href="messaging.php?box=in">Inbox</a></li>
-						<li><a class="outbox" href="messaging.php?box=out">Outbox</a></li>
-					</ul>
-			</li>
+			<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
+
+				<li class="has-dropdown">
+					<?php 
+					if ($newMsgs) {
+						echo '<a href="messaging.php?box=in">Mailbox (' . $newMsgs . ')</a>'; 
+						//echo $newMsgs;
+					} else {
+						echo '<a href="messaging.php?box=in">Mailbox</a>'; 
+					}
+					?>
+						<ul class="dropdown">
+							<li><a class="inbox" href="messaging.php?box=in">Inbox</a></li>
+							<li><a class="outbox" href="messaging.php?box=out">Outbox</a></li>
+						</ul>
+				</li>
 
 			<li><a href="home.php">Home</a></li>
 
@@ -182,17 +185,18 @@
 						</ul>
 				</li>
 
+				<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
+
 				<li class="has-dropdown">
 					<?php 
 					if ($newMsgs) {
-						echo '<a href="#">Mail (' . $newMsgs . ')</a>'; 
+						echo '<a href="messaging.php?box=in">Mailbox (' . $newMsgs . ')</a>'; 
 						//echo $newMsgs;
 					} else {
-						echo '<a href="#">Mail</a>'; 
+						echo '<a href="messaging.php?box=in">Mailbox</a>'; 
 					}
 					?>
 						<ul class="dropdown">
-							<li class="newMessage"><a data-reveal-id="newMessage" href="#">Compose</a></li>
 							<li><a class="inbox" href="messaging.php?box=in">Inbox</a></li>
 							<li><a class="outbox" href="messaging.php?box=out">Outbox</a></li>
 						</ul>

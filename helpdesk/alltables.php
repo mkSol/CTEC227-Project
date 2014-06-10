@@ -30,7 +30,11 @@
 		echo '<div class="large-10 columns">' . "\n";
 		echo '<select name="tableSelect" id="tableSelect">' . "\n";
 			for ($tblCount=0; $tblCount < count($tables); $tblCount++) { 
-			echo '<option value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
+			if (isset($_POST['tableSelect']) && $_POST['tableSelect'] == $tables[$tblCount]) {
+				echo '<option selected="selected" value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
+			} else {
+				echo '<option value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
+			}
 		}
 		echo '</select>' . "\n";
 		echo '</div>';
@@ -80,10 +84,12 @@
 		//echo "INSERT TABLE FOR " . $_SESSION['tableSelect'] . "!!!";
 
 		echo '<div id="allTables" class="row">';
+		echo '<h4>Table: ' . $_SESSION['tableSelect'] . '</h4>' . "\n";
 		output_table($tblSQL,$_SESSION['tableSelect'],0,1,1);
 		echo '</div>';
 	} else {
 		echo '<div id="allTables" class="row">';
+		echo '<h4>Table: ' . $_SESSION['tableSelect'] . '</h4>' . "\n";
 		output_table("SELECT * FROM user","user",0,1,1);
 		echo '</div>';
 	}
