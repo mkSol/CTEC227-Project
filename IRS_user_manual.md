@@ -46,6 +46,21 @@ Notice the Priority and Category options in the New Ticket window.
 
 Your new trouble ticket will be listed as open and unassigned.
 
+######View Your Tickets
+![mytickets.png](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/mytickets.png).
+
+
+
+
+View your equipment.
+![my_equipment.png](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/my_equipment.png).
+
+
+
 The messages system is self explanatory.
+
+[Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/compose_message.png).
+
+
 
 Be sure to Log Out when your work is completed with the IRS system.
