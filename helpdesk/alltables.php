@@ -26,7 +26,7 @@
 		echo '<div class="row">' . "\n";
 		echo '<div class="large-6 columns">' . "\n";
 		//echo '<div class="row collapse">' . "\n";
-
+		echo '<div class="row collapse">';
 		echo '<div class="large-10 columns">' . "\n";
 		echo '<select name="tableSelect" id="tableSelect">' . "\n";
 			for ($tblCount=0; $tblCount < count($tables); $tblCount++) { 
@@ -36,7 +36,8 @@
 		echo '</div>';
 
 		echo '<div class="small-2 columns" id="allTablesSubmit">' . "\n";
-		echo '<input type="submit" value="Go" class="success button">' . "\n";
+		echo '<input type="submit" value="Go" class="success button postfix">' . "\n";
+		echo '</div>';
 		echo '</div>';
 
 		//echo '</div>'; // Close row collapse
@@ -63,10 +64,12 @@
 	include("incl/paginatedtable.inc.php"); // load function for displaying tables
 
 	echo '<div class="row">';
+	echo '<div class="large-12 columns">';
 	echo "<h2>View All Tables</h2>" . "\n";
-	echo '<h3>Select a Table: </h3>' . "\n";	
+	echo '</div>';	
 	echo '</div>';
 
+	
 	table_select($tables);
 	
 
