@@ -26,7 +26,7 @@
 	echo '<div class="row">';
 	echo '<div class="large-12 columns" id="errorLogs">';
 
-	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorDump AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
+	$sql = "SELECT errorLog.errorID AS 'Error ID', errorLog.timestamp AS 'Timestamp', user.userID AS 'User ID', user.username AS 'Username', errorLog.errorNo AS 'Error Number', errorLog.errorFile AS 'Error File', errorLog.errorLine AS 'Error Line', errorLog.errorStr AS 'Error Dump' FROM errorLog JOIN user ON errorLog.userID=user.userID";
 	
 	echo "<h2>Error Logs</h2>";
 

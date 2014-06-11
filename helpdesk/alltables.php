@@ -72,8 +72,6 @@
 	echo "<h2>View All Tables</h2>" . "\n";
 	echo '</div>';	
 	echo '</div>';
-
-	print_r($_SESSION);
 	
 	table_select($tables);
 	
