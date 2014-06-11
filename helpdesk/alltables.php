@@ -92,7 +92,7 @@
 	} else {
 		echo '<div id="allTables" class="row">';
 		echo '<h4>Table: ' . 'activityLog' . '</h4>' . "\n";
-		output_table("SELECT * FROM user","activityLog",0,1,1);
+		output_table("SELECT * FROM activityLog","activityLog",0,1,1);
 		echo '</div>';
 	}
 
