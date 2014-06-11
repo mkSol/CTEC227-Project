@@ -47,11 +47,18 @@
 					<label>Department (Overrides UserID):</label>
 					<select name="deptID" id="deptID">
 						<option <?php if($dept == 'none') echo "selected=\"selected\"" ?> value="none">Assigned To Employee</option>
-						<option <?php if($dept == '1') echo "selected=\"selected\"" ?> value="1">Management</option>
-						<option <?php if($dept == '2') echo "selected=\"selected\"" ?> value="2">HR</option>
-						<option <?php if($dept == '3') echo "selected=\"selected\"" ?> value="3">Marketing</option>
-						<option <?php if($dept == '4') echo "selected=\"selected\"" ?> value="4">IT</option>
-						<option <?php if($dept == '5') echo "selected=\"selected\"" ?> value="5">Customer Service</option>
+					<?php 
+					require("sqlConnect.inc.php"); // Connect to DB
+					$sqlDept = "SELECT * FROM department";
+					$resultDept = mysqli_query($dbc, $sqlDept);
+					while ($rows = mysqli_fetch_array($resultDept)) {
+						if ($dept = $rows[0]) {
+							echo '<option selected="selected" value="' . $rows[0] . '">' . $rows[1] . '</option>';
+						} else {
+							echo '<option value="' . $rows[0] . '">' . $rows[1] . '</option>';
+						}
+					}
+					?>
 					</select>
 				</div>
 			</div>
