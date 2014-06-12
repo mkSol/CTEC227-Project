@@ -80,7 +80,11 @@
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		if (isset($_POST['tableSelect'])) {
 			$_SESSION['tableSelect'] = $_POST['tableSelect'];
+			$_SESSION['sql'] = "SELECT * FROM " . $_POST['tableSelect'];
 		}
+	} else {
+		$_SESSION['tableSelect'] = "activityLog";
+		$_SESSION['sql'] = "SELECT * FROM activityLog";
 	}
 	if (isset($_SESSION['tableSelect'])) {
 		$tblSQL = "SELECT * FROM " . $_SESSION['tableSelect'];
@@ -96,6 +100,8 @@
 		output_table("SELECT * FROM activityLog","activityLog",0,1,1);
 		echo '</div>';
 	}
+	// Export table link
+	echo '<a href="incl/outputtable.inc.php" class="success button">Export Table</a>';
 
 ?>
 
