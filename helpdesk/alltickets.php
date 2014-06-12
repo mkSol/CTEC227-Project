@@ -37,7 +37,7 @@
 	echo "<h2>Ticket Pool</h2>";
 
 	output_table($sql,"TicketPool",1,1,1);
-	echo '<a href="incl/outputtable.inc.php" class="success button">Export Table</a>';
+	//echo '<a href="incl/outputtable.inc.php" class="success button">Export Table</a>';
 	
 ?>
 

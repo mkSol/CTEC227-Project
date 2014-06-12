@@ -134,9 +134,6 @@
 					$activityLog = mysqli_real_escape_string($dbc,$assignSQL);
 					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Assign Ticket', '$activityLog')");
 
-				case 'export':
-					include("outputtable.inc.php");
-
 				default:
 					break;
 			}
