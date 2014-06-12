@@ -1,6 +1,6 @@
 <?php 
 require("sqlConnect.inc.php");
-//session_start();
+session_start();
 
 // Outputs contets of SQL query results to a CSV spreadsheet
 $sql = $_SESSION['sql'];
