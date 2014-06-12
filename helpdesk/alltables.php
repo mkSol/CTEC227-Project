@@ -33,6 +33,8 @@
 			for ($tblCount=0; $tblCount < count($tables); $tblCount++) { 
 			if (isset($_POST['tableSelect']) && $_POST['tableSelect'] == $tables[$tblCount]) {
 				echo '<option selected="selected" value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
+			} elseif (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == $tables[$tblCount]) {
+				echo '<option selected="selected" value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
 			} else {
 				echo '<option value="' . $tables[$tblCount] . '">' . $tables[$tblCount] . '</option>' . "\n";
 			}
@@ -83,7 +85,6 @@
 			$_SESSION['sql'] = "SELECT * FROM " . $_POST['tableSelect'];
 		}
 	} else {
-		$_SESSION['tableSelect'] = "activityLog";
 		$_SESSION['sql'] = "SELECT * FROM activityLog";
 	}
 	if (isset($_SESSION['tableSelect'])) {
