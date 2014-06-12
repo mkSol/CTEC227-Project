@@ -2,7 +2,9 @@
 function errorHandler($errno, $errstr, $errfile, $errline, $errcontext) {
 	global $dbc;
 	// Print out user-friendly error message
-	echo "<p>An error has occured. Please try again later. If problem persists, contact an administrator.";
+	echo '<div data-alert class="alert-box alert round">';
+	echo "An error has occured. Please try again later. If problem persists, contact an administrator.";
+	echo '</div>';
 
 	/*
 	echo "WARNING!";

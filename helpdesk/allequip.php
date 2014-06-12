@@ -18,7 +18,7 @@
 </head>
 
 <?php 
-
+	
 	function table_user_assigned_equip() {
 		global $dbc;
 		$sql = "SELECT equipment.equipID AS 'Equipment ID', equipment.equipSerial AS 'Serial', equipment.equipDesc AS 'Description', equipType.equipType AS 'Type', userEquip.userID AS 'User ID', user.username AS 'Username', user.firstName AS 'First', user.lastName AS 'Last', department.department AS 'Department', userEquip.linkID AS 'Link ID' FROM equipment JOIN equipType ON equipment.equipType=equipType.equipTypeID JOIN userEquip ON userEquip.equipID=userEquip.equipID JOIN user ON userEquip.userID=user.userID JOIN department ON user.department=department.deptID AND userEquip.userID=user.userID AND userEquip.equipID=equipment.equipID";
@@ -112,7 +112,7 @@
 		<a href="?tbl=DeptEquip" class="success button">Equipment Assigned to Departments</a>
 		<a href="?tbl=UnassignedEquip" class="success button">Unassigned Equipment</a>
 	<?php
-
+	
 	// Check GET param to choose which table to display
 	if (isset($_GET['tbl'])) {
 		switch ($_GET['tbl']) {
