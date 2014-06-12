@@ -100,9 +100,11 @@
 		output_table("SELECT * FROM activityLog","activityLog",0,1,1);
 		echo '</div>';
 	}
+
+	echo '<div class="row">';
 	// Export table link
 	echo '<a href="incl/outputtable.inc.php" class="success button">Export Table</a>';
-
+	echo '</div>';
 ?>
 
 </body>
