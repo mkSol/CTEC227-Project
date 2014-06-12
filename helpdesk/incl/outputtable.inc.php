@@ -25,7 +25,7 @@ while ($rows = mysqli_fetch_array($result)) {
 //fclose($file); // Close file handler
 
 header("Content-type: application/csv");
-header("Content-Disposition: attachment; filename='exportTable.csv'");
+header("Content-Disposition: attachment; filename=" . "exportTable.csv");
 //readfile("exportTable.csv");
 echo $outfile;
 
