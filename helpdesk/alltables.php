@@ -3,6 +3,7 @@
 	require("incl/sqlConnect.inc.php"); // Connect to DB
 	include("incl/errorhandler.inc.php"); // Error handling
 	include("incl/logincheck.inc.php"); // Check if user is logged in, boot otherwise
+	include("incl/paginatedtable.inc.php"); // load function for displaying tables
 
 ?>
 
@@ -65,7 +66,7 @@
 	// ======================= All Tables Page Content Start ========================
 
 	include("navigation.php"); // Load nav bar	
-	include("incl/paginatedtable.inc.php"); // load function for displaying tables
+	
 
 	echo '<div class="row">';
 	echo '<div class="large-12 columns">';

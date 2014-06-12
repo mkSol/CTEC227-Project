@@ -134,6 +134,9 @@
 					$activityLog = mysqli_real_escape_string($dbc,$assignSQL);
 					mysqli_query($dbc, "INSERT INTO activityLog (userID, timestamp, type, logDump) VALUES ('{$_SESSION['userID']}', NOW(), 'Assign Ticket', '$activityLog')");
 
+				case 'export':
+					include("outputtable.inc.php");
+
 				default:
 					break;
 			}
@@ -157,119 +160,117 @@
 
 <?php 
 
-	function column_sort($col_name) {
-		// Set some vars
-		// Check if sortBy matches current column to determine sort icon
-		if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) {
-			if ($_GET['sortBy'] == $col_name->table . "." . $col_name->orgname) {
-				if ($_GET['sortOrder'] == "DESC") { // If it's descending, use desc icon
-					$sortImg = '<img src="images/sort_desc.png">';
-				} else { // Else it's ascending, use asc icon
-					$sortImg = '<img src="images/sort_asc.png">';
-				}
-			} else { // If no match, use the blank sort icon
-				$sortImg = '<img src="images/sort_both.png">';
+function column_sort($col_name) {
+	// Set some vars
+	// Check if sortBy matches current column to determine sort icon
+	if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) {
+		if ($_GET['sortBy'] == $col_name->table . "." . $col_name->orgname) {
+			if ($_GET['sortOrder'] == "DESC") { // If it's descending, use desc icon
+				$sortImg = '<img src="images/sort_desc.png">';
+			} else { // Else it's ascending, use asc icon
+				$sortImg = '<img src="images/sort_asc.png">';
 			}
-		} else { // if no url params set, default to blank sort icon
+		} else { // If no match, use the blank sort icon
 			$sortImg = '<img src="images/sort_both.png">';
 		}
-		
-
-		if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) { // If something is already set to sorting
-			if ($_GET['sortBy'] !== $col_name->table . "." . $col_name->orgname) { // If not sorting by the link that was clicked, set it to the new sort
-				$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
-				echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
-			} else {
-				if ($_GET['sortOrder'] == "ASC") { // If it was sorting ascending, swap it to descending
-					$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"DESC"))); // Merge/add sort options into url params
-					echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
-				} else { // Otherwise make it ascending
-					$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
-					echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
-				}
-			}
-		} else { // If nothing was previously set, add sorting
-			$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
-			echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
-		}
+	} else { // if no url params set, default to blank sort icon
+		$sortImg = '<img src="images/sort_both.png">';
 	}
 	
-	function next_page($page) {
-		$page++; // Increment page counter upon click
-		if ($_SERVER['QUERY_STRING']) { // If there are already url parameters, add page to the end
-			$urlParams = http_build_query(array_merge($_GET, array("page"=>$page))); // Build new url params and add/merge page
-			echo "<a href=\"?" . $urlParams . "\"><img src=\"images/forward_disabled.png\"></a>";
-		} else { // Otherwise set the url parameter to page
-			echo "<a href=\"?page=" . $page . "\"><img src=\"images/forward_disabled.png\"></a>";
-		}
-	}
 
-	function prev_page($page) {
-		$page--; // Increment page counter upon click
-		if ($_SERVER['QUERY_STRING']) { // If there are already url parameters, add page to the end
-			$urlParams = http_build_query(array_merge($_GET, array("page"=>$page))); // Build new url params and add/merge page
-			echo "<a href=\"?" . $urlParams . "\"><img src=\"images/back_disabled.png\"></a>";
-		} else { // Otherwise set the url parameter to page
-			echo "<a href=\"?page=" . $page . "\"><img src=\"images/back_disabled.png\"></a>";
-		}
-	}
-
-	function pagination_links($numRows,$rowsPerPage,$page) {
-		//echo '<div class="large-6 columns">';
-		//echo '<div class="large-4 columns">';
-		// First determine number of pages needed
-		// Form logic for entering a page number manually
-		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">';
-		echo "<div class='row'>";
-		echo "<div class='row collapse'>";
-		echo "<div class='small-10 columns'>";		
-		echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
-		echo "</div>";
-		echo "<div class='small-2 columns'>";		
-		echo '<input class="success button postfix" type="submit" value="Go">';
-		echo "</div>";
-		echo "</div>";
-		echo "</div>";		
-		echo '</form>';
-
-		if ($numRows % $rowsPerPage != 0) {
-			$numPages = intval($numRows / $rowsPerPage) + 1;
+	if (isset($_GET['sortBy']) && isset($_GET['sortOrder'])) { // If something is already set to sorting
+		if ($_GET['sortBy'] !== $col_name->table . "." . $col_name->orgname) { // If not sorting by the link that was clicked, set it to the new sort
+			$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
+			echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
 		} else {
-			$numPages = intval($numRows / $rowsPerPage);
+			if ($_GET['sortOrder'] == "ASC") { // If it was sorting ascending, swap it to descending
+				$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"DESC"))); // Merge/add sort options into url params
+				echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
+			} else { // Otherwise make it ascending
+				$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
+				echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
+			}
 		}
-		// Previous page link
-		if (!($page <= 1)) {
-			prev_page($page);
-		}
-		// Echo out current page
-		echo $page;
-		// Next page link
-		if (!($page >= $numPages)) {
-			next_page($page);
-		}
+	} else { // If nothing was previously set, add sorting
+		$urlParams = http_build_query(array_merge($_GET, array("sortBy"=>$col_name->table . "." . $col_name->orgname,"sortOrder"=>"ASC"))); // Merge/add sort options into url params
+		echo "<th><a href=\"?" . $urlParams . "\">" . $col_name->name . "$sortImg</a></th>";
+	}
+}
 
-		// List total page number
-		echo "<p>Number of pages: $numPages</p>";
+function next_page($page) {
+	$page++; // Increment page counter upon click
+	if ($_SERVER['QUERY_STRING']) { // If there are already url parameters, add page to the end
+		$urlParams = http_build_query(array_merge($_GET, array("page"=>$page))); // Build new url params and add/merge page
+		echo "<a href=\"?" . $urlParams . "\"><img src=\"images/forward_disabled.png\"></a>";
+	} else { // Otherwise set the url parameter to page
+		echo "<a href=\"?page=" . $page . "\"><img src=\"images/forward_disabled.png\"></a>";
+	}
+}
+
+function prev_page($page) {
+	$page--; // Increment page counter upon click
+	if ($_SERVER['QUERY_STRING']) { // If there are already url parameters, add page to the end
+		$urlParams = http_build_query(array_merge($_GET, array("page"=>$page))); // Build new url params and add/merge page
+		echo "<a href=\"?" . $urlParams . "\"><img src=\"images/back_disabled.png\"></a>";
+	} else { // Otherwise set the url parameter to page
+		echo "<a href=\"?page=" . $page . "\"><img src=\"images/back_disabled.png\"></a>";
+	}
+}
+
+function pagination_links($numRows,$rowsPerPage,$page) {
+	//echo '<div class="large-6 columns">';
+	//echo '<div class="large-4 columns">';
+	// First determine number of pages needed
+	// Form logic for entering a page number manually
+	echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">';
+	echo "<div class='row'>";
+	echo "<div class='row collapse'>";
+	echo "<div class='small-6 columns'>";		
+	echo '<input type="text" name="pageNo" placeholder="' . $page . '">';
+	echo "</div>";
+	echo "<div class='small-6 columns'>";		
+	echo '<input class="success button postfix" type="submit" value="Jump to Page">';
+	echo "</div>";
+	echo "</div>";
+	echo "</div>";		
+	echo '</form>';
+
+	if ($numRows % $rowsPerPage != 0) {
+		$numPages = intval($numRows / $rowsPerPage) + 1;
+	} else {
+		$numPages = intval($numRows / $rowsPerPage);
+	}
+	// Previous page link
+	if (!($page <= 1)) {
+		prev_page($page);
+	}
+	// Echo out current page
+	echo $page;
+	// Next page link
+	if (!($page >= $numPages)) {
+		next_page($page);
 	}
 
-	function search_filter() {
-		// Form for submitting search filter string
-		// Reset page counter back to 1 when submitting form
-		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET) . '">';
-		echo "<div class='row'>";
-		echo "<div class='row collapse'>";
-		echo "<div class='small-10 columns'>";
-		echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
-		echo "</div>";
-		echo "<div class='small-2 columns'>";
-		echo '<input class="success button postfix" type="submit" value="Search">';
-		echo "</div>";
-		echo "</div>";
-		echo "</div>";
-		echo '</form>';
-	}
+	// List total page number
+	echo "<p>Number of pages: $numPages</p>";
+}
 
-	// ================== Table Page Start ====================
+function search_filter() {
+	// Form for submitting search filter string
+	// Reset page counter back to 1 when submitting form
+	echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET) . '">';
+	echo "<div class='row'>";
+	echo "<div class='row collapse'>";
+	echo "<div class='small-10 columns'>";
+	echo '<input type="text" name="searchFilter" placeholder="' . "Search..." . '">';
+	echo "</div>";
+	echo "<div class='small-2 columns'>";
+	echo '<input class="success button postfix" type="submit" value="Search">';
+	echo "</div>";
+	echo "</div>";
+	echo "</div>";
+	echo '</form>';
+}
 
 function output_table($sql,$tableName,$view,$edit,$delete) {
 	global $dbc;
@@ -449,6 +450,7 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		// Close table
 		echo "</table>";
 		echo "</div>";
+
 	} else { // SQL query returned no records
 		pagination_links($numRows,$rowsPerPage,$page);
 		search_filter();
@@ -462,64 +464,6 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	echo '<div id="assign" class="reveal-modal" data-reveal>Testing</div>';
 	
 }
-
-if (isset($_POST['submitType'])) {
-	switch ($_POST['submitType']) {
-		case 'editDynamic':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Record has been updated.";
-			echo '</div>';
-			break;
-		
-		case 'edit':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Ticket has been updated.";
-			echo '</div>';
-			break;
-
-		case 'comment':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Your comment has been submitted.";
-			echo '</div>';
-			break;
-
-		case 'deleteDynamic':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Record has been deleted.";
-			echo '</div>';
-			break;
-
-		case 'delete':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Ticket has been deleted.";
-			echo '</div>';
-			break;
-
-		case 'editEquip':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Equipment has been updated.";
-			echo '</div>';
-			break;
-
-		case 'assign':
-			echo '<div data-alert class="alert-box success radius">';
-			echo "Ticket has been assigned to you.";
-			echo '</div>';
-			break;
-
-		default:
-			break;
-	}
-}
-
-// ====================== Page Content Start ================================
-
-//$sql = "SELECT userID AS 'User ID', username AS Username, email AS Email, firstName AS First, lastName AS Last FROM user";
-
-// This function is all that's needed to call a full table
-// Just pass in an SQL statement and the name of the table you want it labeled as
-
-//output_table($sql,"User_Table");
 
 ?>
 
