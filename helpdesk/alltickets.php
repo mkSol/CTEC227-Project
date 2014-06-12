@@ -24,7 +24,6 @@
 	// ======================= Ticket Pool Page Content Start ========================
 
 	include("navigation.php"); // Load nav bar	
-	
 
 	echo '<div class="row">';
 	echo '<div id="allTickets">';

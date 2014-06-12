@@ -324,11 +324,13 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 		$sortParams = "ORDER BY $sortBy $sortOrder";
 	} else {
 		// Overrides to sort order for errorLog and activityLog to show newest records first
-		if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "activityLog") {
-			$sortParams = "ORDER BY logID DESC";
-		}
-		if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "errorLog") {
-			$sortParams = "ORDER BY errorID DESC";
+		if ($_SERVER['PHP_SELF'] == "/CTEC227-Project/helpdesk/alltables.php") { // Make sure to only do this part on alltables page
+			if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "activityLog") {
+				$sortParams = "ORDER BY logID DESC";
+			}
+			if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "errorLog") {
+				$sortParams = "ORDER BY errorID DESC";
+			}
 		}
 	}
 	
