@@ -45,6 +45,8 @@
 
 				<li><a href="home.php">Home</a></li>
 
+				<li class="profile"><a data-reveal-id="profile" href="#">Profile</a></li>
+
 				<li><a href="logout.php">Log Out</a></li>
 			</ul>	
 		</ul>
@@ -97,6 +99,8 @@
 
 			<li><a href="home.php">Home</a></li>
 
+			<li class="profile"><a data-reveal-id="profile" href="#">Profile</a></li>
+
 			<li><a href="logout.php">Log Out</a></li>
 		</ul>
 		</section>
@@ -147,6 +151,8 @@
 				</li>
 
 			<li><a href="home.php">Home</a></li>
+
+			<li class="profile"><a data-reveal-id="profile" href="#">Profile</a></li>
 
 			<li><a href="logout.php">Log Out</a></li>
 		</ul>
