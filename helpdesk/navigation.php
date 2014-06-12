@@ -203,10 +203,110 @@
 
 				<li><a href="home.php">Home</a></li>
 
+				<li class="profile"><a data-reveal-id="profile" href="#">Profile</a></li>
+
 				<li><a href="logout.php">Log Out</a></li>
 			</ul>
 			</section>
 		</nav>	
+		<?php
+	}
+
+	function profile_page() {
+		// This function will display profile information to be used within a modal div
+		global $dbc;
+		$profileSQL = "SELECT userID, username, dateRegistered, datePassword, firstName, lastName, email, department.department FROM user JOIN department ON user.department=department.deptID WHERE userID='" .  $_SESSION['userID'] . "'";
+		$profileResult = mysqli_query($dbc, $profileSQL);
+		
+		// Set vars for easier use
+		while ($profileRow = mysqli_fetch_array($profileResult)) {
+			$userID = $profileRow['userID'];
+			$username = $profileRow['username'];
+			$dateReg = 	$profileRow['dateRegistered'];
+			$datePass = $profileRow['datePassword'];
+			$first = $profileRow['firstName'];
+			$last = $profileRow['lastName'];
+			$dept = $profileRow['department'];
+			$email = $profileRow['email'];
+		}
+		?>
+		<h2>Profile Information</h2>
+		<h4>Displaying for: <?php echo $username; ?></h4>
+		<form action="#">
+			<div class="row">
+				<div class="large-6 columns">
+					<label>User ID:</label>
+					<input type="text" name="userID" readonly="readonly" value="<?php echo $userID; ?>">
+				</div>
+				<div class="large-6 columns">
+					<label>Username:</label>
+					<input type="text" name="username" readonly="readonly" value="<?php echo $username; ?>">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>First Name:</label>
+					<input type="text" name="first" readonly="readonly" value="<?php echo $first; ?>">
+				</div>
+				<div class="large-6 columns">
+					<label>Last Name:</label>
+					<input type="text" name="last" readonly="readonly" value="<?php echo $last; ?>">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>Email:</label>
+					<input type="text" name="email" readonly="readonly" value="<?php echo $email; ?>">
+				</div>
+				<div class="large-6 columns">
+					<label>Department:</label>
+					<input type="text" name="department" readonly="readonly" value="<?php echo $dept; ?>">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>Date Registered:</label>
+					<input type="text" name="dateReg" readonly="readonly" value="<?php echo $dateReg; ?>">
+				</div>
+				<div class="large-6 columns">
+					<label>Last Password Update:</label>
+					<input type="text" name="datePasswd" readonly="readonly" value="<?php echo $datePass; ?>">
+				</div>
+			</div>
+			<a class="close-reveal-modal">&#215;</a>
+		</form>
+		<a class="success button" data-reveal-id="changePass" href="#">Change Password</a>
+		<?php
+	}
+
+	function change_password() {
+		// This function will display profile information to be used within a modal div
+		?>
+		<h2>Change Password</h2>
+		<form action="#" method="post" data-abide>
+			<div class="row">
+				<div class="large-12 columns">
+					<input type="hidden" name="submitType" value="newPass">
+					<div class="password-field">
+						<label>Type New Password:</label>
+						<input type="password" id="newpass" name="newpass" required pattern="passwd">
+						<small class="error">Your password must meet password requirements (Alphanumberic _+!@#$%^& and be at least 8 characters long</small>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="password-field">
+						<label>Type New Password Again:</label>
+						<input type="password" name="newpass" required data-equalto="newpass">
+						<small class="error">Password does not match the above</small>
+					</div>
+
+					<input class="success button" type="submit" value="Change Password">
+				</div>
+			</div>
+			<a class="close-reveal-modal">&#215;</a>
+		</form>
 		<?php
 	}
 		
@@ -236,6 +336,16 @@
 					// Sanitize ticket description and escape special chars for mySQL query
 					$issueDesc = mysqli_real_escape_string($dbc, $_POST['desc']);
 					$result = mysqli_query($dbc, "INSERT INTO ticket (userID,statusID,categoryID,priorityID,timestamp,issueDesc) VALUES ('$userID','1','$categoryID','$priorityID',NOW(),'$issueDesc')");
+					break;
+
+				case 'newPass':
+					// Set variables
+					$userID = $_SESSION['userID'];
+					// Sanitize password and escape special chars for mySQL query
+					$newPass = mysqli_real_escape_string($dbc, $_POST['newpass']);
+					$newPassSQL = "UPDATE user SET passwd = SHA1('$newPass'), datePassword = NOW() WHERE userID = $userID";
+					//echo $newPassSQL;
+					$result = mysqli_query($dbc, $newPassSQL);
 					break;
 				
 				default:
@@ -273,7 +383,46 @@
 				admin_nav($newMsgs);
 				break;
 		}
-	echo "</div>" // Close navigation div
+	echo "</div>"; // Close navigation div
+
+	// Modal div for displaying profile information
+	echo '<div id="profile" class="reveal-modal" data-reveal>';
+	profile_page();
+	echo '</div>';
+
+	// Modal div for changing password
+	echo '<div id="changePass" class="reveal-modal" data-reveal>';
+	change_password();
+	echo '</div>';
+
+	// Alert Boxes
+	if (isset($_POST['submitType'])) {
+		echo '<div class="row">';
+		switch ($_POST['submitType']) {
+			case 'newPass':
+				echo '<div data-alert class="alert-box success radius">';
+				echo "Your password has been updated.";
+				echo '</div>';
+				break;
+
+			case 'newMessage':
+				echo '<div data-alert class="alert-box success radius">';
+				echo "Your message has been sent.";
+				echo '</div>';
+				break;
+
+			case 'newTicket':
+				echo '<div data-alert class="alert-box success radius">';
+				echo "Your ticket has been submitted.";
+				echo '</div>';
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+		echo '</div>';
+	}
 ?>
 	<!-- Modal div for creating new tickets -->
 	<div id="newTicket" class="reveal-modal" data-reveal></div>

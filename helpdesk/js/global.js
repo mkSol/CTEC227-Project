@@ -25,7 +25,12 @@ $(document).ready(function(){
 	}
 
 	// Load Foundation
-	$(document).foundation();
+	$(document).foundation({
+		abide : {
+			patterns: { passwd: /([a-zA-Z0-9_+!@#$%^&]){8,}/ }
+		}
+
+	});
 
 	// Load confirm assign modal
 	$('span').on('click', 'a', function() {
