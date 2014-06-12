@@ -322,6 +322,14 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	$sortParams = null;
 	if ($sortBy) {
 		$sortParams = "ORDER BY $sortBy $sortOrder";
+	} else {
+		// Overrides to sort order for errorLog and activityLog to show newest records first
+		if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "activityLog") {
+			$sortParams = "ORDER BY logID DESC";
+		}
+		if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "errorLog") {
+			$sortParams = "ORDER BY errorID DESC";
+		}
 	}
 	
 	$result = mysqli_query($dbc,$sql . " " . $searchParams);
