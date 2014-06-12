@@ -51,11 +51,11 @@
 					require("sqlConnect.inc.php"); // Connect to DB
 					$sqlDept = "SELECT * FROM department";
 					$resultDept = mysqli_query($dbc, $sqlDept);
-					while ($rows = mysqli_fetch_array($resultDept)) {
-						if ($dept = $rows[0]) {
-							echo '<option selected="selected" value="' . $rows[0] . '">' . $rows[1] . '</option>';
+					while ($rowsDept = mysqli_fetch_array($resultDept)) {
+						if ($dept = $rowsDept[0]) {
+							echo '<option selected="selected" value="' . $rowsDept[0] . '">' . $rowsDept[1] . '</option>';
 						} else {
-							echo '<option value="' . $rows[0] . '">' . $rows[1] . '</option>';
+							echo '<option value="' . $rowsDept[0] . '">' . $rowsDept[1] . '</option>';
 						}
 					}
 					?>

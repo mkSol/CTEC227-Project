@@ -463,6 +463,54 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	
 }
 
+if (isset($_POST['submitType'])) {
+	switch ($_POST['submitType']) {
+		case 'editDynamic':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Record has been updated.";
+			echo '</div>';
+			break;
+		
+		case 'edit':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Ticket has been updated.";
+			echo '</div>';
+			break;
+
+		case 'comment':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Your comment has been submitted.";
+			echo '</div>';
+			break;
+
+		case 'deleteDynamic':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Record has been deleted.";
+			echo '</div>';
+			break;
+
+		case 'delete':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Ticket has been deleted.";
+			echo '</div>';
+			break;
+
+		case 'editEquip':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Equipment has been updated.";
+			echo '</div>';
+			break;
+
+		case 'assign':
+			echo '<div data-alert class="alert-box success radius">';
+			echo "Ticket has been assigned to you.";
+			echo '</div>';
+			break;
+
+		default:
+			break;
+	}
+}
 
 // ====================== Page Content Start ================================
 
