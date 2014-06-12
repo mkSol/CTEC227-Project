@@ -62,14 +62,30 @@ Your new trouble ticket will be listed as open and unassigned.
 
 ###### Use the IRS mail subsystem
 
+You can send messages in the IRS system.
+Click on Compose from the menu and the following window will pop up.
 
+![Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/compose_message.jpg).
 
-![Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/message_1.jpg).
+The To: input will respond with a list of valid user names when you enter letters.
 
-![Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/message_2.jpg).
+![message1](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/message_1.jpg).
 
-![Compose_Message_View](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/message_3.jpg).
+Typing ec creates a pick list with the user name ecottingham.
 
+![message2](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/message_2.jpg).
+
+Fill out the Subject: and message body and click send.
+
+![message3](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/message_3.jpg).
+
+Your Inbox will look like this after you get a few messages.
+
+![inbox](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/inbox.jpg).
+
+Your Outbox will look like this after you send a few messages.
+
+![outbox](https://raw.githubusercontent.com/mkSol/CTEC227-Project/master/manual_images/outbox.jpg).
 
 
 Be sure to Log Out when your work is completed with the IRS system.
