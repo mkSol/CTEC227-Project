@@ -78,15 +78,19 @@
 	
 	table_select($tables);
 	
-
-	if ($_SERVER['REQUEST_METHOD'] == "POST") {
-		if (isset($_POST['tableSelect'])) {
-			$_SESSION['tableSelect'] = $_POST['tableSelect'];
-			$_SESSION['sql'] = "SELECT * FROM " . $_POST['tableSelect'];
+	if ($_SERVER['REQUEST_METHOD'] == "POST") { 
+		if (isset($_POST['tableSelect'])) { // When new table is selected
+			$_SESSION['tableSelect'] = $_POST['tableSelect']; // set tableSelect to session var
 		}
 	} else {
-		$_SESSION['sql'] = "SELECT * FROM activityLog";
+		if (!isset($_SESSION['tableSelect'])) { // If no session var for table select, set default
+			$_SESSION['tableSelect'] = "activityLog";
+		}
 	}
+
+	// Set session var for use with exporting table files
+	$_SESSION['sql'] = "SELECT * FROM " . $_SESSION['tableSelect'];
+
 	if (isset($_SESSION['tableSelect'])) {
 		$tblSQL = "SELECT * FROM " . $_SESSION['tableSelect'];
 		//echo "INSERT TABLE FOR " . $_SESSION['tableSelect'] . "!!!";
