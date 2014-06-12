@@ -7,7 +7,7 @@
 			<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
     			<li class="name">
-      			<h1><a href="home.php">Greenwell Bank</a></h1>
+      			<h1><a href="home.php"><?php echo "Welcome, {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
     			</li>
      
     			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -58,7 +58,7 @@
 		<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
     			<li class="name">
-      			<h1><a href="#">Greenwell Bank - <?php echo "Welcome {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
+      			<h1><a href="#"><?php echo "Welcome, {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
     			</li>
      
     			<li class="toggle-topbar"><a href="#"><span>Menu</span></a></li>
@@ -109,7 +109,7 @@
 		<nav class="fixed top-bar" data-topbar>
   			<ul class="title-area">
     			<li class="name">
-      			<h1><a href="#">Greenwell Bank - <?php echo "Welcome {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
+      			<h1><a href="#"><?php echo "Welcome, {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
     			</li>
      
     			<li class="toggle-topbar"><a href="#"><span>Menu</span></a></li>
@@ -161,7 +161,7 @@
   			<ul class="title-area">
     			<li class="name">
 
-      			<h1><a href="#">Greenwell Bank - <?php echo "Welcome {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
+      			<h1><a href="#"><?php echo "Welcome, {$_SESSION['firstName']} {$_SESSION['lastName']}"; ?></a></h1>
 
     			</li>
      
