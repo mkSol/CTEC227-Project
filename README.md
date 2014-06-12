@@ -9,9 +9,7 @@ To Do List
   
 Optional Additions (If we have time for them)
 ==========
-Lost login password system  
 Multi-edit tickets  
-Password aging  
 
 User Accounts
 ==========
