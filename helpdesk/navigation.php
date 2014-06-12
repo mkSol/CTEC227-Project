@@ -266,11 +266,11 @@
 			<div class="row">
 				<div class="large-6 columns">
 					<label>Date Registered:</label>
-					<input type="text" name="dateReg" readonly="readonly" value="<?php echo $dateReg; ?>">
+					<input type="text" name="dateReg" readonly="readonly" value="<?php echo date("l jS, F, Y", strtotime($dateReg)); ?>">
 				</div>
 				<div class="large-6 columns">
 					<label>Last Password Update:</label>
-					<input type="text" name="datePasswd" readonly="readonly" value="<?php echo $datePass; ?>">
+					<input type="text" name="datePasswd" readonly="readonly" value="<?php echo date("l jS, F, Y", strtotime($datePass)); ?>">
 				</div>
 			</div>
 			<a class="close-reveal-modal">&#215;</a>
@@ -396,75 +396,7 @@
 	echo '</div>';
 
 	// Alert Boxes
-	if (isset($_POST['submitType'])) {
-		echo '<div class="row">';
-		switch ($_POST['submitType']) {
-			case 'newPass':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Your password has been updated.";
-				echo '</div>';
-				break;
-
-			case 'newMessage':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Your message has been sent.";
-				echo '</div>';
-				break;
-
-			case 'newTicket':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Your ticket has been submitted.";
-				echo '</div>';
-				break;
-
-			case 'editDynamic':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Record has been updated.";
-				echo '</div>';
-				break;
-			
-			case 'edit':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Ticket has been updated.";
-				echo '</div>';
-				break;
-
-			case 'comment':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Your comment has been submitted.";
-				echo '</div>';
-				break;
-
-			case 'deleteDynamic':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Record has been deleted.";
-				echo '</div>';
-				break;
-
-			case 'delete':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Ticket has been deleted.";
-				echo '</div>';
-				break;
-
-			case 'editEquip':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Equipment has been updated.";
-				echo '</div>';
-				break;
-
-			case 'assign':
-				echo '<div data-alert class="alert-box success radius">';
-				echo "Ticket has been assigned to you.";
-				echo '</div>';
-				break;
-			
-			default:
-				# code...
-				break;
-		}
-		echo '</div>';
-	}
+	include("incl/alerts.inc.php");
 ?>
 	<!-- Modal div for creating new tickets -->
 	<div id="newTicket" class="reveal-modal" data-reveal></div>

@@ -1,5 +1,6 @@
-/* Black background for the header */
+/* CSS overrides to be loaded after Foundation */
 
+/* Black background for the header */
 #header{
 	background: #000;
 }
