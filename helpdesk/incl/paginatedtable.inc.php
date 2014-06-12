@@ -323,9 +323,8 @@ function output_table($sql,$tableName,$view,$edit,$delete) {
 	if ($sortBy) {
 		$sortParams = "ORDER BY $sortBy $sortOrder";
 	} else {
-		echo $_SERVER['PHP_SELF'];
 		// Overrides to sort order for errorLog and activityLog to show newest records first
-		if ($_SERVER['PHP_SELF'] == "/CTEC227-Project/helpdesk/alltables.php") { // Make sure to only do this part on alltables page
+		if (preg_match("/alltables.php/", $_SERVER['PHP_SELF'])) {// Make sure to only do this part on alltables page
 			if (isset($_SESSION['tableSelect']) && $_SESSION['tableSelect'] == "activityLog") {
 				$sortParams = "ORDER BY logID DESC";
 			}
